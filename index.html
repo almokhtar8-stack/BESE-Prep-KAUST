@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Complete application guide for KAUST BESE programs — Bioscience and Bioengineering. Includes roadmap, PI outreach strategy, and interactive prep tools."/>
+<meta name="description" content="Complete application guide for KAUST BESE programs: Bioscience and Bioengineering. Includes roadmap, PI outreach strategy, and interactive prep tools."/>
 <meta property="og:title" content="KAUST BESE Application Guide"/>
 <meta property="og:description" content="Step-by-step roadmap for Bioscience & Bioengineering applicants. PI strategy, resources, and interactive interview prep."/>
-<title>KAUST BESE — Application Guide</title>
+<title>KAUST BESE: Application Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;800&family=Georgia&display=swap" rel="stylesheet"/>
@@ -101,7 +101,37 @@ h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;
 .rc-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 .rc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;border:1px solid var(--border);padding:3px 8px;border-radius:2px;width:fit-content;}
 
-/* DIVIDER */
+/* DISCLAIMER */
+.disclaimer{display:flex;align-items:flex-start;gap:12px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.2);border-left:3px solid var(--accent3);border-radius:6px;padding:14px 18px;margin-top:32px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.6;letter-spacing:0.02em;}
+.disclaimer span{color:var(--accent3);font-size:13px;flex-shrink:0;}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:2px;}
+.checklist-item{display:grid;grid-template-columns:40px 1fr auto;align-items:start;gap:0;background:var(--surface);border:1px solid var(--border);padding:16px 20px;transition:background 0.15s;}
+.checklist-item:first-child{border-radius:8px 8px 0 0;}
+.checklist-item:last-child{border-radius:0 0 8px 8px;}
+.checklist-item:hover{background:var(--surface2);}
+.cl-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;padding-top:2px;}
+.cl-body{display:flex;flex-direction:column;gap:3px;}
+.cl-title{font-size:14px;font-weight:500;color:var(--text);}
+.cl-note{font-size:12px;color:var(--muted);}
+.cl-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:3px 9px;border-radius:2px;text-transform:uppercase;white-space:nowrap;align-self:flex-start;margin-top:2px;}
+.cl-req{background:rgba(0,200,160,0.08);color:var(--accent);border:1px solid var(--border);}
+.cl-cond{background:rgba(0,136,255,0.08);color:var(--accent2);border:1px solid rgba(0,136,255,0.2);}
+
+/* COMPARISON TABLE */
+.compare-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;overflow-x:auto;}
+.compare-table{width:100%;border-collapse:collapse;}
+.compare-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid var(--border);text-align:left;}
+.compare-table th:first-child{color:var(--muted);width:28%;}
+.compare-table th.col-bio{color:#10B981;background:rgba(16,185,129,0.07);border-left:1px solid var(--border);}
+.compare-table th.col-eng{color:#6366F1;background:rgba(99,102,241,0.07);border-left:1px solid var(--border);}
+.compare-table td{padding:14px 20px;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;}
+.compare-table td:first-child{color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.04em;}
+.compare-table td.col-bio{background:rgba(16,185,129,0.03);border-left:1px solid var(--border);color:var(--text);}
+.compare-table td.col-eng{background:rgba(99,102,241,0.03);border-left:1px solid var(--border);color:var(--text);}
+.compare-table tr:last-child td{border-bottom:none;}
+
 .divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);position:relative;z-index:1;}
 
 /* FOOTER */
@@ -155,7 +185,8 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
       <span class="line1">Your Path into</span>
       <span class="line2">KAUST Bioscience</span>
     </h1>
-    <p class="hero-sub fade-in">A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants — from requirement check to interview day. Built for high-potential candidates who want to do it right.</p>
+    <p class="hero-sub fade-in">A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants, from requirement check to interview day. Built for high-potential candidates who want to do it right.</p>
+    <div class="disclaimer fade-in"><span>ⓘ</span>Community-built guide. Always verify requirements, deadlines, and program details through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent3);">KAUST official admissions</a> before applying.</div>
     <div class="hero-stats fade-in">
       <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Key Steps</span></div>
       <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Critical Action</span></div>
@@ -170,7 +201,7 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 1 — Foundations</div>
+    <div class="section-label">Phase 1: Foundations</div>
     <h2>The 7-Step Application Roadmap</h2>
     <div class="steps">
       <div class="step">
@@ -179,9 +210,9 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
           <div class="step-title">Meet the Hard Requirements <span class="tag tag-standard">Required</span></div>
           <div class="step-desc">Before anything else, confirm you qualify. KAUST screens hard on these.<ul>
             <li>BSc in Biology, Microbiology, Biochemistry, Bioengineering, or related field</li>
-            <li>GPA: aim for 3.5+/4.0 — below this needs strong research to offset</li>
-            <li>English proficiency: IELTS 6.5+ or TOEFL 79+ (waiver if degree was English-medium)</li>
-            <li>GRE not required — but a strong score is a plus if you have it</li>
+            <li>GPA: aim for 3.5+/4.0. Below this, strong research can offset.</li>
+            <li>English proficiency: IELTS 6.5+ or TOEFL iBT 81+ (waiver if degree was English-medium)</li>
+            <li>GRE not required, but a strong score is a plus if you have it</li>
           </ul></div>
         </div>
       </div>
@@ -191,9 +222,9 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
           <div class="step-title">Build a Research Profile <span class="tag tag-high">High Impact</span></div>
           <div class="step-desc">KAUST selects researchers, not just students. Any research experience elevates your profile dramatically.<ul>
             <li>Published paper, preprint (Research Square, bioRxiv), or thesis chapter</li>
-            <li>Lab work, capstone projects, final year thesis — document and quantify everything</li>
+            <li>Lab work, capstone projects, final year thesis. Document and quantify everything.</li>
             <li>GitHub with bioinformatics analysis or code (R, Python, bash pipelines)</li>
-            <li>Wet lab skills: PCR, cell culture, NGS library prep, CRISPR — list them explicitly</li>
+            <li>Wet lab skills: PCR, cell culture, NGS library prep, CRISPR. List them explicitly.</li>
           </ul></div>
         </div>
       </div>
@@ -205,7 +236,7 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
             <li>Browse KAUST BESE faculty: bese.kaust.edu.sa/faculty-research/our-faculty</li>
             <li>Identify 2–3 PIs with active projects matching your exact interests</li>
             <li>Read their most recent paper before emailing</li>
-            <li>A PI who invites you to apply dramatically increases your odds of admission</li>
+            <li>A PI who knows your application is coming can strengthen your candidacy significantly. They have real input into lab admissions.</li>
           </ul></div>
         </div>
       </div>
@@ -214,9 +245,9 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
         <div class="step-body">
           <div class="step-title">Enter the KAUST Circle <span class="tag tag-high">High Impact</span></div>
           <div class="step-desc">KAUST rewards familiarity. Being known before you apply makes a real difference.<ul>
-            <li><strong style="color:var(--text)">KAUST Academy</strong> — specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available</li>
-            <li><strong style="color:var(--text)">KAUST Elevate</strong> — on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student</li>
-            <li><strong style="color:var(--text)">Winter Enrichment Program (WEP)</strong> — annual two-week event open to outside guests; attending puts you in the room with faculty and current students</li>
+            <li><strong style="color:var(--text)">KAUST Academy</strong>: specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available</li>
+            <li><strong style="color:var(--text)">KAUST Elevate</strong>: on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student</li>
+            <li><strong style="color:var(--text)">Winter Enrichment Program (WEP)</strong>: annual two-week event open to outside guests; attending puts you in the room with faculty and current students</li>
             <li>Follow and engage with KAUST researchers on LinkedIn and ResearchGate; attend KAUST-affiliated events at KAIMRC, KFSHRC, or SDAIA</li>
           </ul></div>
         </div>
@@ -238,7 +269,7 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
         <div class="step-body">
           <div class="step-title">Secure Strong Reference Letters <span class="tag tag-high">High Impact</span></div>
           <div class="step-desc">3 letters required. Quality matters far more than seniority of the referee.<ul>
-            <li>At least 2 from research supervisors who can speak to your lab competence — not just GPA</li>
+            <li>At least 2 from research supervisors who can speak to your lab competence, not just GPA</li>
             <li>A letter from someone who collaborates with KAUST or has KAUST ties is a significant edge</li>
             <li>Give referees your SOP and CV so their letters directly reinforce your narrative</li>
           </ul></div>
@@ -249,7 +280,7 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
         <div class="step-body">
           <div class="step-title">Prepare Hard for the Interview <span class="tag tag-critical">Most Critical</span></div>
           <div class="step-desc">KAUST MS interviews are research-focused. They want to know if you can think like a scientist.<ul>
-            <li>Be ready to discuss your thesis or capstone project in depth — methods, results, limitations</li>
+            <li>Be ready to discuss your thesis or capstone project in depth: methods, results, limitations</li>
             <li>Prepare 2–3 research questions you want to explore at KAUST</li>
             <li>Know the PI's recent papers well enough to ask intelligent questions</li>
             <li>Use the <strong style="color:var(--accent);cursor:pointer" onclick="showSection('interview')">Interview Prep tool ↗</strong> in this guide</li>
@@ -264,14 +295,14 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 2 — PI Strategy</div>
+    <div class="section-label">Phase 2: PI Strategy</div>
     <h2>The PI Outreach Playbook</h2>
     <div class="pi-highlight">
       <h3>Why This Changes Everything</h3>
-      <p>Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven — the PI has real influence over who joins their group, and by extension, who gets accepted.</p>
+      <p>Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven. The PI has real influence over who joins their group and, by extension, who gets accepted..</p>
     </div>
     <div class="email-template">
-Subject: Prospective MS Student — Interest in [<span class="pl">Lab Focus</span>] Research
+Subject: Prospective MS Student: Interest in [<span class="pl">Lab Focus</span>] Research
 
 Dear Professor <span class="pl">[Last Name]</span>,
 
@@ -279,7 +310,7 @@ I am writing to express my interest in pursuing an MS in <span class="hl">Biosci
 
 I recently read your paper "<span class="pl">[Paper Title, Year]</span>" and found your approach to <span class="pl">[specific method or finding]</span> directly relevant to a question I have been developing during my undergraduate research in <span class="pl">[your field]</span>.
 
-During my BSc at <span class="pl">[University]</span>, I worked on <span class="pl">[brief project description]</span>, where I gained experience in <span class="pl">[relevant techniques]</span>. I am particularly interested in exploring <span class="pl">[specific research angle]</span> — a direction I believe aligns with your current work on <span class="pl">[lab focus]</span>.
+During my BSc at <span class="pl">[University]</span>, I worked on <span class="pl">[brief project description]</span>, where I gained experience in <span class="pl">[relevant techniques]</span>. I am particularly interested in exploring <span class="pl">[specific research angle]</span>, a direction I believe aligns with your current work on <span class="pl">[lab focus]</span>.
 
 I am planning to apply for the <span class="hl">Fall 2026</span> intake and would greatly appreciate the opportunity to briefly discuss whether there may be a fit between my background and your lab's needs.
 
@@ -296,7 +327,7 @@ Sincerely,
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 3 — Resources</div>
+    <div class="section-label">Phase 3: Resources</div>
     <h2>Preparation Resources</h2>
     <div class="resources-grid">
       <a href="javascript:void(0)" onclick="showSection('interview')" class="resource-card">
@@ -308,7 +339,7 @@ Sincerely,
       <a href="javascript:void(0)" onclick="showSection('foundation')" class="resource-card">
         <div class="rc-icon">📋</div>
         <div class="rc-title">MS Foundation Roadmap</div>
-        <div class="rc-desc">16-week self-directed curriculum covering the six core domains of modern life sciences — Molecular Bio, Math, AI, Computing, Writing, and Research Practice.</div>
+        <div class="rc-desc">16-week self-directed curriculum covering the six core domains of modern life sciences: Molecular Bio, Math, AI, Computing, Writing, and Research Practice.</div>
         <div class="rc-tag">Pre-MS Preparation</div>
       </a>
       <a href="https://bese.kaust.edu.sa/faculty-research/our-faculty" target="_blank" class="resource-card">
@@ -320,7 +351,7 @@ Sincerely,
       <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" class="resource-card">
         <div class="rc-icon">📌</div>
         <div class="rc-title">Official Application Portal</div>
-        <div class="rc-desc">KAUST's official application page — deadlines, required documents, program codes, and admission requirements.</div>
+        <div class="rc-desc">KAUST's official application page with deadlines,, required documents, program codes, and admission requirements.</div>
         <div class="rc-tag">Official · Required</div>
       </a>
       <a href="https://academy.kaust.edu.sa/" target="_blank" class="resource-card">
@@ -332,13 +363,13 @@ Sincerely,
       <a href="https://elevate.kaust.edu.sa/" target="_blank" class="resource-card">
         <div class="rc-icon">⬆️</div>
         <div class="rc-title">KAUST Elevate Program</div>
-        <div class="rc-desc">On-the-job training for recent Saudi graduates. Science & Engineering track places you on campus with stipend and housing — direct KAUST network exposure before MS.</div>
+        <div class="rc-desc">On-the-job training for recent Saudi graduates. Science & Engineering track places you on campus with stipend and housing for direct KAUST network exposure before MS.</div>
         <div class="rc-tag">On-Campus Training</div>
       </a>
       <a href="https://wepproposals.kaust.edu.sa/" target="_blank" class="resource-card">
         <div class="rc-icon">❄️</div>
         <div class="rc-title">Winter Enrichment Program (WEP)</div>
-        <div class="rc-desc">KAUST's flagship two-week annual event — Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community.</div>
+        <div class="rc-desc">KAUST's flagship two-week annual event: Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community.</div>
         <div class="rc-tag">Community · Annual Event</div>
       </a>
       <a href="https://www.youtube.com/user/KAUSTsaudi" target="_blank" class="resource-card">
@@ -348,6 +379,83 @@ Sincerely,
         <div class="rc-tag">Free Resource</div>
       </a>
     </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- APPLICATION CHECKLIST -->
+<div class="wrap">
+  <section class="content-section">
+    <div class="section-label">Phase 4: Documents</div>
+    <h2>Application Checklist</h2>
+    <div class="checklist">
+      <div class="checklist-item">
+        <div class="cl-num">01</div>
+        <div class="cl-body">
+          <div class="cl-title">Official Transcripts</div>
+          <div class="cl-note">All undergraduate (and graduate) institutions. Must be official, sent directly from the institution or sealed. Order early; some take 2–4 weeks.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">02</div>
+        <div class="cl-body">
+          <div class="cl-title">Curriculum Vitae (CV)</div>
+          <div class="cl-note">Research experience, lab skills, publications, presentations, certifications, and software tools. 2 pages max. Include GitHub if relevant.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">03</div>
+        <div class="cl-body">
+          <div class="cl-title">Statement of Purpose (SOP)</div>
+          <div class="cl-note">Research-focused. Name a specific PI, state your research interest precisely, and explain why KAUST. 1–1.5 pages. Not an autobiography.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">04</div>
+        <div class="cl-body">
+          <div class="cl-title">3 Recommendation Letters</div>
+          <div class="cl-note">At least 2 from research supervisors who can speak to lab competence. Give referees your SOP, CV, and a deadline 2 weeks before the application closes.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">05</div>
+        <div class="cl-body">
+          <div class="cl-title">English Proficiency Score</div>
+          <div class="cl-note">IELTS 6.5+ or TOEFL iBT 81+. Waived if your undergraduate degree was taught entirely in English. Check your eligibility before registering for the test.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">06</div>
+        <div class="cl-body">
+          <div class="cl-title">Shortlist of Target PIs</div>
+          <div class="cl-note">2–3 faculty members whose active research aligns with your interests. Email them before submitting your application. See the PI Outreach section above.</div>
+        </div>
+        <div class="cl-badge cl-cond">Strongly Advised</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">07</div>
+        <div class="cl-body">
+          <div class="cl-title">Research Samples / Publications</div>
+          <div class="cl-note">Preprint, thesis chapter, or conference poster if available. Not required but meaningfully strengthens your profile. Upload to bioRxiv or Research Square if not yet published.</div>
+        </div>
+        <div class="cl-badge cl-cond">If Available</div>
+      </div>
+      <div class="checklist-item">
+        <div class="cl-num">08</div>
+        <div class="cl-body">
+          <div class="cl-title">Passport Copy</div>
+          <div class="cl-note">Valid passport for identity verification. Keep a digital scan ready.</div>
+        </div>
+        <div class="cl-badge cl-req">Required</div>
+      </div>
+    </div>
+    <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;">Always confirm the current list at <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">kaust.edu.sa/en/study/applying-to-kaust</a>. Requirements may update each cycle.</p>
   </section>
 </div>
 
@@ -398,106 +506,106 @@ function showSection(id) {
 const { useState } = React;
 
 const domains = [
-  { id:"mol", emoji:"🧬", title:"Molecular & Cell Biology", subtitle:"The biological foundation", color:"#10B981", bg:"#10B98112", border:"#10B98130", level:"FOUNDATION", description:"Master the core language of modern biology. Without this, everything else — sequencing, computation, AI — loses its meaning. Start here.", tracks:[
+  { id:"mol", emoji:"🧬", title:"Molecular & Cell Biology", subtitle:"The biological foundation", color:"#10B981", bg:"#10B98112", border:"#10B98130", level:"FOUNDATION", description:"Master the core language of modern biology. Without this, everything else (sequencing, computation, AI) loses its meaning. Start here.", tracks:[
     { name:"Cell Biology Fundamentals", timeframe:"Weeks 1–3", effort:"~3h/week", resources:[
-      { title:"Molecular Biology of the Cell — Alberts et al.", type:"Textbook", free:true, url:"https://www.ncbi.nlm.nih.gov/books/NBK21054/", note:"Free via NCBI. The standard reference. Ch. 1–8 minimum." },
+      { title:"Molecular Biology of the Cell - Alberts et al.", type:"Textbook", free:true, url:"https://www.ncbi.nlm.nih.gov/books/NBK21054/", note:"Free via NCBI. The standard reference. Ch. 1–8 minimum." },
       { title:"MIT OCW 7.016 Introductory Biology", type:"Course", free:true, url:"https://ocw.mit.edu/courses/7-016-introductory-biology-fall-2018/", note:"Full lecture series. Watch at 1.5×. Rigorous but accessible." },
       { title:"Crash Course Biology (YouTube)", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PL3EED4C1D684D3ADF", note:"Fast revision of core concepts. Great for gaps." }
     ], skills:["Cell cycle & checkpoints","DNA replication & repair","Transcription & translation","Cell signaling pathways","Membrane biology & organelles"] },
     { name:"Genetics & Genomics", timeframe:"Weeks 2–6", effort:"~4h/week", resources:[
-      { title:"Introduction to Genomics — Coursera (Johns Hopkins)", type:"Course", free:true, url:"https://www.coursera.org/learn/introduction-genomics", note:"Audit for free. Covers sequencing, variant calling, population genetics." },
+      { title:"Introduction to Genomics - Coursera (Johns Hopkins)", type:"Course", free:true, url:"https://www.coursera.org/learn/introduction-genomics", note:"Audit for free. Covers sequencing, variant calling, population genetics." },
       { title:"Lewin's Genes XII", type:"Textbook", free:false, url:"https://www.amazon.com/Lewins-Genes-XII-Jocelyn-Krebs/dp/1284104494", note:"Focus on gene regulation and epigenetics chapters." },
       { title:"Khan Academy Genetics", type:"Free", free:true, url:"https://www.khanacademy.org/science/ap-biology/heredity", note:"Excellent for solidifying inheritance and Mendelian foundations." }
     ], skills:["Mendelian → complex inheritance","Epigenetics & chromatin remodeling","SNP, indel, CNV concepts","Gene regulatory networks","GWAS & polygenic risk basics"] },
     { name:"Single-Cell & Transcriptomics", timeframe:"Weeks 6–12", effort:"~4h/week", resources:[
       { title:"Orchestrating Single-Cell Analysis (OSCA)", type:"Free Book", free:true, url:"https://bioconductor.org/books/release/OSCA/", note:"The definitive scRNA-seq reference. Bioconductor-based. Bookmark this." },
       { title:"Hemberg Lab scRNA-seq Course", type:"Course", free:true, url:"https://www.singlecellcourse.org/", note:"Theory + practice combined. Excellent structure." },
-      { title:"Current Best Practices in scRNA-seq (Luecken & Theis 2019)", type:"Paper", free:true, url:"https://www.embopress.org/doi/full/10.15252/msb.20188746", note:"Essential reading — outlines the full analysis pipeline." }
+      { title:"Current Best Practices in scRNA-seq (Luecken & Theis 2019)", type:"Paper", free:true, url:"https://www.embopress.org/doi/full/10.15252/msb.20188746", note:"Essential reading - outlines the full analysis pipeline." }
     ], skills:["10x Chromium library prep concepts","Clustering & dimensionality reduction","Pseudotime & trajectory analysis","Differential expression testing","Cell type annotation strategies"] }
   ]},
   { id:"math", emoji:"∑", title:"Mathematics", subtitle:"The hidden engine", color:"#6366F1", bg:"#6366F112", border:"#6366F130", level:"CRITICAL", description:"Most bioinformatics mistakes happen because researchers don't understand the math in their tools. Linear algebra, probability, and statistics are non-negotiable.", tracks:[
     { name:"Linear Algebra", timeframe:"Weeks 1–4", effort:"~3h/week", resources:[
-      { title:"3Blue1Brown — Essence of Linear Algebra", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab", note:"The best visual intuition available. Watch before anything else." },
-      { title:"MIT 18.06 Linear Algebra — Gilbert Strang", type:"Course", free:true, url:"https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", note:"Gold standard. Full lectures + problem sets. Free via MIT OCW." },
-      { title:"Immersive Linear Algebra (interactive textbook)", type:"Free", free:true, url:"http://immersivemath.com/ila/index.html", note:"Interactive, visual companion — especially good for eigenvectors." }
+      { title:"3Blue1Brown - Essence of Linear Algebra", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab", note:"The best visual intuition available. Watch before anything else." },
+      { title:"MIT 18.06 Linear Algebra - Gilbert Strang", type:"Course", free:true, url:"https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", note:"Gold standard. Full lectures + problem sets. Free via MIT OCW." },
+      { title:"Immersive Linear Algebra (interactive textbook)", type:"Free", free:true, url:"http://immersivemath.com/ila/index.html", note:"Interactive, visual companion - especially good for eigenvectors." }
     ], skills:["Matrix operations & factorizations","SVD & PCA (critical for omics)","Eigenvalues & eigenvectors","Vector spaces & projections","Least squares solutions"] },
     { name:"Probability & Statistics", timeframe:"Weeks 3–8", effort:"~4h/week", resources:[
       { title:"StatQuest with Josh Starmer (YouTube)", type:"Video", free:true, url:"https://www.youtube.com/@statquest", note:"Bioinformatics-specific stats explained with extraordinary clarity. Essential." },
-      { title:"Probability for Data Science — UC Berkeley Prob140", type:"Free Book", free:true, url:"http://prob140.org/textbook/content/README.html", note:"Rigorous Bayesian foundations. Free online textbook." },
+      { title:"Probability for Data Science - UC Berkeley Prob140", type:"Free Book", free:true, url:"http://prob140.org/textbook/content/README.html", note:"Rigorous Bayesian foundations. Free online textbook." },
       { title:"An Introduction to Statistical Learning (ISLR)", type:"Free Book", free:true, url:"https://www.statlearning.com/", note:"Canonical ML+stats reference. Free PDF. R and Python editions." }
     ], skills:["Bayes theorem & posterior inference","Hypothesis testing & p-values","Multiple testing correction (FDR, Bonferroni)","Regression models (linear, logistic, Cox)","Distributions & sampling theory"] },
     { name:"Calculus & Optimization", timeframe:"Weeks 5–10", effort:"~3h/week", resources:[
-      { title:"3Blue1Brown — Essence of Calculus", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr", note:"Build intuition before formulas. Watch all 11 episodes." },
+      { title:"3Blue1Brown - Essence of Calculus", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr", note:"Build intuition before formulas. Watch all 11 episodes." },
       { title:"Khan Academy Multivariable Calculus", type:"Free", free:true, url:"https://www.khanacademy.org/math/multivariable-calculus", note:"Gradients and partial derivatives matter for ML theory." },
-      { title:"Convex Optimization — Boyd & Vandenberghe", type:"Free Book", free:true, url:"https://web.stanford.edu/~boyd/cvxbook/", note:"Free PDF. Foundational for understanding ML objective functions." }
+      { title:"Convex Optimization - Boyd & Vandenberghe", type:"Free Book", free:true, url:"https://web.stanford.edu/~boyd/cvxbook/", note:"Free PDF. Foundational for understanding ML objective functions." }
     ], skills:["Derivatives & gradients","Chain rule (backpropagation foundation)","Partial derivatives & Jacobians","Gradient descent optimization","Constrained optimization basics"] }
   ]},
-  { id:"ai", emoji:"🤖", title:"AI & Machine Learning", subtitle:"The analytical engine", color:"#F43F5E", bg:"#F43F5E12", border:"#F43F5E30", level:"STRATEGIC", description:"Modern biology is inseparable from ML. You need to understand models well enough to choose them, critique them, and build on them — not just run pipelines.", tracks:[
+  { id:"ai", emoji:"🤖", title:"AI & Machine Learning", subtitle:"The analytical engine", color:"#F43F5E", bg:"#F43F5E12", border:"#F43F5E30", level:"STRATEGIC", description:"Modern biology is inseparable from ML. You need to understand models well enough to choose them, critique them, and build on them - not just run pipelines.", tracks:[
     { name:"Machine Learning Foundations", timeframe:"Weeks 4–8", effort:"~4h/week", resources:[
-      { title:"fast.ai — Practical Deep Learning for Coders", type:"Course", free:true, url:"https://course.fast.ai/", note:"Top-down, code-first approach. Best for people who learn by doing." },
-      { title:"Machine Learning Specialization — Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/machine-learning-introduction", note:"Audit free. Broad foundations, excellent explanations." },
-      { title:"An Introduction to Statistical Learning (ISLR)", type:"Free Book", free:true, url:"https://www.statlearning.com/", note:"Overlaps with stats track — read the ML chapters here." }
+      { title:"fast.ai - Practical Deep Learning for Coders", type:"Course", free:true, url:"https://course.fast.ai/", note:"Top-down, code-first approach. Best for people who learn by doing." },
+      { title:"Machine Learning Specialization - Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/machine-learning-introduction", note:"Audit free. Broad foundations, excellent explanations." },
+      { title:"An Introduction to Statistical Learning (ISLR)", type:"Free Book", free:true, url:"https://www.statlearning.com/", note:"Overlaps with stats track - read the ML chapters here." }
     ], skills:["Supervised vs unsupervised learning","Cross-validation & regularization","Decision trees → ensemble methods","Dimensionality reduction (PCA, UMAP, t-SNE)","Model evaluation metrics"] },
     { name:"Deep Learning & Neural Networks", timeframe:"Weeks 7–12", effort:"~4h/week", resources:[
-      { title:"Deep Learning Specialization — Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/deep-learning", note:"Covers CNNs, RNNs, and transformers. Audit free." },
+      { title:"Deep Learning Specialization - Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/deep-learning", note:"Covers CNNs, RNNs, and transformers. Audit free." },
       { title:"The Annotated Transformer (Harvard NLP)", type:"Tutorial", free:true, url:"https://nlp.seas.harvard.edu/2018/04/03/attention.html", note:"Line-by-line implementation of the transformer. Understand attention deeply." },
       { title:"Dive into Deep Learning (d2l.ai)", type:"Free Book", free:true, url:"https://d2l.ai/", note:"Interactive. PyTorch throughout. Excellent for hands-on learners." }
     ], skills:["Feedforward & recurrent networks","Convolutional networks for sequences","Attention & transformer architecture","Transfer learning & fine-tuning","Regularization & batch normalization"] },
     { name:"AI for Biology", timeframe:"Weeks 10–16", effort:"~4h/week", resources:[
-      { title:"Causal Inference: The Mixtape — Cunningham", type:"Free Book", free:true, url:"https://mixtape.scunning.com/", note:"Accessible causal inference. Critical for interpreting biological experiments." },
-      { title:"scVI paper — López et al. 2018 (Nature Methods)", type:"Paper", free:true, url:"https://www.nature.com/articles/s41592-018-0229-2", note:"Variational autoencoders for scRNA-seq. Foundational in the field." },
+      { title:"Causal Inference: The Mixtape - Cunningham", type:"Free Book", free:true, url:"https://mixtape.scunning.com/", note:"Accessible causal inference. Critical for interpreting biological experiments." },
+      { title:"scVI paper - López et al. 2018 (Nature Methods)", type:"Paper", free:true, url:"https://www.nature.com/articles/s41592-018-0229-2", note:"Variational autoencoders for scRNA-seq. Foundational in the field." },
       { title:"AlphaFold2 paper (Jumper et al. 2021)", type:"Paper", free:true, url:"https://www.nature.com/articles/s41586-021-03819-2", note:"Read to understand how DL redefined structural biology." }
     ], skills:["Causal DAGs & intervention logic","Graph neural networks for biology","Variational autoencoders (scVI, scANVI)","Protein structure prediction concepts","Perturbation modeling (CellOracle, SCENIC)"] }
   ]},
-  { id:"code", emoji:"⌨️", title:"Scientific Computing", subtitle:"Your laboratory tools", color:"#F59E0B", bg:"#F59E0B12", border:"#F59E0B30", level:"CORE", description:"Code is the lab bench of computational biology. Python and R are equally important. Reproducibility is not optional — it's professional hygiene.", tracks:[
+  { id:"code", emoji:"⌨️", title:"Scientific Computing", subtitle:"Your laboratory tools", color:"#F59E0B", bg:"#F59E0B12", border:"#F59E0B30", level:"CORE", description:"Code is the lab bench of computational biology. Python and R are equally important. Reproducibility is not optional; it's professional hygiene.", tracks:[
     { name:"Python for Research", timeframe:"Weeks 1–4", effort:"~3h/week", resources:[
-      { title:"Scientific Python Lectures", type:"Free", free:true, url:"https://lectures.scientific-python.org/", note:"NumPy, SciPy, matplotlib — the scientific stack. Essential reference." },
-      { title:"The Missing Semester of CS — MIT", type:"Course", free:true, url:"https://missing.csail.mit.edu/", note:"Shell, Git, editors, debugging. Every researcher needs this." },
+      { title:"Scientific Python Lectures", type:"Free", free:true, url:"https://lectures.scientific-python.org/", note:"NumPy, SciPy, matplotlib: the scientific stack. Essential reference." },
+      { title:"The Missing Semester of CS - MIT", type:"Course", free:true, url:"https://missing.csail.mit.edu/", note:"Shell, Git, editors, debugging. Every researcher needs this." },
       { title:"Snakemake Tutorial", type:"Tutorial", free:true, url:"https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html", note:"Reproducible bioinformatics pipelines. Expected in any serious lab." }
     ], skills:["NumPy vectorized computation","Pandas for tabular data","Reproducible Jupyter notebooks","Snakemake/Nextflow workflows","Conda environment management"] },
     { name:"R for Bioinformatics", timeframe:"Weeks 3–8", effort:"~4h/week", resources:[
-      { title:"R for Data Science — Hadley Wickham", type:"Free Book", free:true, url:"https://r4ds.had.co.nz/", note:"Learn tidyverse properly. Non-negotiable if you'll use Bioconductor." },
-      { title:"RNA-seq workflow — Bioconductor (limma/DESeq2)", type:"Tutorial", free:true, url:"https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/limmaWorkflow.html", note:"Lab-standard differential expression analysis pipeline." },
-      { title:"Data Analysis for Life Sciences — Irizarry & Love", type:"Free", free:true, url:"https://rafalab.github.io/pages/harvardx.html", note:"Free HarvardX course series. R-based. World-class instructors." }
+      { title:"R for Data Science - Hadley Wickham", type:"Free Book", free:true, url:"https://r4ds.had.co.nz/", note:"Learn tidyverse properly. Non-negotiable if you'll use Bioconductor." },
+      { title:"RNA-seq workflow - Bioconductor (limma/DESeq2)", type:"Tutorial", free:true, url:"https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/limmaWorkflow.html", note:"Lab-standard differential expression analysis pipeline." },
+      { title:"Data Analysis for Life Sciences - Irizarry & Love", type:"Free", free:true, url:"https://rafalab.github.io/pages/harvardx.html", note:"Free HarvardX course series. R-based. World-class instructors." }
     ], skills:["ggplot2 & publication-quality figures","DESeq2 & edgeR for differential expression","Seurat for scRNA-seq analysis","Bioconductor package ecosystem","R Markdown for reproducible reports"] },
     { name:"HPC & Linux", timeframe:"Weeks 4–8", effort:"~2h/week", resources:[
-      { title:"Software Carpentry — Shell, Git & Python", type:"Tutorial", free:true, url:"https://software-carpentry.org/lessons/", note:"Hands-on, biology-focused. Workshop-style. Free online." },
+      { title:"Software Carpentry - Shell, Git & Python", type:"Tutorial", free:true, url:"https://software-carpentry.org/lessons/", note:"Hands-on, biology-focused. Workshop-style. Free online." },
       { title:"Introduction to SLURM (HPC job scheduler)", type:"Tutorial", free:true, url:"https://slurm.schedmd.com/quickstart.html", note:"Most university and institute clusters use SLURM. Learn this before you arrive." },
-      { title:"Docker for Bioinformatics — BioContainers", type:"Tutorial", free:true, url:"https://biocontainers.pro/", note:"Containerization = reproducibility. Required for serious pipelines." }
+      { title:"Docker for Bioinformatics - BioContainers", type:"Tutorial", free:true, url:"https://biocontainers.pro/", note:"Containerization = reproducibility. Required for serious pipelines." }
     ], skills:["Bash scripting & automation","SLURM job submission & monitoring","Git version control & collaboration","Docker/Singularity containers","tmux & remote server workflows"] }
   ]},
-  { id:"writing", emoji:"✍️", title:"Scientific Writing", subtitle:"Your voice in the field", color:"#06B6D4", bg:"#06B6D412", border:"#06B6D430", level:"HIGH", description:"Most researchers write poorly because they were never taught. A clear, precise scientific paper is a skill that can be learned systematically — and it dramatically affects your career.", tracks:[
+  { id:"writing", emoji:"✍️", title:"Scientific Writing", subtitle:"Your voice in the field", color:"#06B6D4", bg:"#06B6D412", border:"#06B6D430", level:"HIGH", description:"Most researchers write poorly because they were never taught. A clear, precise scientific paper is a skill that can be learned systematically, and it dramatically affects your career.", tracks:[
     { name:"Reading Papers Efficiently", timeframe:"Week 1 onward", effort:"~2h/week", resources:[
-      { title:"How to Read a Paper — S. Keshav", type:"Free PDF", free:true, url:"https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf", note:"2-page guide. The 3-pass method. Read this today, before anything else." },
+      { title:"How to Read a Paper - S. Keshav", type:"Free PDF", free:true, url:"https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf", note:"2-page guide. The 3-pass method. Read this today, before anything else." },
       { title:"Connected Papers", type:"Tool", free:true, url:"https://www.connectedpapers.com/", note:"Visualize citation networks around key papers in your field." },
       { title:"Semantic Scholar", type:"Tool", free:true, url:"https://www.semanticscholar.org/", note:"Set citation alerts for key authors. Stay current automatically." }
     ], skills:["3-pass reading method","Identifying contribution vs. incremental work","Critical appraisal of methods sections","Building an annotated literature library","Summarizing papers in ≤5 sentences"] },
     { name:"Paper Structure & Prose", timeframe:"Weeks 6–10", effort:"~3h/week", resources:[
-      { title:"Writing in the Sciences — Coursera (Stanford)", type:"Course", free:true, url:"https://www.coursera.org/learn/sciwrite", note:"Kristin Sainani's course. Transformative. The single best writing course for scientists." },
-      { title:"The Craft of Scientific Writing — Michael Alley", type:"Textbook", free:false, url:"https://www.amazon.com/Craft-Scientific-Writing-Michael-Alley/dp/1441982876", note:"Authoritative reference. Focus on clarity and precision." },
+      { title:"Writing in the Sciences - Coursera (Stanford)", type:"Course", free:true, url:"https://www.coursera.org/learn/sciwrite", note:"Kristin Sainani's course. Transformative. The single best writing course for scientists." },
+      { title:"The Craft of Scientific Writing - Michael Alley", type:"Textbook", free:false, url:"https://www.amazon.com/Craft-Scientific-Writing-Michael-Alley/dp/1441982876", note:"Authoritative reference. Focus on clarity and precision." },
       { title:"Nature: How to write a first-class paper", type:"Free", free:true, url:"https://www.nature.com/articles/d41586-018-02404-4", note:"Direct advice from Nature editors. Short and worth reading." }
     ], skills:["IMRAD structure","Writing tight abstracts","Figure legends that stand alone","Eliminating redundant passive voice","Claims-to-evidence ratio clarity"] },
     { name:"Reference Management & Submission", timeframe:"Weeks 2–4 (setup) + ongoing", effort:"~1h/week", resources:[
       { title:"Zotero Reference Manager", type:"Tool", free:true, url:"https://www.zotero.org/", note:"Start your literature database now. Organize by topic/project from day 1." },
-      { title:"EQUATOR Network — Reporting Guidelines", type:"Resource", free:true, url:"https://www.equator-network.org/", note:"STROBE, CONSORT, MIQE — know the reporting standard for your study type." },
+      { title:"EQUATOR Network - Reporting Guidelines", type:"Resource", free:true, url:"https://www.equator-network.org/", note:"STROBE, CONSORT, MIQE: know the reporting standard for your study type." },
       { title:"bioRxiv Preprint Server", type:"Resource", free:true, url:"https://www.biorxiv.org/", note:"Preprints are standard in biology now. Understand the workflow." }
     ], skills:["Zotero cite-while-you-write","CSL citation styles","Reporting guideline compliance","Preprint vs. journal strategy","Responding to peer review"] }
   ]},
-  { id:"research", emoji:"🔬", title:"Research Practice", subtitle:"How science actually works", color:"#EC4899", bg:"#EC489912", border:"#EC489930", level:"HIGH", description:"Domain knowledge alone doesn't make a researcher. The meta-skills — designing experiments, presenting findings, asking the right question — are what separate contributors from consumers.", tracks:[
+  { id:"research", emoji:"🔬", title:"Research Practice", subtitle:"How science actually works", color:"#EC4899", bg:"#EC489912", border:"#EC489930", level:"HIGH", description:"Domain knowledge alone doesn't make a researcher. The meta-skills (designing experiments, presenting findings, asking the right question) are what separate contributors from consumers.", tracks:[
     { name:"Experiment Design & Hypothesis", timeframe:"Weeks 4–7", effort:"~2h/week", resources:[
-      { title:"Experimental Design in Biology — HHMI BioInteractive", type:"Free", free:true, url:"https://www.biointeractive.org/classroom-resources/experimental-design-biology", note:"Visual, rigorous, accessible. Covers controls, variables, and reproducibility." },
-      { title:"Think Bayes — Allen Downey", type:"Free Book", free:true, url:"https://greenteapress.com/wp/think-bayes/", note:"Bayesian thinking applied to real experimental reasoning." },
-      { title:"How to Design a Good Experiment — Nature Methods", type:"Free", free:true, url:"https://www.nature.com/articles/nmeth.2613", note:"Brief but authoritative guidance on statistical power and sample size." }
+      { title:"Experimental Design in Biology - HHMI BioInteractive", type:"Free", free:true, url:"https://www.biointeractive.org/classroom-resources/experimental-design-biology", note:"Visual, rigorous, accessible. Covers controls, variables, and reproducibility." },
+      { title:"Think Bayes - Allen Downey", type:"Free Book", free:true, url:"https://greenteapress.com/wp/think-bayes/", note:"Bayesian thinking applied to real experimental reasoning." },
+      { title:"How to Design a Good Experiment - Nature Methods", type:"Free", free:true, url:"https://www.nature.com/articles/nmeth.2613", note:"Brief but authoritative guidance on statistical power and sample size." }
     ], skills:["Hypothesis formulation (falsifiable, specific)","Control experiment design","Sample size & statistical power","Reproducibility and replication","Confounding variable identification"] },
     { name:"Literature Review & Synthesis", timeframe:"Weeks 2–8", effort:"~2h/week", resources:[
       { title:"PubMed Advanced Search", type:"Tool", free:true, url:"https://pubmed.ncbi.nlm.nih.gov/advanced/", note:"Master Boolean operators and MeSH terms. Systematic searching is a skill." },
-      { title:"Rayyan — Systematic Review Tool", type:"Tool", free:true, url:"https://www.rayyan.ai/", note:"Free for researchers. Collaborate on abstract screening." },
-      { title:"Ten Simple Rules for Writing a Literature Review — PLoS", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003149", note:"Practical checklist for structuring a review paper." }
+      { title:"Rayyan - Systematic Review Tool", type:"Tool", free:true, url:"https://www.rayyan.ai/", note:"Free for researchers. Collaborate on abstract screening." },
+      { title:"Ten Simple Rules for Writing a Literature Review - PLoS", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003149", note:"Practical checklist for structuring a review paper." }
     ], skills:["Systematic search strategies","Inclusion/exclusion criteria","Evidence synthesis vs. narration","Identifying research gaps","Building a conceptual framework"] },
     { name:"Presenting Research", timeframe:"Weeks 8–14", effort:"~2h/week", resources:[
-      { title:"Ten Simple Rules for Oral Presentations — PLoS Comp Bio", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030077", note:"For journal clubs and lab meetings. Short, direct rules." },
-      { title:"Better Posters Blog — Zen Faulkes", type:"Blog", free:true, url:"https://betterposters.blogspot.com/", note:"Conference poster design principles." },
-      { title:"Fundamentals of Data Visualization — Claus Wilke", type:"Free Book", free:true, url:"https://clauswilke.com/dataviz/", note:"Free online. The standard reference for scientific figure design." }
+      { title:"Ten Simple Rules for Oral Presentations - PLoS Comp Bio", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030077", note:"For journal clubs and lab meetings. Short, direct rules." },
+      { title:"Better Posters Blog - Zen Faulkes", type:"Blog", free:true, url:"https://betterposters.blogspot.com/", note:"Conference poster design principles." },
+      { title:"Fundamentals of Data Visualization - Claus Wilke", type:"Free Book", free:true, url:"https://clauswilke.com/dataviz/", note:"Free online. The standard reference for scientific figure design." }
     ], skills:["Journal club presentation structure","10–20 min lab talk format","Conference poster design","Handling Q&A under pressure","Visual data storytelling principles"] }
   ]}
 ];
@@ -545,7 +653,7 @@ function BioscienceFoundation() {
         <div style={{maxWidth:1100,margin:"0 auto",position:"relative"}}>
           <div style={{display:"inline-block",background:"rgba(255,255,255,0.07)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:6,padding:"5px 14px",fontSize:11,color:"rgba(255,255,255,0.5)",fontFamily:"'IBM Plex Mono',monospace",letterSpacing:"0.1em",marginBottom:20}}>BIOSCIENCE · BIOINFORMATICS · COMPUTATIONAL BIOLOGY</div>
           <h1 style={{fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(32px,5vw,54px)",fontWeight:800,color:"white",lineHeight:1.1,marginBottom:16,maxWidth:680}}>The Complete Foundation<br/><span style={{color:"#10B981"}}>Every Graduate Student Needs</span></h1>
-          <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,maxWidth:580,lineHeight:1.7,marginBottom:32,fontWeight:300}}>A 16-week, self-directed curriculum covering the six core domains of modern life sciences research — built around free, high-quality resources available to everyone.</p>
+          <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,maxWidth:580,lineHeight:1.7,marginBottom:32,fontWeight:300}}>A 16-week, self-directed curriculum covering the six core domains of modern life sciences research, built around free, high-quality resources available to everyone.</p>
           <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
             {[{label:"6 Domains",sub:"Molecular Bio → AI"},{label:"18 Tracks",sub:"Structured progression"},{label:"54 Resources",sub:"Mostly free"},{label:"16 Weeks",sub:"10–25h / week"}].map((s,i)=>(
               <div key={i} style={{background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:10,padding:"14px 20px",minWidth:110}}>
@@ -578,7 +686,7 @@ function BioscienceFoundation() {
       {view==="timeline"&&(
         <div className="slide-up" style={{maxWidth:1100,margin:"0 auto",padding:"40px"}}>
           <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:700,color:"#1A1A2E",marginBottom:8}}>16-Week Progression Plan</h2>
-          <p style={{color:"#888",fontSize:13,lineHeight:1.6,marginBottom:32}}>All six domains run in parallel, but with shifting emphasis. This is the recommended sequencing — adjust based on your current level.</p>
+          <p style={{color:"#888",fontSize:13,lineHeight:1.6,marginBottom:32}}>All six domains run in parallel, but with shifting emphasis. This is the recommended sequencing; adjust based on your current level.</p>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:16,marginBottom:40}}>
             {phases.map((phase,i)=>{
               const colors=["#10B981","#6366F1","#F43F5E","#F59E0B"];
@@ -742,13 +850,13 @@ const scienceTopics = [
     {label:"Smooth ER",def:"No ribosomes. Synthesizes lipids, detoxifies drugs, stores calcium."},
     {label:"Golgi apparatus",def:"Stack of flattened cisternae. Receives proteins from ER, modifies them (glycosylation, phosphorylation), sorts and packages them into vesicles for secretion or delivery to other organelles."},
     {label:"Lysosomes",def:"Membrane-bound vesicles with hydrolytic enzymes. Function at pH ~5. Digest macromolecules, damaged organelles (autophagy), foreign material (phagocytosis). Defects cause lysosomal storage diseases (e.g., Tay-Sachs)."},
-    {label:"Peroxisomes",def:"Contain oxidative enzymes (catalase, oxidases). Break down fatty acids via beta-oxidation. Detoxify H2O2. Use oxidative reactions (not hydrolysis), neutral pH — distinct from lysosomes."},
+    {label:"Peroxisomes",def:"Contain oxidative enzymes (catalase, oxidases). Break down fatty acids via beta-oxidation. Detoxify H2O2. Use oxidative reactions (not hydrolysis), neutral pH. Distinct from lysosomes."},
     {label:"Cytoskeleton",def:"Microfilaments (actin, 7nm, cell shape/movement), Intermediate filaments (keratin, 10nm, mechanical strength), Microtubules (tubulin, 25nm, intracellular transport, division spindle)."}
   ], traps:[
     "Prokaryotes = 70S ribosomes. Eukaryotes = 80S. Mitochondria also have 70S (endosymbiosis evidence).",
     "Smooth ER does NOT synthesize proteins. That is Rough ER.",
     "Lysosomes use hydrolysis at acidic pH. Peroxisomes use oxidation at neutral pH. Don't confuse them.",
-    "Nuclear pores are selective — use nuclear localization signals (NLS) and importins/exportins. Not open holes."
+    "Nuclear pores are selective; use nuclear localization signals (NLS) and importins/exportins. Not open holes."
   ], qas:[
     {q:"Describe the structure and function of the cell membrane.",a:"The cell membrane is a phospholipid bilayer with embedded proteins, described by the fluid mosaic model. Phospholipids have hydrophilic heads (face water) and hydrophobic tails (face interior). Integral (transmembrane) proteins span the bilayer and function as channels, transporters, and receptors. Peripheral proteins attach to the surface and participate in signaling and structure. Cholesterol modulates membrane fluidity. The membrane is selectively permeable, controlling what enters and exits the cell via passive diffusion, facilitated diffusion, active transport, and vesicle trafficking."}
   ]},
@@ -778,7 +886,7 @@ const scienceTopics = [
   ], traps:[
     "Prokaryotes do NOT have 5' cap, poly-A tail, or splicing.",
     "Template strand is 3'→5'; the mRNA produced is 5'→3'.",
-    "Alternative splicing is a major source of protein diversity — one gene can produce many proteins.",
+    "Alternative splicing is a major source of protein diversity; one gene can produce many proteins.",
     "RNA Pol II makes mRNA. RNA Pol I makes rRNA. RNA Pol III makes tRNA."
   ], qas:[
     {q:"What are the key differences between prokaryotic and eukaryotic gene expression?",a:"Prokaryotic: transcription and translation are coupled. mRNA has no 5' cap, poly-A tail, or introns. Genes organized into operons. Single RNA polymerase. Eukaryotic: transcription occurs in nucleus, translation in cytoplasm. mRNA requires processing (5' cap, poly-A tail, splicing). Three RNA polymerases (I, II, III). Regulation at multiple levels: chromatin, transcription, post-transcription, translation, and post-translation."},
@@ -847,8 +955,8 @@ const scienceTopics = [
     {label:"Signal transduction",def:"The process by which an extracellular signal is converted into an intracellular response."},
     {label:"Receptor tyrosine kinases (RTKs)",def:"Ligand binding causes dimerization and autophosphorylation of tyrosine residues. Activates Ras-MAPK (cell proliferation) and PI3K-Akt (cell survival). Mutations common in cancer (EGFR, HER2)."},
     {label:"GPCRs",def:"Largest receptor family. Seven transmembrane domains. Ligand binding activates G-protein (GDP → GTP exchange). G-protein activates effectors: adenylyl cyclase (→ cAMP) or phospholipase C (→ IP3 and DAG)."},
-    {label:"Apoptosis — intrinsic",def:"Mitochondrial pathway. DNA damage → cytochrome c release → apoptosome → caspase-9 activation → caspase-3 (executioner)."},
-    {label:"Apoptosis — extrinsic",def:"Death receptor pathway. FasL binds Fas receptor → DISC formation → caspase-8 activation → caspase-3. Both pathways converge on caspase-3."},
+    {label:"Apoptosis (intrinsic)",def:"Mitochondrial pathway. DNA damage → cytochrome c release → apoptosome → caspase-9 activation → caspase-3 (executioner)."},
+    {label:"Apoptosis (extrinsic)",def:"Death receptor pathway. FasL binds Fas receptor → DISC formation → caspase-8 activation → caspase-3. Both pathways converge on caspase-3."},
     {label:"Necrosis vs. apoptosis",def:"Necrosis: uncontrolled, cell swelling, membrane rupture → inflammation. Apoptosis: programmed, orderly, cell shrinkage, membrane blebbing, apoptotic bodies phagocytosed → NO inflammation."}
   ], traps:[
     "Apoptosis does NOT cause inflammation (unlike necrosis).",
@@ -865,10 +973,10 @@ const scienceTopics = [
     {label:"Hallmarks of cancer",def:"Sustaining proliferative signaling, evading growth suppressors, resisting cell death, enabling replicative immortality, inducing angiogenesis, activating invasion/metastasis."}
   ], traps:[
     "Oncogene = gain-of-function. Tumor suppressor = loss-of-function.",
-    "p53 is a transcription factor — it activates downstream target genes. It doesn't directly repair DNA.",
+    "p53 is a transcription factor; it activates downstream target genes. It doesn't directly repair DNA.",
     "Two-hit: BOTH alleles must be inactivated for tumor suppressor loss of function."
   ], qas:[
-    {q:"Explain the role of p53 in cancer biology.",a:"p53 is a tumor suppressor protein called the guardian of the genome. When DNA damage is detected, p53 activates: (1) cell cycle arrest at G1/S via p21 (a CDK inhibitor); (2) DNA repair genes; (3) apoptosis if damage is irreparable. Loss-of-function mutations in p53 (found in >50% of human cancers) remove these protective mechanisms. p53 is a transcription factor — it directly activates the expression of downstream target genes."}
+    {q:"Explain the role of p53 in cancer biology.",a:"p53 is a tumor suppressor protein called the guardian of the genome. When DNA damage is detected, p53 activates: (1) cell cycle arrest at G1/S via p21 (a CDK inhibitor); (2) DNA repair genes; (3) apoptosis if damage is irreparable. Loss-of-function mutations in p53 (found in >50% of human cancers) remove these protective mechanisms. p53 is a transcription factor; it directly activates the expression of downstream target genes."}
   ]},
   { name:"J. Genomics & Bioinformatics", foundation:[
     {label:"Human genome facts",def:"~3.2 billion base pairs. ~20,000-25,000 protein-coding genes. Only ~1.5% of genome is protein-coding."},
@@ -876,7 +984,7 @@ const scienceTopics = [
     {label:"AlphaFold",def:"AI system by DeepMind that predicts protein 3D structure from amino acid sequence with near-experimental accuracy."},
     {label:"scRNA-seq",def:"Single-cell RNA sequencing profiles the transcriptome of individual cells. Reveals cell subtypes, rare populations, differentiation trajectories, tumor heterogeneity. Analytics: PCA, UMAP, clustering, pseudotime, RNA velocity. Central to the Human Cell Atlas."}
   ], traps:[
-    "Only ~1.5% of the human genome codes for proteins. The rest is NOT junk — it includes regulatory elements and non-coding RNAs.",
+    "Only ~1.5% of the human genome codes for proteins. The rest is NOT junk; it includes regulatory elements and non-coding RNAs.",
     "Transcriptome is DYNAMIC (changes with conditions). Genome is STATIC.",
     "BLAST performs LOCAL alignment, not global. E-value: lower = more statistically significant.",
     "mRNA levels do NOT always predict protein levels."
@@ -900,7 +1008,7 @@ const parts = [
   { id:"background", label:"Part 1", title:"General Background", duration:"~5 min", icon:"👤", color:"#4f7942",
     questions:[
       {q:"Tell me about yourself.",a:"Open with your degree, GPA, and any clinical or research experience. Then connect how that background drove your interest in bioscience. Mention hands-on training (bioinformatics, lab rotations, independent projects) and close with one sentence on what you're aiming to formalize through the M.S."},
-      {q:"Why this program / why this university?",a:"Cite the specific interdisciplinary environment: integration of wet-lab biology with computational methods, access to relevant faculty, and emphasis on translational or systems-level research. Avoid generic answers — name one specific lab, center, or recent initiative."},
+      {q:"Why this program / why this university?",a:"Cite the specific interdisciplinary environment: integration of wet-lab biology with computational methods, access to relevant faculty, and emphasis on translational or systems-level research. Avoid generic answers; name one specific lab, center, or recent initiative."},
       {q:"What is your biggest weakness or gap?",a:"Be honest and specific (e.g., limited wet-lab experience, limited statistics background). Then explain what you've done to address it, and how the M.S. program's courses or rotations will close it. Avoid clichéd non-answers like 'I work too hard.'"},
       {q:"What are your long-term goals?",a:"Describe a trajectory: M.S. → Ph.D. → specific career outcome. Connect it to a real problem you want to solve. Interviewers want to see that the M.S. is a deliberate step, not just a credential."},
       {q:"Tell me about your research experience.",a:"Structure it as: (1) What is the problem? (2) Why does it matter? (3) What did you do? (4) What did you find or design? (5) What are the limitations and next steps? Be honest about what is design-stage vs. executed work."}
@@ -908,7 +1016,7 @@ const parts = [
   },
   { id:"research", label:"Part 3", title:"Research Discussion", duration:"~10–15 min", icon:"🧬", color:"#7a4f8a",
     questions:[
-      {q:"What specific aspect of [Professor X]'s research interests you most?",a:"Name a specific paper or research theme — not just 'your lab's work on X.' Explain why it connects to a real scientific question you care about. Cite a methodological approach or a biological problem the lab is tackling."},
+      {q:"What specific aspect of [Professor X]'s research interests you most?",a:"Name a specific paper or research theme, not just 'your lab's work on X.' Explain why it connects to a real scientific question you care about. Cite a methodological approach or a biological problem the lab is tackling."},
       {q:"How would you contribute to this lab?",a:"Offer three concrete things: (1) a technical skill you already have that the lab uses, (2) a unique perspective (clinical, computational, cross-disciplinary), and (3) a project or problem you've independently worked on that demonstrates research initiative."},
       {q:"If you could design a project in this lab, what would it be?",a:"Start with a biological question. Explain how you'd use the lab's existing methods or tools to address it. Connect it to your own background or prior work. Keep it feasible for an M.S. student."},
       {q:"How does your background align with this lab's methods?",a:"Be specific about tools and techniques. If you've used RNA-seq pipelines, Python, DESeq2, BLAST, or similar tools, say so explicitly. Connect each to a concrete thing the lab does."}
@@ -1031,7 +1139,7 @@ function BioscienceInterview() {
                       )}
                       {scienceTab==="traps"&&(
                         <div>
-                          <div style={{fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase",color:"#888",marginBottom:10,fontFamily:"monospace"}}>Exam Traps — Common Mistakes</div>
+                          <div style={{fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase",color:"#888",marginBottom:10,fontFamily:"monospace"}}>Exam Traps: Common Mistakes</div>
                           {topic.traps.map((trap,tri)=>(
                             <div key={tri} style={{display:"flex",gap:10,marginBottom:7,padding:"9px 12px",background:"#fff4f4",border:"1px solid #f5c0c0",borderRadius:4,fontSize:13.5,lineHeight:1.65,color:"#5a1a1a"}}>
                               <span style={{flexShrink:0,color:"#c44"}}>⚠</span><span>{trap}</span>
