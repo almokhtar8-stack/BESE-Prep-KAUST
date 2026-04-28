@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KAUST BESE — Application Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #050a0f;
+    --surface: #0c1620;
+    --surface2: #111d2b;
+    --accent: #00c8a0;
+    --accent2: #0088ff;
+    --accent3: #7c5cfc;
+    --text: #e8f0f8;
+    --muted: #5a7a9a;
+    --border: rgba(0,200,160,0.15);
+    --glow: rgba(0,200,160,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── BACKGROUND MESH ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 10% 20%, rgba(0,200,160,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(0,136,255,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(124,92,252,0.04) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── GRID TEXTURE ── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,160,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 0 60px;
+    position: relative; z-index: 1;
+  }
+
+  .kaust-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    background: var(--glow);
+    padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 36px;
+    text-transform: uppercase;
+  }
+  .kaust-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 7vw, 86px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  h1 .line1 { display: block; color: var(--text); }
+  h1 .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 17px; color: var(--muted); max-width: 540px;
+    font-weight: 300; line-height: 1.7; margin-bottom: 48px;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .scroll-hint {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-top: 56px;
+  }
+  .scroll-hint::before {
+    content: '';
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 80px 0; position: relative; z-index: 1; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px;
+    background: var(--accent); opacity: 0.4;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 40px;
+    color: var(--text);
+  }
+
+  /* ── ROADMAP STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 2px; }
+
+  .step {
+    display: grid; grid-template-columns: 64px 1fr;
+    gap: 0; border: 1px solid var(--border);
+    background: var(--surface);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .step:hover {
+    border-color: rgba(0,200,160,0.4);
+    background: var(--surface2);
+  }
+  .step:first-child { border-radius: 8px 8px 0 0; }
+  .step:last-child  { border-radius: 0 0 8px 8px; }
+
+  .step-num {
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 28px 0 0;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    color: var(--muted); letter-spacing: 0.08em;
+    border-right: 1px solid var(--border);
+  }
+
+  .step-body { padding: 24px 28px; }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .step-title .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    padding: 3px 8px; border-radius: 2px;
+    text-transform: uppercase; font-weight: 400;
+  }
+  .tag-critical { background: rgba(0,200,160,0.1); color: var(--accent); border: 1px solid var(--border); }
+  .tag-high     { background: rgba(0,136,255,0.1); color: var(--accent2); border: 1px solid rgba(0,136,255,0.2); }
+  .tag-standard { background: rgba(124,92,252,0.1); color: var(--accent3); border: 1px solid rgba(124,92,252,0.2); }
+
+  .step-desc {
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+  .step-desc ul {
+    list-style: none; margin-top: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .step-desc ul li { display: flex; align-items: flex-start; gap: 8px; }
+  .step-desc ul li::before {
+    content: '→'; color: var(--accent); font-size: 12px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ── PI SECTION ── */
+  .pi-highlight {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .pi-highlight::after {
+    content: 'CRITICAL';
+    position: absolute; top: 20px; right: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em;
+    color: var(--accent); opacity: 0.4;
+  }
+  .pi-highlight h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .pi-highlight p {
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+
+  .email-template {
+    background: #060d14;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: #8aabb8;
+    line-height: 1.8;
+    position: relative;
+  }
+  .email-template::before {
+    content: 'PI OUTREACH TEMPLATE';
+    display: block;
+    font-size: 9px; letter-spacing: 0.15em;
+    color: var(--accent); margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .email-template .highlight { color: var(--accent2); }
+  .email-template .placeholder { color: var(--accent); }
+
+  /* ── RESOURCES ── */
+  .resources-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .resource-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--text);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .resource-card:hover {
+    border-color: rgba(0,200,160,0.5);
+    background: var(--surface2);
+    transform: translateY(-2px);
+  }
+  .resource-card::after {
+    content: '↗';
+    position: absolute; top: 20px; right: 20px;
+    color: var(--muted); font-size: 14px;
+    transition: color 0.2s;
+  }
+  .resource-card:hover::after { color: var(--accent); }
+
+  .rc-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--glow); border: 1px solid var(--border);
+    border-radius: 6px; font-size: 16px;
+  }
+  .rc-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px; font-weight: 700;
+  }
+  .rc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .rc-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    color: var(--accent); text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 3px 8px; border-radius: 2px; width: fit-content;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+
+  .tl-item {
+    position: relative; padding: 0 0 36px 28px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -4px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+
+  .tl-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tl-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 0 0;
+    position: relative; z-index: 1;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 0 60px;
+    position: relative; z-index: 1;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 24px;
+    border-top: 1px solid var(--border); padding-top: 32px;
+  }
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px; font-weight: 800;
+    color: var(--text);
+  }
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in:nth-child(3) { animation-delay: 0.3s; }
+  .fade-in:nth-child(4) { animation-delay: 0.4s; }
+  .fade-in:nth-child(5) { animation-delay: 0.5s; }
+  .fade-in:nth-child(6) { animation-delay: 0.6s; }
+  .fade-in:nth-child(7) { animation-delay: 0.7s; }
+
+  @media (max-width: 600px) {
+    .hero-stats { gap: 24px; }
+    .step { grid-template-columns: 48px 1fr; }
+    .pi-highlight { padding: 24px 20px; }
+    .email-template { padding: 18px; font-size: 11.5px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero">
+    <div class="fade-in">
+      <div class="kaust-badge">BESE Graduate Programs · Application Guide</div>
+    </div>
+    <h1 class="fade-in">
+      <span class="line1">Your Path into</span>
+      <span class="line2">KAUST Bioscience</span>
+    </h1>
+    <p class="hero-sub fade-in">
+      A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants — from requirement check to interview day. Built for high-potential candidates who want to do it right.
+    </p>
+    <div class="hero-stats fade-in">
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <span class="stat-label">Key Steps</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Critical Action</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">BESE</span>
+        <span class="stat-label">Division Focus</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Full</span>
+        <span class="stat-label">Fellowship Track</span>
+      </div>
+    </div>
+    <div class="scroll-hint fade-in">Scroll to begin</div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<div class="wrap">
+  <section>
+    <div class="section-label">Phase 1 — Foundations</div>
+    <h2>The 7-Step Application Roadmap</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">
+            Meet the Hard Requirements
+            <span class="tag tag-standard">Required</span>
+          </div>
+          <div class="step-desc">
+            Before anything else, confirm you qualify. KAUST screens hard on these.
+            <ul>
+              <li>BSc in Biology, Microbiology, Biochemistry, Bioengineering, or related field</li>
+              <li>GPA: aim for 3.5+/4.0 — below this needs strong research to offset</li>
+              <li>English proficiency: IELTS 6.5+ or TOEFL 79+ (waiver if degree was English-medium)</li>
+              <li>GRE not required — but a strong score is a plus if you have it</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">
+            Build a Research Profile
+            <span class="tag tag-high">High Impact</span>
+          </div>
+          <div class="step-desc">
+            KAUST selects researchers, not just students. Any research experience elevates your profile dramatically.
+            <ul>
+              <li>Published paper, preprint (Research Square, bioRxiv), or thesis chapter</li>
+              <li>Lab work, capstone projects, final year thesis — document and quantify everything</li>
+              <li>GitHub with bioinformatics analysis or code (R, Python, bash pipelines)</li>
+              <li>Wet lab skills: PCR, cell culture, NGS library prep, CRISPR — list them explicitly</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">
+            Contact a PI Before Applying
+            <span class="tag tag-critical">Most Critical</span>
+          </div>
+          <div class="step-desc">
+            This is the single highest-leverage action in the entire process. See the PI Outreach section below for full guidance and a template.
+            <ul>
+              <li>Browse KAUST BESE faculty: bese.kaust.edu.sa</li>
+              <li>Identify 2–3 PIs with active projects matching your exact interests</li>
+              <li>Read their most recent paper before emailing</li>
+              <li>A PI who invites you to apply dramatically increases your odds of admission</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">
+            Enter the KAUST Circle
+            <span class="tag tag-high">High Impact</span>
+          </div>
+          <div class="step-desc">
+            KAUST rewards familiarity. Being known before you apply makes a real difference.
+            <ul>
+              <li><strong>KAUST Academy</strong> — specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available</li>
+              <li><strong>KAUST Elevate</strong> — on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student</li>
+              <li><strong>Winter Enrichment Program (WEP)</strong> — annual two-week event open to outside guests; attending puts you in the room with faculty and current students</li>
+              <li>Follow and engage with KAUST researchers on LinkedIn and ResearchGate; attend KAUST-affiliated events at KAIMRC, KFSHRC, or SDAIA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-title">
+            Write a Targeted SOP + Strong CV
+            <span class="tag tag-standard">Required</span>
+          </div>
+          <div class="step-desc">
+            Your SOP is your research pitch, not your autobiography. Make it specific and scientific.
+            <ul>
+              <li>Name the PI you want to work with and explain why their work aligns with yours</li>
+              <li>State your research question or interest in one precise sentence</li>
+              <li>CV: wet lab skills, tools, any bioinformatics coursework, certifications, GitHub</li>
+              <li>Certifications that help: Coursera Bioinformatics, EMBL courses, NGS sequencing workshops</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <div class="step-title">
+            Secure Strong Reference Letters
+            <span class="tag tag-high">High Impact</span>
+          </div>
+          <div class="step-desc">
+            3 letters required. Quality matters far more than seniority of the referee.
+            <ul>
+              <li>At least 2 from research supervisors who can speak to your lab competence — not just GPA</li>
+              <li>A letter from someone who collaborates with KAUST or has KAUST ties is a significant edge</li>
+              <li>Give referees your SOP and CV so their letters directly reinforce your narrative</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">07</div>
+        <div class="step-body">
+          <div class="step-title">
+            Prepare Hard for the Interview
+            <span class="tag tag-critical">Most Critical</span>
+          </div>
+          <div class="step-desc">
+            KAUST MS interviews are research-focused. They want to know if you can think like a scientist.
+            <ul>
+              <li>Be ready to discuss your thesis or capstone project in depth — methods, results, limitations</li>
+              <li>Prepare 2–3 research questions you want to explore at KAUST</li>
+              <li>Know the PI's recent papers well enough to ask intelligent questions</li>
+              <li>Use the preparation resources linked below</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- PI OUTREACH -->
+<div class="wrap">
+  <section>
+    <div class="section-label">Phase 2 — PI Strategy</div>
+    <h2>The PI Outreach Playbook</h2>
+
+    <div class="pi-highlight">
+      <h3>Why This Changes Everything</h3>
+      <p>Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven — the PI has real influence over who joins their group, and by extension, who gets accepted.</p>
+    </div>
+
+    <div class="email-template">
+Subject: Prospective MS Student — Interest in [<span class="placeholder">Lab Focus</span>] Research
+
+Dear Professor <span class="placeholder">[Last Name]</span>,
+
+I am writing to express my interest in pursuing an MS in <span class="highlight">Bioscience / Bioengineering</span> at KAUST, with the hope of joining your lab.
+
+I recently read your paper "<span class="placeholder">[Paper Title, Year]</span>" and found your approach to <span class="placeholder">[specific method or finding]</span> directly relevant to a question I have been developing during my undergraduate research in <span class="placeholder">[your field]</span>.
+
+During my BSc at <span class="placeholder">[University]</span>, I worked on <span class="placeholder">[brief project description]</span>, where I gained experience in <span class="placeholder">[relevant techniques]</span>. I am particularly interested in exploring <span class="placeholder">[specific research angle]</span> — a direction I believe aligns with your current work on <span class="placeholder">[lab focus]</span>.
+
+I am planning to apply for the <span class="highlight">Fall 2026</span> intake and would greatly appreciate the opportunity to briefly discuss whether there may be a fit between my background and your lab's needs.
+
+Thank you for your time.
+
+Sincerely,
+<span class="placeholder">[Your Full Name]</span>
+<span class="placeholder">[BSc Institution · GPA · LinkedIn/GitHub]</span>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESOURCES -->
+<div class="wrap">
+  <section>
+    <div class="section-label">Phase 3 — Resources</div>
+    <h2>Preparation Resources</h2>
+
+    <div class="resources-grid">
+      <a href="https://claude.ai/public/artifacts/cacf9ee8-facd-4469-b2b8-787c33e5bcab" target="_blank" class="resource-card">
+        <div class="rc-icon">🎯</div>
+        <div class="rc-title">Bioscience MS Interview Prep</div>
+        <div class="rc-desc">Full walkthrough of KAUST Bioscience MS interview structure, common questions, and how to present your research background effectively. <em style="color:var(--accent);font-style:normal;">Bioscience track only.</em></div>
+        <div class="rc-tag">Interview Prep · Bioscience</div>
+      </a>
+
+      <a href="https://claude.ai/public/artifacts/862c6357-50d3-41fb-91e3-29fdda0d54e6" target="_blank" class="resource-card">
+        <div class="rc-icon">📋</div>
+        <div class="rc-title">MS Application Prep Toolkit</div>
+        <div class="rc-desc">SOP framework, CV checklist, and application strategy for KAUST BESE programs — Bioscience and Bioengineering tracks.</div>
+        <div class="rc-tag">Application Toolkit</div>
+      </a>
+
+      <a href="https://bese.kaust.edu.sa/faculty-research/our-faculty" target="_blank" class="resource-card">
+        <div class="rc-icon">🔬</div>
+        <div class="rc-title">BESE Faculty Directory</div>
+        <div class="rc-desc">Browse all BESE division faculty, their active research groups, and open positions. Your first stop for PI identification.</div>
+        <div class="rc-tag">Official · KAUST</div>
+      </a>
+
+      <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" class="resource-card">
+        <div class="rc-icon">📌</div>
+        <div class="rc-title">Official Application Portal</div>
+        <div class="rc-desc">KAUST's official application page — deadlines, required documents, program codes, and admission requirements.</div>
+        <div class="rc-tag">Official · Required</div>
+      </a>
+
+      <a href="https://academy.kaust.edu.sa/" target="_blank" class="resource-card">
+        <div class="rc-icon">🚀</div>
+        <div class="rc-title">KAUST Academy</div>
+        <div class="rc-desc">Programs for university students including Bioinformatics, AI, Cybersecurity, Energy, and Water Sustainability specializations. Also Women in STEM and KGSP scholarship tracks.</div>
+        <div class="rc-tag">Pipeline Programs</div>
+      </a>
+
+      <a href="https://elevate.kaust.edu.sa/" target="_blank" class="resource-card">
+        <div class="rc-icon">⬆️</div>
+        <div class="rc-title">KAUST Elevate Program</div>
+        <div class="rc-desc">On-the-job training program for recent Saudi graduates. Science & Engineering track places you on campus with stipend, housing, and direct KAUST network exposure before applying for MS.</div>
+        <div class="rc-tag">On-Campus Training</div>
+      </a>
+
+      <a href="https://wepproposals.kaust.edu.sa/" target="_blank" class="resource-card">
+        <div class="rc-icon">❄️</div>
+        <div class="rc-title">Winter Enrichment Program (WEP)</div>
+        <div class="rc-desc">KAUST's flagship two-week annual event — Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community before you're a student.</div>
+        <div class="rc-tag">Community · Annual Event</div>
+      </a>
+
+      <a href="https://www.youtube.com/user/KAUSTsaudi" target="_blank" class="resource-card">
+        <div class="rc-icon">▶</div>
+        <div class="rc-title">KAUST YouTube Channel</div>
+        <div class="rc-desc">Student experience videos, info session recordings, WEP talks, and faculty research presentations. Good for understanding lab culture before your interview.</div>
+        <div class="rc-tag">Free Resource</div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<div class="wrap">
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">KAUST BESE Guide</div>
+        <div class="footer-note" style="margin-top:8px;">For Bioscience & Bioengineering applicants</div>
+      </div>
+      <div class="footer-note">
+        Community resource · Not affiliated with KAUST officially
+      </div>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
