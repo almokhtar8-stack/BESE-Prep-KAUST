@@ -521,6 +521,26 @@ const LEVELS = {
   HIGH: {
     color: "#06B6D4",
     label: "High Priority"
+  },
+  "تأسيسي": {
+    color: "#10B981",
+    label: "تأسيسي"
+  },
+  "حرج": {
+    color: "#F43F5E",
+    label: "حرج"
+  },
+  "استراتيجي": {
+    color: "#6366F1",
+    label: "استراتيجي"
+  },
+  "أساسي": {
+    color: "#F59E0B",
+    label: "أساسي"
+  },
+  "مرتفع": {
+    color: "#06B6D4",
+    label: "مرتفع"
   }
 };
 const phases = [{
