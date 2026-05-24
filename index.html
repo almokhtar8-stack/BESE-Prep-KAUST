@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,7 +9,7 @@
 <title>KAUST BESE: Application Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;800&family=Georgia&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;800&family=Georgia&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -23,17 +23,23 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+body.ar{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 10% 20%,rgba(0,200,160,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(0,136,255,0.05) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 50% 50%,rgba(124,92,252,0.04) 0%,transparent 60%);pointer-events:none;z-index:0;}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,160,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,160,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
 .wrap{max-width:960px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
 
 /* TOP NAV */
 .top-nav{position:sticky;top:0;z-index:200;background:rgba(5,10,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-.top-nav-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;}
+.top-nav-inner{max-width:960px;margin:0 auto;padding:0 12px;display:flex;align-items:center;gap:0;overflow-x:auto;}
 .top-nav-inner::-webkit-scrollbar{height:0;}
-.nav-btn{padding:14px 20px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.15s;}
+.nav-btn{padding:14px 16px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all 0.15s;flex-shrink:0;}
+body.ar .nav-btn{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .nav-btn:hover{color:var(--text);}
 .nav-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+.lang-toggle{margin-left:auto;flex-shrink:0;display:flex;align-items:center;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+body.ar .lang-toggle{margin-left:0;margin-right:auto;}
+.lang-btn{padding:6px 14px;background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);transition:all 0.15s;white-space:nowrap;}
+.lang-btn.active{background:var(--accent);color:#000;font-weight:600;}
 
 /* SECTIONS */
 .page-section{display:none;}
@@ -41,26 +47,38 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;position:relative;z-index:1;}
-.kaust-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--accent);border:1px solid var(--border);background:var(--glow);padding:6px 14px;border-radius:2px;margin-bottom:36px;text-transform:uppercase;}
-.kaust-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite;}
+.kaust-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--accent);border:1px solid var(--border);background:var(--glow);padding:6px 14px;border-radius:2px;margin-bottom:12px;text-transform:uppercase;}
+body.ar .kaust-badge{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
+.kaust-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite;flex-shrink:0;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+.cred-line{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:36px;letter-spacing:0.06em;}
+body.ar .cred-line{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 h1{font-family:'Syne',sans-serif;font-size:clamp(42px,7vw,86px);font-weight:800;line-height:1.0;letter-spacing:-0.02em;margin-bottom:28px;}
+body.ar h1{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;line-height:1.2;}
 h1 .line1{display:block;color:var(--text);}
 h1 .line2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,var(--accent3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:17px;color:var(--muted);max-width:540px;font-weight:300;line-height:1.7;margin-bottom:48px;}
+.hero-sub{font-size:17px;color:var(--muted);max-width:540px;font-weight:300;line-height:1.7;margin-bottom:32px;}
+body.ar .hero-sub{font-size:16px;}
 .hero-sub strong{color:var(--text);font-weight:500;}
+.disclaimer{display:flex;align-items:flex-start;gap:12px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.2);border-left:3px solid var(--accent3);border-radius:6px;padding:14px 18px;margin-bottom:32px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.6;letter-spacing:0.02em;}
+body.ar .disclaimer{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;border-left:1px solid rgba(124,92,252,0.2);border-right:3px solid var(--accent3);}
+.disclaimer span.disc-icon{color:var(--accent3);font-size:13px;flex-shrink:0;}
 .hero-stats{display:flex;gap:40px;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border);}
 .stat-item{display:flex;flex-direction:column;gap:4px;}
 .stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--accent);}
 .stat-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+body.ar .stat-label{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .scroll-hint{display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:56px;}
+body.ar .scroll-hint{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .scroll-hint::before{content:'';width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--muted));}
 
 /* SHARED SECTION STYLES */
 section.content-section{padding:80px 0;position:relative;z-index:1;}
 .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+body.ar .section-label{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--accent);opacity:0.4;}
 h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-0.01em;margin-bottom:40px;color:var(--text);}
+body.ar h2{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 
 /* STEPS */
 .steps{display:flex;flex-direction:column;gap:2px;}
@@ -69,43 +87,51 @@ h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;
 .step:first-child{border-radius:8px 8px 0 0;}
 .step:last-child{border-radius:0 0 8px 8px;}
 .step-num{display:flex;align-items:flex-start;justify-content:center;padding:28px 0 0;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.08em;border-right:1px solid var(--border);}
+body.ar .step-num{border-right:none;border-left:1px solid var(--border);}
 .step-body{padding:24px 28px;}
-.step-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.step-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+body.ar .step-title{font-family:'Noto Kufi Arabic',sans-serif;}
 .step-title .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:3px 8px;border-radius:2px;text-transform:uppercase;font-weight:400;}
+body.ar .step-title .tag{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .tag-critical{background:rgba(0,200,160,0.1);color:var(--accent);border:1px solid var(--border);}
 .tag-high{background:rgba(0,136,255,0.1);color:var(--accent2);border:1px solid rgba(0,136,255,0.2);}
 .tag-standard{background:rgba(124,92,252,0.1);color:var(--accent3);border:1px solid rgba(124,92,252,0.2);}
 .step-desc{font-size:14px;color:var(--muted);line-height:1.7;}
+body.ar .step-desc{line-height:1.9;}
 .step-desc ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px;}
 .step-desc ul li{display:flex;align-items:flex-start;gap:8px;}
 .step-desc ul li::before{content:'→';color:var(--accent);font-size:12px;flex-shrink:0;margin-top:2px;}
+body.ar .step-desc ul li::before{content:'←';}
 
 /* PI */
 .pi-highlight{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:32px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
+body.ar .pi-highlight{border-left:1px solid var(--border);border-right:3px solid var(--accent);}
 .pi-highlight::after{content:'CRITICAL';position:absolute;top:20px;right:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--accent);opacity:0.4;}
+body.ar .pi-highlight::after{right:auto;left:20px;}
 .pi-highlight h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;}
+body.ar .pi-highlight h3{font-family:'Noto Kufi Arabic',sans-serif;}
 .pi-highlight p{font-size:14px;color:var(--muted);line-height:1.7;}
-.email-template{background:#060d14;border:1px solid var(--border);border-radius:6px;padding:24px 28px;font-family:'DM Mono',monospace;font-size:12.5px;color:#8aabb8;line-height:1.8;position:relative;}
-.email-template::before{content:'PI OUTREACH TEMPLATE';display:block;font-size:9px;letter-spacing:0.15em;color:var(--accent);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.email-template{background:#060d14;border:1px solid var(--border);border-radius:6px;padding:24px 28px;font-family:'DM Mono',monospace;font-size:12.5px;color:#8aabb8;line-height:1.8;position:relative;white-space:pre-wrap;}
+.email-template::before{content:'PI OUTREACH TEMPLATE';display:block;font-size:9px;letter-spacing:0.15em;color:var(--accent);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);white-space:normal;}
 .email-template .hl{color:#0088ff;}
 .email-template .pl{color:var(--accent);}
+.email-ar-note{display:none;font-family:'Noto Kufi Arabic',sans-serif;font-size:12px;color:var(--muted);background:rgba(0,200,160,0.06);border:1px solid var(--border);border-radius:4px;padding:8px 14px;margin-bottom:12px;line-height:1.7;}
 
 /* RESOURCES */
 .resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
 .resource-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;transition:border-color 0.2s,transform 0.2s,background 0.2s;position:relative;overflow:hidden;}
 .resource-card:hover{border-color:rgba(0,200,160,0.5);background:var(--surface2);transform:translateY(-2px);}
 .resource-card::after{content:'↗';position:absolute;top:20px;right:20px;color:var(--muted);font-size:14px;transition:color 0.2s;}
+body.ar .resource-card::after{right:auto;left:20px;content:'↖';}
 .resource-card:hover::after{color:var(--accent);}
 .rc-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--glow);border:1px solid var(--border);border-radius:6px;font-size:16px;}
 .rc-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
+body.ar .rc-title{font-family:'Noto Kufi Arabic',sans-serif;}
 .rc-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 .rc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;border:1px solid var(--border);padding:3px 8px;border-radius:2px;width:fit-content;}
+body.ar .rc-tag{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 
 /* DISCLAIMER */
-.disclaimer{display:flex;align-items:flex-start;gap:12px;background:rgba(124,92,252,0.06);border:1px solid rgba(124,92,252,0.2);border-left:3px solid var(--accent3);border-radius:6px;padding:14px 18px;margin-top:32px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.6;letter-spacing:0.02em;}
-.disclaimer span{color:var(--accent3);font-size:13px;flex-shrink:0;}
-
-/* CHECKLIST */
 .checklist{display:flex;flex-direction:column;gap:2px;}
 .checklist-item{display:grid;grid-template-columns:40px 1fr auto;align-items:start;gap:0;background:var(--surface);border:1px solid var(--border);padding:16px 20px;transition:background 0.15s;}
 .checklist-item:first-child{border-radius:8px 8px 0 0;}
@@ -116,21 +142,11 @@ h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;
 .cl-title{font-size:14px;font-weight:500;color:var(--text);}
 .cl-note{font-size:12px;color:var(--muted);}
 .cl-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:3px 9px;border-radius:2px;text-transform:uppercase;white-space:nowrap;align-self:flex-start;margin-top:2px;}
+body.ar .cl-badge{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 .cl-req{background:rgba(0,200,160,0.08);color:var(--accent);border:1px solid var(--border);}
 .cl-cond{background:rgba(0,136,255,0.08);color:var(--accent2);border:1px solid rgba(0,136,255,0.2);}
-
-/* COMPARISON TABLE */
-.compare-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;overflow-x:auto;}
-.compare-table{width:100%;border-collapse:collapse;}
-.compare-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid var(--border);text-align:left;}
-.compare-table th:first-child{color:var(--muted);width:28%;}
-.compare-table th.col-bio{color:#10B981;background:rgba(16,185,129,0.07);border-left:1px solid var(--border);}
-.compare-table th.col-eng{color:#6366F1;background:rgba(99,102,241,0.07);border-left:1px solid var(--border);}
-.compare-table td{padding:14px 20px;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;}
-.compare-table td:first-child{color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.04em;}
-.compare-table td.col-bio{background:rgba(16,185,129,0.03);border-left:1px solid var(--border);color:var(--text);}
-.compare-table td.col-eng{background:rgba(99,102,241,0.03);border-left:1px solid var(--border);color:var(--text);}
-.compare-table tr:last-child td{border-bottom:none;}
+.req-note{margin-top:12px;padding:10px 14px;background:rgba(0,136,255,0.06);border-left:2px solid var(--accent2);border-radius:3px;font-size:13px;color:var(--muted);line-height:1.65;}
+body.ar .req-note{border-left:none;border-right:2px solid var(--accent2);}
 
 .divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);position:relative;z-index:1;}
 
@@ -138,7 +154,9 @@ h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:700;
 footer{padding:48px 0 60px;position:relative;z-index:1;}
 .footer-inner{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border);padding-top:32px;}
 .footer-brand{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);}
+body.ar .footer-brand{font-family:'Noto Kufi Arabic',sans-serif;}
 .footer-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em;}
+body.ar .footer-note{font-family:'Noto Kufi Arabic',sans-serif;letter-spacing:0;}
 
 /* TOOL WRAPPER */
 .tool-section{min-height:100vh;background:transparent;}
@@ -167,9 +185,13 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 <!-- TOP NAV -->
 <nav class="top-nav">
   <div class="top-nav-inner">
-    <button class="nav-btn active" onclick="showSection('guide')">📋 Application Guide</button>
-    <button class="nav-btn" onclick="showSection('foundation')">🧬 Foundation Roadmap</button>
-    <button class="nav-btn" onclick="showSection('interview')">🎯 Interview Prep</button>
+    <button class="nav-btn active" id="nav-guide" onclick="showSection('guide')">📋 <span data-en="Application Guide" data-ar="دليل التقديم">Application Guide</span></button>
+    <button class="nav-btn" id="nav-foundation" onclick="showSection('foundation')">🧬 <span data-en="Foundation Roadmap" data-ar="خارطة الطريق التأسيسية">Foundation Roadmap</span></button>
+    <button class="nav-btn" id="nav-interview" onclick="showSection('interview')">🎯 <span data-en="Interview Prep" data-ar="التحضير للمقابلة">Interview Prep</span></button>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-ar" onclick="setLang('ar')">العربية</button>
+    </div>
   </div>
 </nav>
 
@@ -181,22 +203,22 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 <div class="wrap">
   <section class="hero">
     <div class="fade-in">
-      <div class="kaust-badge">BESE Graduate Programs · Application Guide</div>
-      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:0.06em;">Built by a KAUST MS Bioscience admit · KAUST Academy Bioinformatics '26</div>
+      <div class="kaust-badge"><span data-en="BESE Graduate Programs · Application Guide" data-ar="برامج الدراسات العليا في BESE · دليل التقديم">BESE Graduate Programs · Application Guide</span></div>
+      <div class="cred-line"><span data-en="Built by a KAUST MS Bioscience admit · KAUST Academy Bioinformatics '26" data-ar="أعدّه طالب مقبول في KAUST MS Bioscience · KAUST Academy Bioinformatics '26">Built by a KAUST MS Bioscience admit · KAUST Academy Bioinformatics '26</span></div>
     </div>
     <h1 class="fade-in">
-      <span class="line1">Your Path into</span>
-      <span class="line2">KAUST Bioscience</span>
+      <span class="line1" data-en="Your Path into" data-ar="طريقك إلى">Your Path into</span>
+      <span class="line2" data-en="KAUST Bioscience" data-ar="العلوم الحيوية في KAUST">KAUST Bioscience</span>
     </h1>
-    <p class="hero-sub fade-in">A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants, from requirement check to interview day. Built for high-potential candidates who want to do it right.</p>
-    <div class="disclaimer fade-in"><span>ⓘ</span>Community-built guide. Always verify requirements, deadlines, and program details through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent3);">KAUST official admissions</a> before applying.</div>
+    <p class="hero-sub fade-in"><span data-en='A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants, from requirement check to interview day. Built for high-potential candidates who want to do it right.' data-ar='خارطة طريق <strong>خطوة بخطوة</strong> لمتقدمي Bioscience وBioengineering، من التحقق من الشروط إلى يوم المقابلة. صُممت للمرشحين الواعدين الذين يريدون التقديم بالطريقة الصحيحة.'>A <strong>step-by-step roadmap</strong> for Bioscience and Bioengineering applicants, from requirement check to interview day. Built for high-potential candidates who want to do it right.</span></p>
+    <div class="disclaimer fade-in"><span class="disc-icon">ⓘ</span><span data-en='Community-built guide. Always verify requirements, deadlines, and program details through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent3);">KAUST official admissions</a> before applying.' data-ar='دليل مبني من المجتمع. تحقق دائمًا من الشروط، المواعيد النهائية، وتفاصيل البرامج عبر <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent3);">القبول الرسمي في KAUST</a> قبل التقديم.'>Community-built guide. Always verify requirements, deadlines, and program details through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent3);">KAUST official admissions</a> before applying.</span></div>
     <div class="hero-stats fade-in">
-      <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Key Steps</span></div>
-      <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Critical Action</span></div>
-      <div class="stat-item"><span class="stat-num">BESE</span><span class="stat-label">Division Focus</span></div>
-      <div class="stat-item"><span class="stat-num">Full</span><span class="stat-label">Fellowship Track</span></div>
+      <div class="stat-item"><span class="stat-num">7</span><span class="stat-label" data-en="Key Steps" data-ar="خطوات أساسية">Key Steps</span></div>
+      <div class="stat-item"><span class="stat-num">1</span><span class="stat-label" data-en="Critical Action" data-ar="إجراء حاسم">Critical Action</span></div>
+      <div class="stat-item"><span class="stat-num">BESE</span><span class="stat-label" data-en="Division Focus" data-ar="تركيز الشعبة">Division Focus</span></div>
+      <div class="stat-item"><span class="stat-num" data-en="Full" data-ar="كاملة">Full</span><span class="stat-label" data-en="Fellowship Track" data-ar="مسار الزمالة">Fellowship Track</span></div>
     </div>
-    <div class="scroll-hint fade-in">Scroll to begin</div>
+    <div class="scroll-hint fade-in"><span data-en="Scroll to begin" data-ar="مرّر للبدء">Scroll to begin</span></div>
   </section>
 </div>
 
@@ -204,91 +226,91 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 1: Foundations</div>
-    <h2>The 7-Step Application Roadmap</h2>
+    <div class="section-label"><span data-en="Phase 1: Foundations" data-ar="المرحلة 1: الأساسيات">Phase 1: Foundations</span></div>
+    <h2><span data-en="The 7-Step Application Roadmap" data-ar="خارطة التقديم في 7 خطوات">The 7-Step Application Roadmap</span></h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
         <div class="step-body">
-          <div class="step-title">Meet the Hard Requirements <span class="tag tag-standard">Required</span></div>
-          <div class="step-desc">Before anything else, confirm you qualify. KAUST screens hard on these.<ul>
-            <li>BSc in Biology, Microbiology, Biochemistry, Bioengineering, or related field</li>
-            <li>GPA: aim for 3.5+/4.0. Below this, strong research can offset.</li>
-            <li>English proficiency: IELTS 6.5+ or TOEFL iBT 81+ (waiver if degree was English-medium)</li>
-            <li>GRE not required, but a strong score is a plus if you have it</li>
+          <div class="step-title"><span data-en="Meet the Hard Requirements" data-ar="استوفِ الشروط الأساسية">Meet the Hard Requirements</span> <span class="tag tag-standard" data-en="Required" data-ar="مطلوب">Required</span></div>
+          <div class="step-desc"><span data-en="Before anything else, confirm you qualify. KAUST screens hard on these." data-ar="قبل أي خطوة، تأكد أنك مؤهل. KAUST تتعامل بصرامة مع هذه الشروط.">Before anything else, confirm you qualify. KAUST screens hard on these.</span><ul>
+            <li><span data-en="BSc in Biology, Microbiology, Biochemistry, Bioengineering, or related field" data-ar="بكالوريوس في الأحياء، أو الأحياء الدقيقة، أو الكيمياء الحيوية، أو الهندسة الحيوية، أو تخصص ذي صلة">BSc in Biology, Microbiology, Biochemistry, Bioengineering, or related field</span></li>
+            <li><span data-en="GPA: aim for 3.5+/4.0. Below this, strong research can offset." data-ar="GPA: استهدف 3.5+/4.0. إذا كان أقل من ذلك، يمكن للبحث القوي أن يعوض.">GPA: aim for 3.5+/4.0. Below this, strong research can offset.</span></li>
+            <li><span data-en="English proficiency: IELTS 6.5+ or TOEFL iBT 81+ (waiver if degree was English-medium)" data-ar="إثبات اللغة الإنجليزية: IELTS 6.5+ أو TOEFL iBT 81+ (إعفاء إذا كانت الدراسة باللغة الإنجليزية)">English proficiency: IELTS 6.5+ or TOEFL iBT 81+ (waiver if degree was English-medium)</span></li>
+            <li><span data-en="GRE not required, but a strong score is a plus if you have it" data-ar="GRE غير مطلوب، لكن الدرجة القوية تُعد نقطة إضافية إذا كانت لديك">GRE not required, but a strong score is a plus if you have it</span></li>
           </ul>
-          <div style="margin-top:12px;padding:10px 14px;background:rgba(0,136,255,0.06);border-left:2px solid var(--accent2);border-radius:3px;font-size:13px;color:var(--muted);line-height:1.65;">These are minimum requirements. Competitive applicants typically exceed them through strong research alignment and preparation.</div>
+          <div class="req-note"><span data-en="These are minimum requirements. Competitive applicants typically exceed them through strong research alignment and preparation." data-ar="هذه هي الحدود الدنيا. المتقدمون الأقوى عادة يتجاوزونها من خلال توافق بحثي قوي وتحضير واضح.">These are minimum requirements. Competitive applicants typically exceed them through strong research alignment and preparation.</span></div>
           </div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <div class="step-body">
-          <div class="step-title">Build a Research Profile <span class="tag tag-high">High Impact</span></div>
-          <div class="step-desc">KAUST selects researchers, not just students. Any research experience elevates your profile dramatically.<ul>
-            <li>Published paper, preprint (Research Square, bioRxiv), or thesis chapter</li>
-            <li>Lab work, capstone projects, final year thesis. Document and quantify everything.</li>
-            <li>GitHub with bioinformatics analysis or code (R, Python, bash pipelines)</li>
-            <li>Wet lab skills: PCR, cell culture, NGS library prep, CRISPR. List them explicitly.</li>
+          <div class="step-title"><span data-en="Build a Research Profile" data-ar="ابنِ ملفًا بحثيًا">Build a Research Profile</span> <span class="tag tag-high" data-en="High Impact" data-ar="تأثير عالٍ">High Impact</span></div>
+          <div class="step-desc"><span data-en="KAUST selects researchers, not just students. Any research experience elevates your profile dramatically." data-ar="KAUST تختار باحثين، لا طلابًا فقط. أي خبرة بحثية ترفع قوة ملفك بشكل كبير.">KAUST selects researchers, not just students. Any research experience elevates your profile dramatically.</span><ul>
+            <li><span data-en="Published paper, preprint (Research Square, bioRxiv), or thesis chapter" data-ar="ورقة منشورة، أو preprint (Research Square, bioRxiv)، أو فصل من رسالة بحثية">Published paper, preprint (Research Square, bioRxiv), or thesis chapter</span></li>
+            <li><span data-en="Lab work, capstone projects, final year thesis. Document and quantify everything." data-ar="عمل مخبري، مشاريع تخرج، أو رسالة السنة الأخيرة. وثّق كل شيء بالأرقام والتفاصيل.">Lab work, capstone projects, final year thesis. Document and quantify everything.</span></li>
+            <li><span data-en="GitHub with bioinformatics analysis or code (R, Python, bash pipelines)" data-ar="GitHub يحتوي على تحليل معلوماتية حيوية أو كود (R, Python, bash pipelines)">GitHub with bioinformatics analysis or code (R, Python, bash pipelines)</span></li>
+            <li><span data-en="Wet lab skills: PCR, cell culture, NGS library prep, CRISPR. List them explicitly." data-ar="مهارات المختبر الرطب: PCR، زراعة الخلايا، تحضير مكتبات NGS، CRISPR. اذكرها بوضوح.">Wet lab skills: PCR, cell culture, NGS library prep, CRISPR. List them explicitly.</span></li>
           </ul></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
         <div class="step-body">
-          <div class="step-title">Contact a PI Before Applying <span class="tag tag-critical">Most Critical</span></div>
-          <div class="step-desc">This is the single highest-leverage action in the entire process. See the PI Outreach section below for full guidance and a template.<ul>
-            <li>Browse KAUST BESE faculty: bese.kaust.edu.sa/faculty-research/our-faculty</li>
-            <li>Identify 2–3 PIs with active projects matching your exact interests</li>
-            <li>Read their most recent paper before emailing</li>
-            <li>A PI who knows your application is coming can strengthen your candidacy significantly. They have real input into lab admissions.</li>
+          <div class="step-title"><span data-en="Contact a PI Before Applying" data-ar="تواصل مع PI قبل التقديم">Contact a PI Before Applying</span> <span class="tag tag-critical" data-en="Most Critical" data-ar="الأكثر أهمية">Most Critical</span></div>
+          <div class="step-desc"><span data-en="This is the single highest-leverage action in the entire process. See the PI Outreach section below for full guidance and a template." data-ar="هذه أقوى خطوة في العملية كلها. راجع قسم التواصل مع PI أدناه للحصول على الإرشادات الكاملة والقالب.">This is the single highest-leverage action in the entire process. See the PI Outreach section below for full guidance and a template.</span><ul>
+            <li><span data-en="Browse KAUST BESE faculty: bese.kaust.edu.sa/faculty-research/our-faculty" data-ar="تصفح أعضاء هيئة التدريس في KAUST BESE: bese.kaust.edu.sa/faculty-research/our-faculty">Browse KAUST BESE faculty: bese.kaust.edu.sa/faculty-research/our-faculty</span></li>
+            <li><span data-en="Identify 2–3 PIs with active projects matching your exact interests" data-ar="حدّد 2 إلى 3 من PIs لديهم مشاريع نشطة تطابق اهتماماتك بدقة">Identify 2–3 PIs with active projects matching your exact interests</span></li>
+            <li><span data-en="Read their most recent paper before emailing" data-ar="اقرأ أحدث ورقة بحثية لهم قبل إرسال البريد">Read their most recent paper before emailing</span></li>
+            <li><span data-en="A PI who knows your application is coming can strengthen your candidacy significantly. They have real input into lab admissions." data-ar="وجود PI يعرف أن طلبك قادم يمكن أن يقوّي فرصتك بشكل واضح. لديهم رأي مؤثر في قبول الطلاب داخل المختبر.">A PI who knows your application is coming can strengthen your candidacy significantly. They have real input into lab admissions.</span></li>
           </ul></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
         <div class="step-body">
-          <div class="step-title">Enter the KAUST Circle <span class="tag tag-high">High Impact</span></div>
-          <div class="step-desc">KAUST rewards familiarity. Being known before you apply makes a real difference.<ul>
-            <li><strong style="color:var(--text)">KAUST Academy</strong>: specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available</li>
-            <li><strong style="color:var(--text)">KAUST Elevate</strong>: on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student</li>
-            <li><strong style="color:var(--text)">Winter Enrichment Program (WEP)</strong>: annual two-week event open to outside guests; attending puts you in the room with faculty and current students</li>
-            <li>Follow and engage with KAUST researchers on LinkedIn and ResearchGate; attend KAUST-affiliated events at KAIMRC, KFSHRC, or SDAIA</li>
+          <div class="step-title"><span data-en="Enter the KAUST Circle" data-ar="ادخل دائرة KAUST">Enter the KAUST Circle</span> <span class="tag tag-high" data-en="High Impact" data-ar="تأثير عالٍ">High Impact</span></div>
+          <div class="step-desc"><span data-en="KAUST rewards familiarity. Being known before you apply makes a real difference." data-ar="KAUST تقدّر من يعرف بيئتها. أن تكون معروفًا قبل التقديم يصنع فرقًا حقيقيًا.">KAUST rewards familiarity. Being known before you apply makes a real difference.</span><ul>
+            <li><strong style="color:var(--text)"><span data-en="KAUST Academy" data-ar="KAUST Academy">KAUST Academy</span></strong>: <span data-en="specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available" data-ar="برامج تخصصية لطلاب الجامعات في المعلوماتية الحيوية، AI، الأمن السيبراني، الطاقة، والمياه؛ ويتوفر أيضًا مسار Women in STEM">specialization programs (Bioinformatics, AI, Cybersecurity, Energy, Water) for university students; Women in STEM track also available</span></li>
+            <li><strong style="color:var(--text)"><span data-en="KAUST Elevate" data-ar="KAUST Elevate">KAUST Elevate</span></strong>: <span data-en="on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student" data-ar="تدريب داخل الحرم للخريجين السعوديين الجدد؛ مسار العلوم والهندسة يضعك داخل KAUST قبل أن تصبح طالبًا">on-campus training for recent Saudi graduates; Science & Engineering track puts you on campus before you're a student</span></li>
+            <li><strong style="color:var(--text)"><span data-en="Winter Enrichment Program (WEP)" data-ar="Winter Enrichment Program (WEP)">Winter Enrichment Program (WEP)</span></strong>: <span data-en="annual two-week event open to outside guests; attending puts you in the room with faculty and current students" data-ar="فعالية سنوية لمدة أسبوعين مفتوحة للضيوف من خارج KAUST؛ حضورها يضعك في نفس المكان مع أعضاء هيئة التدريس والطلاب الحاليين">annual two-week event open to outside guests; attending puts you in the room with faculty and current students</span></li>
+            <li><span data-en="Follow and engage with KAUST researchers on LinkedIn and ResearchGate; attend KAUST-affiliated events at KAIMRC, KFSHRC, or SDAIA" data-ar="تابع باحثي KAUST وتفاعل معهم على LinkedIn وResearchGate؛ واحضر فعاليات مرتبطة بـ KAUST في KAIMRC أو KFSHRC أو SDAIA">Follow and engage with KAUST researchers on LinkedIn and ResearchGate; attend KAUST-affiliated events at KAIMRC, KFSHRC, or SDAIA</span></li>
           </ul></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">05</div>
         <div class="step-body">
-          <div class="step-title">Write a Targeted SOP + Strong CV <span class="tag tag-standard">Required</span></div>
-          <div class="step-desc">Your SOP is your research pitch, not your autobiography. Make it specific and scientific.<ul>
-            <li>Name the PI you want to work with and explain why their work aligns with yours</li>
-            <li>State your research question or interest in one precise sentence</li>
-            <li>CV: wet lab skills, tools, any bioinformatics coursework, certifications, GitHub</li>
-            <li>Certifications that help: Coursera Bioinformatics, EMBL courses, NGS sequencing workshops</li>
+          <div class="step-title"><span data-en="Write a Targeted SOP + Strong CV" data-ar="اكتب SOP موجّهًا وCV قويًا">Write a Targeted SOP + Strong CV</span> <span class="tag tag-standard" data-en="Required" data-ar="مطلوب">Required</span></div>
+          <div class="step-desc"><span data-en="Your SOP is your research pitch, not your autobiography. Make it specific and scientific." data-ar="SOP هو عرضك البحثي، وليس سيرتك الذاتية القصصية. اجعله محددًا وعلميًا.">Your SOP is your research pitch, not your autobiography. Make it specific and scientific.</span><ul>
+            <li><span data-en="Name the PI you want to work with and explain why their work aligns with yours" data-ar="اذكر PI الذي تريد العمل معه واشرح لماذا يتوافق عمله مع مسارك">Name the PI you want to work with and explain why their work aligns with yours</span></li>
+            <li><span data-en="State your research question or interest in one precise sentence" data-ar="اكتب سؤالك أو اهتمامك البحثي في جملة واحدة دقيقة">State your research question or interest in one precise sentence</span></li>
+            <li><span data-en="CV: wet lab skills, tools, any bioinformatics coursework, certifications, GitHub" data-ar="CV: مهارات المختبر الرطب، الأدوات، أي مقررات في المعلوماتية الحيوية، الشهادات، وGitHub">CV: wet lab skills, tools, any bioinformatics coursework, certifications, GitHub</span></li>
+            <li><span data-en="Certifications that help: Coursera Bioinformatics, EMBL courses, NGS sequencing workshops" data-ar="شهادات مفيدة: Coursera Bioinformatics، دورات EMBL، وورش NGS sequencing">Certifications that help: Coursera Bioinformatics, EMBL courses, NGS sequencing workshops</span></li>
           </ul></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">06</div>
         <div class="step-body">
-          <div class="step-title">Secure Strong Reference Letters <span class="tag tag-high">High Impact</span></div>
-          <div class="step-desc">3 letters required. Quality matters far more than seniority of the referee.<ul>
-            <li>At least 2 from research supervisors who can speak to your lab competence, not just GPA</li>
-            <li>A letter from someone who collaborates with KAUST or has KAUST ties is a significant edge</li>
-            <li>Give referees your SOP and CV so their letters directly reinforce your narrative</li>
+          <div class="step-title"><span data-en="Secure Strong Reference Letters" data-ar="احصل على خطابات توصية قوية">Secure Strong Reference Letters</span> <span class="tag tag-high" data-en="High Impact" data-ar="تأثير عالٍ">High Impact</span></div>
+          <div class="step-desc"><span data-en="3 letters required. Quality matters far more than seniority of the referee." data-ar="مطلوب 3 خطابات. الجودة أهم بكثير من المنصب الأكاديمي لكاتب التوصية.">3 letters required. Quality matters far more than seniority of the referee.</span><ul>
+            <li><span data-en="At least 2 from research supervisors who can speak to your lab competence, not just GPA" data-ar="اثنان على الأقل من مشرفين بحثيين يستطيعون الحديث عن كفاءتك المخبرية، لا عن GPA فقط">At least 2 from research supervisors who can speak to your lab competence, not just GPA</span></li>
+            <li><span data-en="A letter from someone who collaborates with KAUST or has KAUST ties is a significant edge" data-ar="خطاب من شخص يتعاون مع KAUST أو لديه صلة بها يعطيك أفضلية مهمة">A letter from someone who collaborates with KAUST or has KAUST ties is a significant edge</span></li>
+            <li><span data-en="Give referees your SOP and CV so their letters directly reinforce your narrative" data-ar="زوّد كاتبي التوصية بـ SOP وCV حتى تدعم خطاباتهم قصتك مباشرة">Give referees your SOP and CV so their letters directly reinforce your narrative</span></li>
           </ul></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">07</div>
         <div class="step-body">
-          <div class="step-title">Prepare Hard for the Interview <span class="tag tag-critical">Most Critical</span></div>
-          <div class="step-desc">KAUST MS interviews are research-focused. They want to know if you can think like a scientist.<ul>
-            <li>Be ready to discuss your thesis or capstone project in depth: methods, results, limitations</li>
-            <li>Prepare 2–3 research questions you want to explore at KAUST</li>
-            <li>Know the PI's recent papers well enough to ask intelligent questions</li>
-            <li>Use the <strong style="color:var(--accent);cursor:pointer" onclick="showSection('interview')">Interview Prep tool ↗</strong> in this guide</li>
+          <div class="step-title"><span data-en="Prepare Hard for the Interview" data-ar="استعد للمقابلة بجدية">Prepare Hard for the Interview</span> <span class="tag tag-critical" data-en="Most Critical" data-ar="الأكثر أهمية">Most Critical</span></div>
+          <div class="step-desc"><span data-en="KAUST MS interviews are research-focused. They want to know if you can think like a scientist." data-ar="مقابلات KAUST للـ MS تركّز على البحث. يريدون معرفة إن كنت تستطيع التفكير كباحث.">KAUST MS interviews are research-focused. They want to know if you can think like a scientist.</span><ul>
+            <li><span data-en="Be ready to discuss your thesis or capstone project in depth: methods, results, limitations" data-ar="كن مستعدًا لمناقشة رسالة التخرج أو مشروعك بعمق: المنهجية، النتائج، والقيود">Be ready to discuss your thesis or capstone project in depth: methods, results, limitations</span></li>
+            <li><span data-en="Prepare 2–3 research questions you want to explore at KAUST" data-ar="حضّر 2 إلى 3 أسئلة بحثية تريد استكشافها في KAUST">Prepare 2–3 research questions you want to explore at KAUST</span></li>
+            <li><span data-en="Know the PI's recent papers well enough to ask intelligent questions" data-ar="اعرف أوراق PI الحديثة بما يكفي لتسأل أسئلة ذكية">Know the PI's recent papers well enough to ask intelligent questions</span></li>
+            <li><strong style="color:var(--accent);cursor:pointer" onclick="showSection('interview')"><span data-en="Use the Interview Prep tool ↗" data-ar="استخدم أداة التحضير للمقابلة ↗">Use the Interview Prep tool ↗</span></strong></li>
           </ul></div>
         </div>
       </div>
@@ -300,14 +322,14 @@ footer{padding:48px 0 60px;position:relative;z-index:1;}
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 2: PI Strategy</div>
-    <h2>The PI Outreach Playbook</h2>
+    <div class="section-label"><span data-en="Phase 2: PI Strategy" data-ar="المرحلة 2: استراتيجية PI">Phase 2: PI Strategy</span></div>
+    <h2><span data-en="The PI Outreach Playbook" data-ar="دليل التواصل مع PI">The PI Outreach Playbook</span></h2>
     <div class="pi-highlight">
-      <h3>Why This Changes Everything</h3>
-      <p>Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven. The PI has real influence over who joins their group and, by extension, who gets accepted..</p>
+      <h3><span data-en="Why This Changes Everything" data-ar="لماذا تغيّر هذه الخطوة كل شيء">Why This Changes Everything</span></h3>
+      <p><span data-en="Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven. The PI has real influence over who joins their group and, by extension, who gets accepted." data-ar="معظم المتقدمين يتجاوزون هذه الخطوة. الذين يُقبلون غالبًا لا يفعلون ذلك. عندما يعرف PI اسمك قبل وصول طلبك، يمكن أن يصبح داعمًا لك من الداخل. القبول في KAUST متأثر بقوة بالمختبرات. لدى PI تأثير حقيقي على من ينضم إلى مجموعته، وبالتالي على من يُقبل.">Most applicants skip this step. The ones who get in often don't. A PI who knows your name before your application lands is an internal advocate. KAUST admission is heavily lab-driven. The PI has real influence over who joins their group and, by extension, who gets accepted.</span></p>
     </div>
-    <div class="email-template">
-Subject: Prospective MS Student: Interest in [<span class="pl">Lab Focus</span>] Research
+    <div class="email-ar-note" id="email-ar-note">⚠ مراسلة أعضاء هيئة التدريس تكون بالإنجليزية دائماً — النموذج أدناه بالإنجليزية كما سيُرسَل</div>
+    <div class="email-template">Subject: Prospective MS Student: Interest in [<span class="pl">Lab Focus</span>] Research
 
 Dear Professor <span class="pl">[Last Name]</span>,
 
@@ -332,56 +354,56 @@ Sincerely,
 
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 3: Resources</div>
-    <h2>Preparation Resources</h2>
+    <div class="section-label"><span data-en="Phase 3: Resources" data-ar="المرحلة 3: الموارد">Phase 3: Resources</span></div>
+    <h2><span data-en="Preparation Resources" data-ar="موارد التحضير">Preparation Resources</span></h2>
     <div class="resources-grid">
       <a href="javascript:void(0)" onclick="showSection('interview')" class="resource-card">
         <div class="rc-icon">🎯</div>
-        <div class="rc-title">Bioscience MS Interview Prep</div>
-        <div class="rc-desc">Full walkthrough of KAUST Bioscience MS interview structure, common questions, and how to present your research background effectively. <em style="color:var(--accent);font-style:normal;">Bioscience track only.</em></div>
-        <div class="rc-tag">Interview Prep · Bioscience</div>
+        <div class="rc-title"><span data-en="Bioscience MS Interview Prep" data-ar="التحضير لمقابلة MS Bioscience">Bioscience MS Interview Prep</span></div>
+        <div class="rc-desc"><span data-en="Full walkthrough of KAUST Bioscience MS interview structure, common questions, and how to present your research background effectively." data-ar="شرح كامل لهيكل مقابلة KAUST Bioscience MS، والأسئلة الشائعة، وطريقة عرض خلفيتك البحثية بفعالية.">Full walkthrough of KAUST Bioscience MS interview structure, common questions, and how to present your research background effectively.</span> <em style="color:var(--accent);font-style:normal;"><span data-en="Bioscience track only." data-ar="خاص بمسار Bioscience فقط.">Bioscience track only.</span></em></div>
+        <div class="rc-tag"><span data-en="Interview Prep · Bioscience" data-ar="التحضير للمقابلة · Bioscience">Interview Prep · Bioscience</span></div>
       </a>
       <a href="javascript:void(0)" onclick="showSection('foundation')" class="resource-card">
         <div class="rc-icon">📋</div>
-        <div class="rc-title">MS Foundation Roadmap</div>
-        <div class="rc-desc">16-week self-directed curriculum covering the six core domains of modern life sciences: Molecular Bio, Math, AI, Computing, Writing, and Research Practice.</div>
-        <div class="rc-tag">Pre-MS Preparation</div>
+        <div class="rc-title"><span data-en="MS Foundation Roadmap" data-ar="خارطة الطريق التأسيسية للـ MS">MS Foundation Roadmap</span></div>
+        <div class="rc-desc"><span data-en="16-week self-directed curriculum covering the six core domains of modern life sciences: Molecular Bio, Math, AI, Computing, Writing, and Research Practice." data-ar="منهج ذاتي لمدة 16 أسبوعًا يغطي ستة مجالات أساسية في علوم الحياة الحديثة: الأحياء الجزيئية، الرياضيات، AI، الحوسبة، الكتابة، والممارسة البحثية.">16-week self-directed curriculum covering the six core domains of modern life sciences: Molecular Bio, Math, AI, Computing, Writing, and Research Practice.</span></div>
+        <div class="rc-tag"><span data-en="Pre-MS Preparation" data-ar="تحضير ما قبل MS">Pre-MS Preparation</span></div>
       </a>
       <a href="https://bese.kaust.edu.sa/faculty-research/our-faculty" target="_blank" class="resource-card">
         <div class="rc-icon">🔬</div>
-        <div class="rc-title">BESE Faculty Directory</div>
-        <div class="rc-desc">Browse all BESE division faculty, their active research groups, and open positions. Your first stop for PI identification.</div>
-        <div class="rc-tag">Official · KAUST</div>
+        <div class="rc-title"><span data-en="BESE Faculty Directory" data-ar="دليل أعضاء هيئة التدريس في BESE">BESE Faculty Directory</span></div>
+        <div class="rc-desc"><span data-en="Browse all BESE division faculty, their active research groups, and open positions. Your first stop for PI identification." data-ar="تصفح جميع أعضاء هيئة التدريس في شعبة BESE، ومجموعاتهم البحثية النشطة، والفرص المتاحة. هذه هي محطتك الأولى لتحديد PI المناسب.">Browse all BESE division faculty, their active research groups, and open positions. Your first stop for PI identification.</span></div>
+        <div class="rc-tag"><span data-en="Official · KAUST" data-ar="رسمي · KAUST">Official · KAUST</span></div>
       </a>
       <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" class="resource-card">
         <div class="rc-icon">📌</div>
-        <div class="rc-title">Official Application Portal</div>
-        <div class="rc-desc">KAUST's official application page with deadlines,, required documents, program codes, and admission requirements.</div>
-        <div class="rc-tag">Official · Required</div>
+        <div class="rc-title"><span data-en="Official Application Portal" data-ar="بوابة التقديم الرسمية">Official Application Portal</span></div>
+        <div class="rc-desc"><span data-en="KAUST's official application page with deadlines, required documents, program codes, and admission requirements." data-ar="صفحة التقديم الرسمية في KAUST وفيها المواعيد النهائية، المستندات المطلوبة، رموز البرامج، وشروط القبول.">KAUST's official application page with deadlines, required documents, program codes, and admission requirements.</span></div>
+        <div class="rc-tag"><span data-en="Official · Required" data-ar="رسمي · مطلوب">Official · Required</span></div>
       </a>
       <a href="https://academy.kaust.edu.sa/" target="_blank" class="resource-card">
         <div class="rc-icon">🚀</div>
-        <div class="rc-title">KAUST Academy</div>
-        <div class="rc-desc">Programs for university students including Bioinformatics, AI, Cybersecurity, Energy, and Water Sustainability specializations. Also Women in STEM and KGSP scholarship tracks.</div>
-        <div class="rc-tag">Pipeline Programs</div>
+        <div class="rc-title"><span data-en="KAUST Academy" data-ar="KAUST Academy">KAUST Academy</span></div>
+        <div class="rc-desc"><span data-en="Programs for university students including Bioinformatics, AI, Cybersecurity, Energy, and Water Sustainability specializations. Also Women in STEM and KGSP scholarship tracks." data-ar="برامج لطلاب الجامعات تشمل تخصصات المعلوماتية الحيوية، AI، الأمن السيبراني، الطاقة، واستدامة المياه. تتوفر أيضًا مسارات Women in STEM وKGSP.">Programs for university students including Bioinformatics, AI, Cybersecurity, Energy, and Water Sustainability specializations. Also Women in STEM and KGSP scholarship tracks.</span></div>
+        <div class="rc-tag"><span data-en="Pipeline Programs" data-ar="برامج تمهيدية">Pipeline Programs</span></div>
       </a>
       <a href="https://elevate.kaust.edu.sa/" target="_blank" class="resource-card">
         <div class="rc-icon">⬆️</div>
-        <div class="rc-title">KAUST Elevate Program</div>
-        <div class="rc-desc">On-the-job training for recent Saudi graduates. Science & Engineering track places you on campus with stipend and housing for direct KAUST network exposure before MS.</div>
-        <div class="rc-tag">On-Campus Training</div>
+        <div class="rc-title"><span data-en="KAUST Elevate Program" data-ar="KAUST Elevate Program">KAUST Elevate Program</span></div>
+        <div class="rc-desc"><span data-en="On-the-job training for recent Saudi graduates. Science & Engineering track places you on campus with stipend and housing for direct KAUST network exposure before MS." data-ar="تدريب على رأس العمل للخريجين السعوديين الجدد. يضعك مسار العلوم والهندسة داخل الحرم مع مكافأة وسكن، مما يمنحك تعرضًا مباشرًا لشبكة KAUST قبل MS.">On-the-job training for recent Saudi graduates. Science & Engineering track places you on campus with stipend and housing for direct KAUST network exposure before MS.</span></div>
+        <div class="rc-tag"><span data-en="On-Campus Training" data-ar="تدريب داخل الحرم">On-Campus Training</span></div>
       </a>
       <a href="https://wepproposals.kaust.edu.sa/" target="_blank" class="resource-card">
         <div class="rc-icon">❄️</div>
-        <div class="rc-title">Winter Enrichment Program (WEP)</div>
-        <div class="rc-desc">KAUST's flagship two-week annual event: Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community.</div>
-        <div class="rc-tag">Community · Annual Event</div>
+        <div class="rc-title"><span data-en="Winter Enrichment Program (WEP)" data-ar="Winter Enrichment Program (WEP)">Winter Enrichment Program (WEP)</span></div>
+        <div class="rc-desc"><span data-en="KAUST's flagship two-week annual event: Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community." data-ar="الفعالية السنوية الأبرز في KAUST لمدة أسبوعين: حائزون على نوبل، ورش عمل، معارض علمية، ومحاضرات رئيسية. حضورك كضيف يضعك داخل مجتمع KAUST.">KAUST's flagship two-week annual event: Nobel laureates, workshops, science fairs, and keynote talks. Attending as a guest puts you inside the KAUST community.</span></div>
+        <div class="rc-tag"><span data-en="Community · Annual Event" data-ar="مجتمع · فعالية سنوية">Community · Annual Event</span></div>
       </a>
       <a href="https://www.youtube.com/@KAUSTOfficial" target="_blank" class="resource-card">
         <div class="rc-icon">▶</div>
-        <div class="rc-title">KAUST YouTube Channel</div>
-        <div class="rc-desc">Student experience videos, info session recordings, WEP talks, and faculty research presentations. Good for understanding lab culture before your interview.</div>
-        <div class="rc-tag">Free Resource</div>
+        <div class="rc-title"><span data-en="KAUST YouTube Channel" data-ar="قناة KAUST على YouTube">KAUST YouTube Channel</span></div>
+        <div class="rc-desc"><span data-en="Student experience videos, info session recordings, WEP talks, and faculty research presentations. Good for understanding lab culture before your interview." data-ar="فيديوهات تجربة الطلاب، تسجيلات الجلسات التعريفية، محاضرات WEP، وعروض أبحاث أعضاء هيئة التدريس. مفيدة لفهم ثقافة المختبر قبل المقابلة.">Student experience videos, info session recordings, WEP talks, and faculty research presentations. Good for understanding lab culture before your interview.</span></div>
+        <div class="rc-tag"><span data-en="Free Resource" data-ar="مورد مجاني">Free Resource</span></div>
       </a>
     </div>
   </section>
@@ -389,118 +411,116 @@ Sincerely,
 
 <div class="divider"></div>
 
-<!-- APPLICATION CHECKLIST -->
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 4: Documents</div>
-    <h2>Application Checklist</h2>
+    <div class="section-label"><span data-en="Phase 4: Documents" data-ar="المرحلة 4: المستندات">Phase 4: Documents</span></div>
+    <h2><span data-en="Application Checklist" data-ar="قائمة مستندات التقديم">Application Checklist</span></h2>
     <div class="checklist">
       <div class="checklist-item">
         <div class="cl-num">01</div>
         <div class="cl-body">
-          <div class="cl-title">Official Transcripts</div>
-          <div class="cl-note">All undergraduate (and graduate) institutions. Must be official, sent directly from the institution or sealed. Order early; some take 2–4 weeks.</div>
+          <div class="cl-title"><span data-en="Official Transcripts" data-ar="السجلات الأكاديمية الرسمية">Official Transcripts</span></div>
+          <div class="cl-note"><span data-en="All undergraduate (and graduate) institutions. Must be official, sent directly from the institution or sealed. Order early; some take 2–4 weeks." data-ar="من جميع مؤسسات البكالوريوس والدراسات العليا. يجب أن تكون رسمية ومرسلة مباشرة من المؤسسة أو مختومة. اطلبها مبكرًا؛ بعضها يستغرق 2 إلى 4 أسابيع.">All undergraduate (and graduate) institutions. Must be official, sent directly from the institution or sealed. Order early; some take 2–4 weeks.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">02</div>
         <div class="cl-body">
-          <div class="cl-title">Curriculum Vitae (CV)</div>
-          <div class="cl-note">Research experience, lab skills, publications, presentations, certifications, and software tools. 2 pages max. Include GitHub if relevant.</div>
+          <div class="cl-title"><span data-en="Curriculum Vitae (CV)" data-ar="السيرة الذاتية (CV)">Curriculum Vitae (CV)</span></div>
+          <div class="cl-note"><span data-en="Research experience, lab skills, publications, presentations, certifications, and software tools. 2 pages max. Include GitHub if relevant." data-ar="الخبرة البحثية، المهارات المخبرية، المنشورات، العروض، الشهادات، وأدوات البرمجة. صفحتان كحد أقصى. أضف GitHub إذا كان ذا صلة.">Research experience, lab skills, publications, presentations, certifications, and software tools. 2 pages max. Include GitHub if relevant.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">03</div>
         <div class="cl-body">
-          <div class="cl-title">Statement of Purpose (SOP)</div>
-          <div class="cl-note">Research-focused. Name a specific PI, state your research interest precisely, and explain why KAUST. 1–1.5 pages. Not an autobiography.</div>
+          <div class="cl-title"><span data-en="Statement of Purpose (SOP)" data-ar="Statement of Purpose (SOP)">Statement of Purpose (SOP)</span></div>
+          <div class="cl-note"><span data-en="Research-focused. Name a specific PI, state your research interest precisely, and explain why KAUST. 1–1.5 pages. Not an autobiography." data-ar="يجب أن يكون بحثيًا. اذكر PI محددًا، واكتب اهتمامك البحثي بدقة، واشرح لماذا KAUST. صفحة إلى صفحة ونصف. ليس سيرة ذاتية قصصية.">Research-focused. Name a specific PI, state your research interest precisely, and explain why KAUST. 1–1.5 pages. Not an autobiography.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">04</div>
         <div class="cl-body">
-          <div class="cl-title">3 Recommendation Letters</div>
-          <div class="cl-note">At least 2 from research supervisors who can speak to lab competence. Give referees your SOP, CV, and a deadline 2 weeks before the application closes.</div>
+          <div class="cl-title"><span data-en="3 Recommendation Letters" data-ar="3 خطابات توصية">3 Recommendation Letters</span></div>
+          <div class="cl-note"><span data-en="At least 2 from research supervisors who can speak to lab competence. Give referees your SOP, CV, and a deadline 2 weeks before the application closes." data-ar="اثنان على الأقل من مشرفين بحثيين يستطيعون الحديث عن كفاءتك المخبرية. أعطِ كاتبي التوصية SOP وCV وموعدًا نهائيًا قبل إغلاق التقديم بأسبوعين.">At least 2 from research supervisors who can speak to lab competence. Give referees your SOP, CV, and a deadline 2 weeks before the application closes.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">05</div>
         <div class="cl-body">
-          <div class="cl-title">English Proficiency Score</div>
-          <div class="cl-note">IELTS 6.5+ or TOEFL iBT 81+. Waived if your undergraduate degree was taught entirely in English. Check your eligibility before registering for the test.</div>
+          <div class="cl-title"><span data-en="English Proficiency Score" data-ar="درجة إثبات اللغة الإنجليزية">English Proficiency Score</span></div>
+          <div class="cl-note"><span data-en="IELTS 6.5+ or TOEFL iBT 81+. Waived if your undergraduate degree was taught entirely in English. Check your eligibility before registering for the test." data-ar="IELTS 6.5+ أو TOEFL iBT 81+. يُعفى منها من كانت دراسة البكالوريوس لديه بالكامل باللغة الإنجليزية. تحقق من أهليتك قبل التسجيل للاختبار.">IELTS 6.5+ or TOEFL iBT 81+. Waived if your undergraduate degree was taught entirely in English. Check your eligibility before registering for the test.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">06</div>
         <div class="cl-body">
-          <div class="cl-title">Shortlist of Target PIs</div>
-          <div class="cl-note">2–3 faculty members whose active research aligns with your interests. Email them before submitting your application. See the PI Outreach section above.</div>
+          <div class="cl-title"><span data-en="Shortlist of Target PIs" data-ar="قائمة مختصرة من PIs المستهدفين">Shortlist of Target PIs</span></div>
+          <div class="cl-note"><span data-en="2–3 faculty members whose active research aligns with your interests. Email them before submitting your application. See the PI Outreach section above." data-ar="2 إلى 3 من أعضاء هيئة التدريس الذين يتوافق بحثهم النشط مع اهتماماتك. راسلهم قبل إرسال طلبك. راجع قسم التواصل مع PI أعلاه.">2–3 faculty members whose active research aligns with your interests. Email them before submitting your application. See the PI Outreach section above.</span></div>
         </div>
-        <div class="cl-badge cl-cond">Strongly Advised</div>
+        <div class="cl-badge cl-cond"><span data-en="Strongly Advised" data-ar="موصى به بقوة">Strongly Advised</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">07</div>
         <div class="cl-body">
-          <div class="cl-title">Research Samples / Publications</div>
-          <div class="cl-note">Preprint, thesis chapter, or conference poster if available. Not required but meaningfully strengthens your profile. Upload to bioRxiv or Research Square if not yet published.</div>
+          <div class="cl-title"><span data-en="Research Samples / Publications" data-ar="نماذج بحثية أو منشورات">Research Samples / Publications</span></div>
+          <div class="cl-note"><span data-en="Preprint, thesis chapter, or conference poster if available. Not required but meaningfully strengthens your profile. Upload to bioRxiv or Research Square if not yet published." data-ar="preprint، أو فصل من رسالة، أو ملصق مؤتمر إذا توفر. ليست مطلوبة، لكنها تقوّي ملفك بشكل واضح. ارفعها على bioRxiv أو Research Square إذا لم تُنشر بعد.">Preprint, thesis chapter, or conference poster if available. Not required but meaningfully strengthens your profile. Upload to bioRxiv or Research Square if not yet published.</span></div>
         </div>
-        <div class="cl-badge cl-cond">If Available</div>
+        <div class="cl-badge cl-cond"><span data-en="If Available" data-ar="إن وجدت">If Available</span></div>
       </div>
       <div class="checklist-item">
         <div class="cl-num">08</div>
         <div class="cl-body">
-          <div class="cl-title">Passport Copy</div>
-          <div class="cl-note">Valid passport for identity verification. Keep a digital scan ready.</div>
+          <div class="cl-title"><span data-en="Passport Copy" data-ar="نسخة من جواز السفر">Passport Copy</span></div>
+          <div class="cl-note"><span data-en="Valid passport for identity verification. Keep a digital scan ready." data-ar="جواز سفر ساري للتحقق من الهوية. احتفظ بنسخة رقمية جاهزة.">Valid passport for identity verification. Keep a digital scan ready.</span></div>
         </div>
-        <div class="cl-badge cl-req">Required</div>
+        <div class="cl-badge cl-req"><span data-en="Required" data-ar="مطلوب">Required</span></div>
       </div>
     </div>
-    <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;">Always confirm the current list at <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">kaust.edu.sa/en/study/applying-to-kaust</a>. Requirements may update each cycle.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;"><span data-en='Always confirm the current list at <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">kaust.edu.sa/en/study/applying-to-kaust</a>. Requirements may update each cycle.' data-ar='تحقق دائمًا من القائمة الحالية عبر <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">kaust.edu.sa/en/study/applying-to-kaust</a>. قد تتغير المتطلبات في كل دورة تقديم.'>Always confirm the current list at <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">kaust.edu.sa/en/study/applying-to-kaust</a>. Requirements may update each cycle.</span></p>
   </section>
 </div>
 
 <div class="divider"></div>
 
-<!-- ACTION PLAN -->
 <div class="wrap">
   <section class="content-section">
-    <div class="section-label">Phase 5: Quick Start</div>
-    <h2>If You Start Today</h2>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.7;max-width:600px;">Most applicants read guides and do nothing. This converts reading into action. Follow this sequence and you'll be ahead of the majority of applicants by week one.</p>
+    <div class="section-label"><span data-en="Phase 5: Quick Start" data-ar="المرحلة 5: البداية السريعة">Phase 5: Quick Start</span></div>
+    <h2><span data-en="If You Start Today" data-ar="إذا بدأت اليوم">If You Start Today</span></h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.7;max-width:600px;"><span data-en="Most applicants read guides and do nothing. This converts reading into action. Follow this sequence and you'll be ahead of the majority of applicants by week one." data-ar="معظم المتقدمين يقرأون الأدلة ولا يفعلون شيئًا. هذا القسم يحوّل القراءة إلى تنفيذ. اتبع هذا التسلسل وستسبق أغلب المتقدمين خلال أسبوع واحد.">Most applicants read guides and do nothing. This converts reading into action. Follow this sequence and you'll be ahead of the majority of applicants by week one.</span></p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
       <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:8px;padding:24px 22px;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:10px;">DAY 1</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:10px;" data-en="DAY 1" data-ar="اليوم 1">DAY 1</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span>Choose program: Bioscience or Bioengineering</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span>Browse BESE faculty directory</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span>Shortlist 5-10 PIs whose work interests you</div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span><span data-en="Choose program: Bioscience or Bioengineering" data-ar="اختر البرنامج: Bioscience أو Bioengineering">Choose program: Bioscience or Bioengineering</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span><span data-en="Browse BESE faculty directory" data-ar="تصفح دليل أعضاء هيئة التدريس في BESE">Browse BESE faculty directory</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent);flex-shrink:0;">›</span><span data-en="Shortlist 5-10 PIs whose work interests you" data-ar="اختصر القائمة إلى 5 إلى 10 من PIs الذين تهمك أبحاثهم">Shortlist 5-10 PIs whose work interests you</span></div>
         </div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent2);border-radius:8px;padding:24px 22px;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.12em;margin-bottom:10px;">DAY 2</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.12em;margin-bottom:10px;" data-en="DAY 2" data-ar="اليوم 2">DAY 2</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent2);flex-shrink:0;">›</span>Read one recent paper from your top 2 PIs</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent2);flex-shrink:0;">›</span>Note one specific finding or method that connects to your background</div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent2);flex-shrink:0;">›</span><span data-en="Read one recent paper from your top 2 PIs" data-ar="اقرأ ورقة حديثة واحدة من أفضل 2 PIs لديك">Read one recent paper from your top 2 PIs</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent2);flex-shrink:0;">›</span><span data-en="Note one specific finding or method that connects to your background" data-ar="دوّن نتيجة أو منهجية محددة تربط بحثهم بخلفيتك">Note one specific finding or method that connects to your background</span></div>
         </div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent3);border-radius:8px;padding:24px 22px;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);letter-spacing:0.12em;margin-bottom:10px;">DAY 3</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);letter-spacing:0.12em;margin-bottom:10px;" data-en="DAY 3" data-ar="اليوم 3">DAY 3</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent3);flex-shrink:0;">›</span>Draft your PI outreach email using the template above</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent3);flex-shrink:0;">›</span>Reference the specific paper you read</div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent3);flex-shrink:0;">›</span><span data-en="Draft your PI outreach email using the template above" data-ar="اكتب مسودة بريد التواصل مع PI باستخدام القالب أعلاه">Draft your PI outreach email using the template above</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--accent3);flex-shrink:0;">›</span><span data-en="Reference the specific paper you read" data-ar="اذكر الورقة المحددة التي قرأتها">Reference the specific paper you read</span></div>
         </div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid #f59e0b;border-radius:8px;padding:24px 22px;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:10px;">DAYS 4-7</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#f59e0b;letter-spacing:0.12em;margin-bottom:10px;" data-en="DAYS 4-7" data-ar="الأيام 4 إلى 7">DAYS 4-7</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span>Send emails to your top 2-3 PIs</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span>Start the Foundation Roadmap (Molecular & Cell Biology track)</div>
-          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span>Begin drafting your SOP opening paragraph</div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span><span data-en="Send emails to your top 2-3 PIs" data-ar="أرسل الرسائل إلى أفضل 2 إلى 3 من PIs لديك">Send emails to your top 2-3 PIs</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span><span data-en="Start the Foundation Roadmap (Molecular & Cell Biology track)" data-ar="ابدأ خارطة الطريق التأسيسية (مسار الأحياء الجزيئية والخلوية)">Start the Foundation Roadmap (Molecular & Cell Biology track)</span></div>
+          <div style="font-size:13px;color:var(--text);display:flex;gap:8px;"><span style="color:#f59e0b;flex-shrink:0;">›</span><span data-en="Begin drafting your SOP opening paragraph" data-ar="ابدأ بكتابة الفقرة الافتتاحية في SOP">Begin drafting your SOP opening paragraph</span></div>
         </div>
       </div>
     </div>
@@ -511,21 +531,20 @@ Sincerely,
 <div class="wrap">
   <footer>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:32px;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">About this guide</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Built by a KAUST MS Bioscience admit and KAUST Academy Bioinformatics '26 alumnus. Based on official KAUST information and direct applicant experience. Always verify requirements through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">official KAUST admissions</a>.</p>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;" data-en="About this guide" data-ar="عن هذا الدليل">About this guide</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;"><span data-en='Built by a KAUST MS Bioscience admit and KAUST Academy Bioinformatics &apos;26 alumnus. Based on official KAUST information and direct applicant experience. Always verify requirements through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">official KAUST admissions</a>.' data-ar='أعدّه طالب مقبول في KAUST MS Bioscience وخريج KAUST Academy Bioinformatics &apos;26. مبني على معلومات KAUST الرسمية وتجربة مباشرة كمتقدم. تحقق دائمًا من المتطلبات عبر <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">القبول الرسمي في KAUST</a>.'>Built by a KAUST MS Bioscience admit and KAUST Academy Bioinformatics '26 alumnus. Based on official KAUST information and direct applicant experience. Always verify requirements through <a href="https://kaust.edu.sa/en/study/applying-to-kaust" target="_blank" style="color:var(--accent);">official KAUST admissions</a>.</span></p>
     </div>
     <div class="footer-inner">
       <div>
-        <div class="footer-brand">KAUST BESE Guide</div>
-        <div class="footer-note" style="margin-top:8px;">For Bioscience & Bioengineering applicants</div>
+        <div class="footer-brand" data-en="KAUST BESE Guide" data-ar="دليل KAUST BESE">KAUST BESE Guide</div>
+        <div class="footer-note" style="margin-top:8px;" data-en="For Bioscience & Bioengineering applicants" data-ar="لمتقدمي Bioscience وBioengineering">For Bioscience & Bioengineering applicants</div>
       </div>
-      <div class="footer-note">Community resource · Not affiliated with KAUST officially</div>
+      <div class="footer-note" data-en="Community resource · Not affiliated with KAUST officially" data-ar="مورد مجتمعي · غير تابع رسميًا لـ KAUST">Community resource · Not affiliated with KAUST officially</div>
     </div>
   </footer>
 </div>
 
 </div><!-- /section-guide -->
-
 
 <!-- ═══════════════════════════════════════════════ -->
 <!-- SECTION 2: FOUNDATION ROADMAP                  -->
@@ -542,721 +561,76 @@ Sincerely,
 </div>
 
 <script>
+var currentLang = 'en';
+var foundationMounted = false;
+var interviewMounted = false;
+
+function mountReactApps() {
+  // React 18 mounts fine into hidden elements; just ensure Babel has run
+  // This is called after a short delay to let Babel finish transpiling
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  var body = document.body;
+  var html = document.documentElement;
+  if (lang === 'ar') {
+    body.classList.add('ar');
+    html.setAttribute('lang', 'ar');
+    html.setAttribute('dir', 'rtl');
+    document.getElementById('btn-ar').classList.add('active');
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('email-ar-note').style.display = 'block';
+  } else {
+    body.classList.remove('ar');
+    html.setAttribute('lang', 'en');
+    html.setAttribute('dir', 'ltr');
+    document.getElementById('btn-en').classList.add('active');
+    document.getElementById('btn-ar').classList.remove('active');
+    document.getElementById('email-ar-note').style.display = 'none';
+  }
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var val = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+    if (val !== null) el.innerHTML = val;
+  });
+  window.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
+}
+
 function showSection(id) {
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.page-section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById('section-' + id).classList.add('active');
-  const idx = {guide:0, foundation:1, interview:2}[id];
-  document.querySelectorAll('.nav-btn')[idx].classList.add('active');
-  window.scrollTo(0,0);
+  var map = { guide: 'nav-guide', foundation: 'nav-foundation', interview: 'nav-interview' };
+  document.getElementById(map[id]).classList.add('active');
+  window.scrollTo(0, 0);
+  // Force React re-render by dispatching a resize event (fixes blank canvas in some browsers)
+  window.dispatchEvent(new Event('resize'));
 }
 </script>
 
-
+<style>
+@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.slide-up{animation:slideUp 0.25s ease forwards}
+.f-domain-tab{background:white;border:1.5px solid #E8E5DF;color:#777;padding:10px 16px;cursor:pointer;font-size:11px;border-radius:8px;transition:all 0.18s;display:flex;align-items:center;gap:8px;white-space:nowrap;font-family:inherit;}
+.f-domain-tab:hover{border-color:#C5C2BB;color:#333;}
+.f-domain-tab.active{color:#1A1A2E;border-color:var(--ftc);background:var(--ftbg);box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.f-track-card{background:white;border:1.5px solid #E8E5DF;border-radius:12px;padding:22px 24px;cursor:pointer;transition:all 0.2s;}
+.f-track-card:hover{border-color:#C5C2BB;box-shadow:0 4px 16px rgba(0,0,0,0.06);}
+.f-track-card.open{border-color:var(--fdc);box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.f-res-card{background:#F8F7F4;border:1px solid #E8E5DF;border-radius:8px;padding:14px 16px;transition:all 0.15s;}
+.f-res-card:hover{background:#F3F1EC;}
+.f-link-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:white;border:1px solid #D8D5CF;border-radius:5px;color:#555;text-decoration:none;font-size:11px;font-family:inherit;transition:all 0.15s;margin-top:8px;}
+.f-link-btn:hover{background:#1A1A2E;color:white;border-color:#1A1A2E;}
+.f-badge{padding:2px 7px;border-radius:4px;font-size:9px;font-family:inherit;letter-spacing:0.02em;font-weight:500;}
+.f-skill-tag{background:white;border:1px solid #E8E5DF;border-radius:5px;padding:5px 12px;font-size:11px;color:#666;font-family:inherit;}
+.f-view-btn{padding:8px 18px;border-radius:6px;font-size:12px;cursor:pointer;transition:all 0.15s;border:1.5px solid #E8E5DF;background:white;color:#888;font-family:inherit;}
+.f-view-btn.active{background:#1A1A2E;color:white;border-color:#1A1A2E;}
+.f-phase-card{background:white;border:1.5px solid #E8E5DF;border-radius:12px;padding:24px;border-top:4px solid var(--fpc);}
+</style>
 <!-- FOUNDATION ROADMAP REACT APP -->
-<script type="text/babel" data-type="module">
-const { useState } = React;
-
-const domains = [
-  { id:"mol", emoji:"🧬", title:"Molecular & Cell Biology", subtitle:"The biological foundation", color:"#10B981", bg:"#10B98112", border:"#10B98130", level:"FOUNDATION", description:"Master the core language of modern biology. Without this, everything else (sequencing, computation, AI) loses its meaning. Start here.", tracks:[
-    { name:"Cell Biology Fundamentals", timeframe:"Weeks 1–3", effort:"~3h/week", resources:[
-      { title:"Molecular Biology of the Cell - Alberts et al.", type:"Textbook", free:true, url:"https://www.ncbi.nlm.nih.gov/books/NBK21054/", note:"Free via NCBI. The standard reference. Ch. 1–8 minimum." },
-      { title:"MIT OCW 7.016 Introductory Biology", type:"Course", free:true, url:"https://ocw.mit.edu/courses/7-016-introductory-biology-fall-2018/", note:"Full lecture series. Watch at 1.5×. Rigorous but accessible." },
-      { title:"Crash Course Biology (YouTube)", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PL3EED4C1D684D3ADF", note:"Fast revision of core concepts. Great for gaps." }
-    ], skills:["Cell cycle & checkpoints","DNA replication & repair","Transcription & translation","Cell signaling pathways","Membrane biology & organelles"] },
-    { name:"Genetics & Genomics", timeframe:"Weeks 2–6", effort:"~4h/week", resources:[
-      { title:"Introduction to Genomics - Coursera (Johns Hopkins)", type:"Course", free:true, url:"https://www.coursera.org/learn/introduction-genomics", note:"Audit for free. Covers sequencing, variant calling, population genetics." },
-      { title:"Lewin's Genes XII", type:"Textbook", free:false, url:"https://www.amazon.com/Lewins-Genes-XII-Jocelyn-Krebs/dp/1284104494", note:"Focus on gene regulation and epigenetics chapters." },
-      { title:"Khan Academy Genetics", type:"Free", free:true, url:"https://www.khanacademy.org/science/ap-biology/heredity", note:"Excellent for solidifying inheritance and Mendelian foundations." }
-    ], skills:["Mendelian → complex inheritance","Epigenetics & chromatin remodeling","SNP, indel, CNV concepts","Gene regulatory networks","GWAS & polygenic risk basics"] },
-    { name:"Single-Cell & Transcriptomics", timeframe:"Weeks 6–12", effort:"~4h/week", resources:[
-      { title:"Orchestrating Single-Cell Analysis (OSCA)", type:"Free Book", free:true, url:"https://bioconductor.org/books/release/OSCA/", note:"The definitive scRNA-seq reference. Bioconductor-based. Bookmark this." },
-      { title:"Hemberg Lab scRNA-seq Course", type:"Course", free:true, url:"https://www.singlecellcourse.org/", note:"Theory + practice combined. Excellent structure." },
-      { title:"Current Best Practices in scRNA-seq (Luecken & Theis 2019)", type:"Paper", free:true, url:"https://www.embopress.org/doi/full/10.15252/msb.20188746", note:"Essential reading - outlines the full analysis pipeline." }
-    ], skills:["10x Chromium library prep concepts","Clustering & dimensionality reduction","Pseudotime & trajectory analysis","Differential expression testing","Cell type annotation strategies"] }
-  ]},
-  { id:"math", emoji:"∑", title:"Mathematics", subtitle:"The hidden engine", color:"#6366F1", bg:"#6366F112", border:"#6366F130", level:"CRITICAL", description:"Most bioinformatics mistakes happen because researchers don't understand the math in their tools. Linear algebra, probability, and statistics are non-negotiable.", tracks:[
-    { name:"Linear Algebra", timeframe:"Weeks 1–4", effort:"~3h/week", resources:[
-      { title:"3Blue1Brown - Essence of Linear Algebra", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab", note:"The best visual intuition available. Watch before anything else." },
-      { title:"MIT 18.06 Linear Algebra - Gilbert Strang", type:"Course", free:true, url:"https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/", note:"Gold standard. Full lectures + problem sets. Free via MIT OCW." },
-      { title:"Immersive Linear Algebra (interactive textbook)", type:"Free", free:true, url:"http://immersivemath.com/ila/index.html", note:"Interactive, visual companion - especially good for eigenvectors." }
-    ], skills:["Matrix operations & factorizations","SVD & PCA (critical for omics)","Eigenvalues & eigenvectors","Vector spaces & projections","Least squares solutions"] },
-    { name:"Probability & Statistics", timeframe:"Weeks 3–8", effort:"~4h/week", resources:[
-      { title:"StatQuest with Josh Starmer (YouTube)", type:"Video", free:true, url:"https://www.youtube.com/@statquest", note:"Bioinformatics-specific stats explained with extraordinary clarity. Essential." },
-      { title:"Probability for Data Science - UC Berkeley Prob140", type:"Free Book", free:true, url:"http://prob140.org/textbook/content/README.html", note:"Rigorous Bayesian foundations. Free online textbook." },
-      { title:"An Introduction to Statistical Learning (ISLR)", type:"Free Book", free:true, url:"https://www.statlearning.com/", note:"Canonical ML+stats reference. Free PDF. R and Python editions." }
-    ], skills:["Bayes theorem & posterior inference","Hypothesis testing & p-values","Multiple testing correction (FDR, Bonferroni)","Regression models (linear, logistic, Cox)","Distributions & sampling theory"] },
-    { name:"Calculus & Optimization", timeframe:"Weeks 5–10", effort:"~3h/week", resources:[
-      { title:"3Blue1Brown - Essence of Calculus", type:"Video", free:true, url:"https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr", note:"Build intuition before formulas. Watch all 11 episodes." },
-      { title:"Khan Academy Multivariable Calculus", type:"Free", free:true, url:"https://www.khanacademy.org/math/multivariable-calculus", note:"Gradients and partial derivatives matter for ML theory." },
-      { title:"Convex Optimization - Boyd & Vandenberghe", type:"Free Book", free:true, url:"https://web.stanford.edu/~boyd/cvxbook/", note:"Free PDF. Foundational for understanding ML objective functions." }
-    ], skills:["Derivatives & gradients","Chain rule (backpropagation foundation)","Partial derivatives & Jacobians","Gradient descent optimization","Constrained optimization basics"] }
-  ]},
-  { id:"ai", emoji:"🤖", title:"AI & Machine Learning", subtitle:"The analytical engine", color:"#F43F5E", bg:"#F43F5E12", border:"#F43F5E30", level:"STRATEGIC", description:"Modern biology is inseparable from ML. You need to understand models well enough to choose them, critique them, and build on them - not just run pipelines.", tracks:[
-    { name:"Machine Learning Foundations", timeframe:"Weeks 4–8", effort:"~4h/week", resources:[
-      { title:"fast.ai - Practical Deep Learning for Coders", type:"Course", free:true, url:"https://course.fast.ai/", note:"Top-down, code-first approach. Best for people who learn by doing." },
-      { title:"Machine Learning Specialization - Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/machine-learning-introduction", note:"Audit free. Broad foundations, excellent explanations." },
-      { title:"An Introduction to Statistical Learning (ISLR)", type:"Free Book", free:true, url:"https://www.statlearning.com/", note:"Overlaps with stats track - read the ML chapters here." }
-    ], skills:["Supervised vs unsupervised learning","Cross-validation & regularization","Decision trees → ensemble methods","Dimensionality reduction (PCA, UMAP, t-SNE)","Model evaluation metrics"] },
-    { name:"Deep Learning & Neural Networks", timeframe:"Weeks 7–12", effort:"~4h/week", resources:[
-      { title:"Deep Learning Specialization - Andrew Ng (Coursera)", type:"Course", free:true, url:"https://www.coursera.org/specializations/deep-learning", note:"Covers CNNs, RNNs, and transformers. Audit free." },
-      { title:"The Annotated Transformer (Harvard NLP)", type:"Tutorial", free:true, url:"https://nlp.seas.harvard.edu/2018/04/03/attention.html", note:"Line-by-line implementation of the transformer. Understand attention deeply." },
-      { title:"Dive into Deep Learning (d2l.ai)", type:"Free Book", free:true, url:"https://d2l.ai/", note:"Interactive. PyTorch throughout. Excellent for hands-on learners." }
-    ], skills:["Feedforward & recurrent networks","Convolutional networks for sequences","Attention & transformer architecture","Transfer learning & fine-tuning","Regularization & batch normalization"] },
-    { name:"AI for Biology", timeframe:"Weeks 10–16", effort:"~4h/week", resources:[
-      { title:"Causal Inference: The Mixtape - Cunningham", type:"Free Book", free:true, url:"https://mixtape.scunning.com/", note:"Accessible causal inference. Critical for interpreting biological experiments." },
-      { title:"scVI paper - López et al. 2018 (Nature Methods)", type:"Paper", free:true, url:"https://www.nature.com/articles/s41592-018-0229-2", note:"Variational autoencoders for scRNA-seq. Foundational in the field." },
-      { title:"AlphaFold2 paper (Jumper et al. 2021)", type:"Paper", free:true, url:"https://www.nature.com/articles/s41586-021-03819-2", note:"Read to understand how DL redefined structural biology." }
-    ], skills:["Causal DAGs & intervention logic","Graph neural networks for biology","Variational autoencoders (scVI, scANVI)","Protein structure prediction concepts","Perturbation modeling (CellOracle, SCENIC)"] }
-  ]},
-  { id:"code", emoji:"⌨️", title:"Scientific Computing", subtitle:"Your laboratory tools", color:"#F59E0B", bg:"#F59E0B12", border:"#F59E0B30", level:"CORE", description:"Code is the lab bench of computational biology. Python and R are equally important. Reproducibility is not optional; it's professional hygiene.", tracks:[
-    { name:"Python for Research", timeframe:"Weeks 1–4", effort:"~3h/week", resources:[
-      { title:"Scientific Python Lectures", type:"Free", free:true, url:"https://lectures.scientific-python.org/", note:"NumPy, SciPy, matplotlib: the scientific stack. Essential reference." },
-      { title:"The Missing Semester of CS - MIT", type:"Course", free:true, url:"https://missing.csail.mit.edu/", note:"Shell, Git, editors, debugging. Every researcher needs this." },
-      { title:"Snakemake Tutorial", type:"Tutorial", free:true, url:"https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html", note:"Reproducible bioinformatics pipelines. Expected in any serious lab." }
-    ], skills:["NumPy vectorized computation","Pandas for tabular data","Reproducible Jupyter notebooks","Snakemake/Nextflow workflows","Conda environment management"] },
-    { name:"R for Bioinformatics", timeframe:"Weeks 3–8", effort:"~4h/week", resources:[
-      { title:"R for Data Science - Hadley Wickham", type:"Free Book", free:true, url:"https://r4ds.had.co.nz/", note:"Learn tidyverse properly. Non-negotiable if you'll use Bioconductor." },
-      { title:"RNA-seq workflow - Bioconductor (limma/DESeq2)", type:"Tutorial", free:true, url:"https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/limmaWorkflow.html", note:"Lab-standard differential expression analysis pipeline." },
-      { title:"Data Analysis for Life Sciences - Irizarry & Love", type:"Free", free:true, url:"https://rafalab.github.io/pages/harvardx.html", note:"Free HarvardX course series. R-based. World-class instructors." }
-    ], skills:["ggplot2 & publication-quality figures","DESeq2 & edgeR for differential expression","Seurat for scRNA-seq analysis","Bioconductor package ecosystem","R Markdown for reproducible reports"] },
-    { name:"HPC & Linux", timeframe:"Weeks 4–8", effort:"~2h/week", resources:[
-      { title:"Software Carpentry - Shell, Git & Python", type:"Tutorial", free:true, url:"https://software-carpentry.org/lessons/", note:"Hands-on, biology-focused. Workshop-style. Free online." },
-      { title:"Introduction to SLURM (HPC job scheduler)", type:"Tutorial", free:true, url:"https://slurm.schedmd.com/quickstart.html", note:"Most university and institute clusters use SLURM. Learn this before you arrive." },
-      { title:"Docker for Bioinformatics - BioContainers", type:"Tutorial", free:true, url:"https://biocontainers.pro/", note:"Containerization = reproducibility. Required for serious pipelines." }
-    ], skills:["Bash scripting & automation","SLURM job submission & monitoring","Git version control & collaboration","Docker/Singularity containers","tmux & remote server workflows"] }
-  ]},
-  { id:"writing", emoji:"✍️", title:"Scientific Writing", subtitle:"Your voice in the field", color:"#06B6D4", bg:"#06B6D412", border:"#06B6D430", level:"HIGH", description:"Most researchers write poorly because they were never taught. A clear, precise scientific paper is a skill that can be learned systematically, and it dramatically affects your career.", tracks:[
-    { name:"Reading Papers Efficiently", timeframe:"Week 1 onward", effort:"~2h/week", resources:[
-      { title:"How to Read a Paper - S. Keshav", type:"Free PDF", free:true, url:"https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf", note:"2-page guide. The 3-pass method. Read this today, before anything else." },
-      { title:"Connected Papers", type:"Tool", free:true, url:"https://www.connectedpapers.com/", note:"Visualize citation networks around key papers in your field." },
-      { title:"Semantic Scholar", type:"Tool", free:true, url:"https://www.semanticscholar.org/", note:"Set citation alerts for key authors. Stay current automatically." }
-    ], skills:["3-pass reading method","Identifying contribution vs. incremental work","Critical appraisal of methods sections","Building an annotated literature library","Summarizing papers in ≤5 sentences"] },
-    { name:"Paper Structure & Prose", timeframe:"Weeks 6–10", effort:"~3h/week", resources:[
-      { title:"Writing in the Sciences - Coursera (Stanford)", type:"Course", free:true, url:"https://www.coursera.org/learn/sciwrite", note:"Kristin Sainani's course. Transformative. The single best writing course for scientists." },
-      { title:"The Craft of Scientific Writing - Michael Alley", type:"Textbook", free:false, url:"https://www.amazon.com/Craft-Scientific-Writing-Michael-Alley/dp/1441982876", note:"Authoritative reference. Focus on clarity and precision." },
-      { title:"Nature: How to write a first-class paper", type:"Free", free:true, url:"https://www.nature.com/articles/d41586-018-02404-4", note:"Direct advice from Nature editors. Short and worth reading." }
-    ], skills:["IMRAD structure","Writing tight abstracts","Figure legends that stand alone","Eliminating redundant passive voice","Claims-to-evidence ratio clarity"] },
-    { name:"Reference Management & Submission", timeframe:"Weeks 2–4 (setup) + ongoing", effort:"~1h/week", resources:[
-      { title:"Zotero Reference Manager", type:"Tool", free:true, url:"https://www.zotero.org/", note:"Start your literature database now. Organize by topic/project from day 1." },
-      { title:"EQUATOR Network - Reporting Guidelines", type:"Resource", free:true, url:"https://www.equator-network.org/", note:"STROBE, CONSORT, MIQE: know the reporting standard for your study type." },
-      { title:"bioRxiv Preprint Server", type:"Resource", free:true, url:"https://www.biorxiv.org/", note:"Preprints are standard in biology now. Understand the workflow." }
-    ], skills:["Zotero cite-while-you-write","CSL citation styles","Reporting guideline compliance","Preprint vs. journal strategy","Responding to peer review"] }
-  ]},
-  { id:"research", emoji:"🔬", title:"Research Practice", subtitle:"How science actually works", color:"#EC4899", bg:"#EC489912", border:"#EC489930", level:"HIGH", description:"Domain knowledge alone doesn't make a researcher. The meta-skills (designing experiments, presenting findings, asking the right question) are what separate contributors from consumers.", tracks:[
-    { name:"Experiment Design & Hypothesis", timeframe:"Weeks 4–7", effort:"~2h/week", resources:[
-      { title:"Experimental Design in Biology - HHMI BioInteractive", type:"Free", free:true, url:"https://www.biointeractive.org/classroom-resources/experimental-design-biology", note:"Visual, rigorous, accessible. Covers controls, variables, and reproducibility." },
-      { title:"Think Bayes - Allen Downey", type:"Free Book", free:true, url:"https://greenteapress.com/wp/think-bayes/", note:"Bayesian thinking applied to real experimental reasoning." },
-      { title:"How to Design a Good Experiment - Nature Methods", type:"Free", free:true, url:"https://www.nature.com/articles/nmeth.2613", note:"Brief but authoritative guidance on statistical power and sample size." }
-    ], skills:["Hypothesis formulation (falsifiable, specific)","Control experiment design","Sample size & statistical power","Reproducibility and replication","Confounding variable identification"] },
-    { name:"Literature Review & Synthesis", timeframe:"Weeks 2–8", effort:"~2h/week", resources:[
-      { title:"PubMed Advanced Search", type:"Tool", free:true, url:"https://pubmed.ncbi.nlm.nih.gov/advanced/", note:"Master Boolean operators and MeSH terms. Systematic searching is a skill." },
-      { title:"Rayyan - Systematic Review Tool", type:"Tool", free:true, url:"https://www.rayyan.ai/", note:"Free for researchers. Collaborate on abstract screening." },
-      { title:"Ten Simple Rules for Writing a Literature Review - PLoS", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003149", note:"Practical checklist for structuring a review paper." }
-    ], skills:["Systematic search strategies","Inclusion/exclusion criteria","Evidence synthesis vs. narration","Identifying research gaps","Building a conceptual framework"] },
-    { name:"Presenting Research", timeframe:"Weeks 8–14", effort:"~2h/week", resources:[
-      { title:"Ten Simple Rules for Oral Presentations - PLoS Comp Bio", type:"Free", free:true, url:"https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030077", note:"For journal clubs and lab meetings. Short, direct rules." },
-      { title:"Better Posters Blog - Zen Faulkes", type:"Blog", free:true, url:"https://betterposters.blogspot.com/", note:"Conference poster design principles." },
-      { title:"Fundamentals of Data Visualization - Claus Wilke", type:"Free Book", free:true, url:"https://clauswilke.com/dataviz/", note:"Free online. The standard reference for scientific figure design." }
-    ], skills:["Journal club presentation structure","10–20 min lab talk format","Conference poster design","Handling Q&A under pressure","Visual data storytelling principles"] }
-  ]}
-];
-
-const LEVELS = { FOUNDATION:{color:"#10B981",label:"Foundation"}, CRITICAL:{color:"#F43F5E",label:"Critical"}, STRATEGIC:{color:"#6366F1",label:"Strategic"}, CORE:{color:"#F59E0B",label:"Core"}, HIGH:{color:"#06B6D4",label:"High Priority"} };
-
-const phases = [
-  { range:"Weeks 1–4", title:"Build the Base", items:["Cell Biology fundamentals","Linear Algebra (3B1B)","Python scientific stack","Read 2 papers/week (start now)","Set up Zotero"] },
-  { range:"Weeks 5–8", title:"Expand the Framework", items:["Genetics & Genomics","Probability & Statistics (StatQuest)","R + Bioconductor basics","ML Foundations","Scientific writing course begins"] },
-  { range:"Weeks 9–12", title:"Go Deeper", items:["Single-cell transcriptomics","Deep Learning","SLURM & HPC basics","Paper structure & prose","Experiment design principles"] },
-  { range:"Weeks 13–16", title:"Integrate & Apply", items:["AI for Biology (causal inference, GNNs)","Full scRNA-seq pipeline practice","Presentation skills (lab talk)","Draft or revise a preprint","Literature review synthesis"] }
-];
-
-function BioscienceFoundation() {
-  const [activeTab, setActiveTab] = useState("mol");
-  const [expandedTrack, setExpandedTrack] = useState(null);
-  const [view, setView] = useState("domains");
-  const activeDomain = domains.find(d => d.id === activeTab);
-
-  return (
-    <div style={{minHeight:"100vh",background:"#F8F7F4",color:"#1A1A2E",fontFamily:"'IBM Plex Sans',system-ui,sans-serif"}}>
-      <style>{`
-        @keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .slide-up{animation:slideUp 0.25s ease forwards}
-        .f-domain-tab{background:white;border:1.5px solid #E8E5DF;color:#777;padding:10px 16px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;border-radius:8px;transition:all 0.18s;display:flex;align-items:center;gap:8px;white-space:nowrap;}
-        .f-domain-tab:hover{border-color:#C5C2BB;color:#333;}
-        .f-domain-tab.active{color:#1A1A2E;border-color:var(--ftc);background:var(--ftbg);box-shadow:0 2px 12px rgba(0,0,0,0.08);}
-        .f-track-card{background:white;border:1.5px solid #E8E5DF;border-radius:12px;padding:22px 24px;cursor:pointer;transition:all 0.2s;}
-        .f-track-card:hover{border-color:#C5C2BB;box-shadow:0 4px 16px rgba(0,0,0,0.06);}
-        .f-track-card.open{border-color:var(--fdc);box-shadow:0 4px 20px rgba(0,0,0,0.08);}
-        .f-res-card{background:#F8F7F4;border:1px solid #E8E5DF;border-radius:8px;padding:14px 16px;transition:all 0.15s;}
-        .f-res-card:hover{background:#F3F1EC;}
-        .f-link-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:white;border:1px solid #D8D5CF;border-radius:5px;color:#555;text-decoration:none;font-size:11px;font-family:'IBM Plex Mono',monospace;transition:all 0.15s;margin-top:8px;}
-        .f-link-btn:hover{background:#1A1A2E;color:white;border-color:#1A1A2E;}
-        .f-badge{padding:2px 7px;border-radius:4px;font-size:9px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;font-weight:500;}
-        .f-skill-tag{background:white;border:1px solid #E8E5DF;border-radius:5px;padding:5px 12px;font-size:11px;color:#666;font-family:'IBM Plex Mono',monospace;}
-        .f-view-btn{padding:8px 18px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;transition:all 0.15s;border:1.5px solid #E8E5DF;background:white;color:#888;}
-        .f-view-btn.active{background:#1A1A2E;color:white;border-color:#1A1A2E;}
-        .f-phase-card{background:white;border:1.5px solid #E8E5DF;border-radius:12px;padding:24px;border-top:4px solid var(--fpc);}
-      `}</style>
-
-      {/* HERO */}
-      <div style={{background:"#1A1A2E",padding:"52px 40px 44px",position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none"}}/>
-        <div style={{maxWidth:1100,margin:"0 auto",position:"relative"}}>
-          <div style={{display:"inline-block",background:"rgba(255,255,255,0.07)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:6,padding:"5px 14px",fontSize:11,color:"rgba(255,255,255,0.5)",fontFamily:"'IBM Plex Mono',monospace",letterSpacing:"0.1em",marginBottom:20}}>BIOSCIENCE · BIOINFORMATICS · COMPUTATIONAL BIOLOGY</div>
-          <h1 style={{fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(32px,5vw,54px)",fontWeight:800,color:"white",lineHeight:1.1,marginBottom:16,maxWidth:680}}>The Complete Foundation<br/><span style={{color:"#10B981"}}>Every Graduate Student Needs</span></h1>
-          <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,maxWidth:580,lineHeight:1.7,marginBottom:32,fontWeight:300}}>A 16-week, self-directed curriculum covering the six core domains of modern life sciences research, built around free, high-quality resources available to everyone.</p>
-          <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-            {[{label:"6 Domains",sub:"Molecular Bio → AI"},{label:"18 Tracks",sub:"Structured progression"},{label:"54 Resources",sub:"Mostly free"},{label:"16 Weeks",sub:"10–25h / week"}].map((s,i)=>(
-              <div key={i} style={{background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:10,padding:"14px 20px",minWidth:110}}>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:"white"}}>{s.label}</div>
-                <div style={{fontSize:11,color:"rgba(255,255,255,0.4)",fontFamily:"'IBM Plex Mono',monospace",marginTop:2}}>{s.sub}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* NAV */}
-      <div style={{background:"white",borderBottom:"1.5px solid #E8E5DF",padding:"16px 40px",position:"sticky",top:48,zIndex:49,boxShadow:"0 2px 12px rgba(0,0,0,0.04)"}}>
-        <div style={{maxWidth:1100,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
-          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            {domains.map(d=>(
-              <button key={d.id} className={`f-domain-tab${activeTab===d.id&&view==="domains"?" active":""}`} style={{"--ftc":d.color,"--ftbg":d.bg}} onClick={()=>{setActiveTab(d.id);setView("domains");setExpandedTrack(null);}}>
-                <span style={{fontSize:15}}>{d.emoji}</span><span>{d.title.split(" ").slice(0,2).join(" ")}</span>
-              </button>
-            ))}
-          </div>
-          <div style={{display:"flex",gap:6}}>
-            <button className={`f-view-btn${view==="domains"?" active":""}`} onClick={()=>setView("domains")}>By Domain</button>
-            <button className={`f-view-btn${view==="timeline"?" active":""}`} onClick={()=>setView("timeline")}>16-Week Plan</button>
-          </div>
-        </div>
-      </div>
-
-      {/* TIMELINE */}
-      {view==="timeline"&&(
-        <div className="slide-up" style={{maxWidth:1100,margin:"0 auto",padding:"40px"}}>
-          <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:700,color:"#1A1A2E",marginBottom:8}}>16-Week Progression Plan</h2>
-          <p style={{color:"#888",fontSize:13,lineHeight:1.6,marginBottom:32}}>All six domains run in parallel, but with shifting emphasis. This is the recommended sequencing; adjust based on your current level.</p>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:16,marginBottom:40}}>
-            {phases.map((phase,i)=>{
-              const colors=["#10B981","#6366F1","#F43F5E","#F59E0B"];
-              return(
-                <div key={i} className="f-phase-card" style={{"--fpc":colors[i]}}>
-                  <div style={{fontFamily:"'IBM Plex Mono',monospace",fontSize:11,color:colors[i],marginBottom:6,fontWeight:500}}>{phase.range}</div>
-                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"#1A1A2E",marginBottom:14}}>{phase.title}</div>
-                  {phase.items.map((item,j)=>(
-                    <div key={j} style={{display:"flex",alignItems:"flex-start",gap:8,fontSize:12,color:"#666",lineHeight:1.4,marginBottom:6}}>
-                      <span style={{color:colors[i],marginTop:2,flexShrink:0}}>›</span>{item}
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-          <div style={{background:"white",border:"1.5px solid #E8E5DF",borderRadius:12,padding:"24px 28px"}}>
-            <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,marginBottom:16}}>Domain Time Allocation</h3>
-            {domains.map((d,idx)=>{
-              const pct=[22,18,20,18,12,10][idx];
-              return(
-                <div key={d.id} style={{display:"flex",alignItems:"center",gap:14,marginBottom:10}}>
-                  <div style={{width:160,fontSize:12,color:"#444",fontFamily:"'IBM Plex Mono',monospace",flexShrink:0}}>{d.emoji} {d.title.split(" ").slice(0,3).join(" ")}</div>
-                  <div style={{flex:1,height:8,background:"#F0EEE9",borderRadius:4,overflow:"hidden"}}><div style={{width:`${pct}%`,height:"100%",background:d.color,borderRadius:4}}/></div>
-                  <div style={{width:36,fontSize:11,color:"#999",fontFamily:"'IBM Plex Mono',monospace",textAlign:"right"}}>{pct}%</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* DOMAIN VIEW */}
-      {view==="domains"&&activeDomain&&(
-        <div key={activeTab} className="slide-up" style={{maxWidth:1100,margin:"0 auto",padding:"40px"}}>
-          <div style={{background:"white",border:"1.5px solid #E8E5DF",borderRadius:14,padding:"28px 32px",marginBottom:24,borderLeft:`5px solid ${activeDomain.color}`}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:16}}>
-              <div style={{flex:1,minWidth:280}}>
-                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-                  <span style={{fontSize:28}}>{activeDomain.emoji}</span>
-                  <div>
-                    <span style={{background:LEVELS[activeDomain.level].color+"18",color:LEVELS[activeDomain.level].color,border:`1px solid ${LEVELS[activeDomain.level].color}35`,borderRadius:4,padding:"2px 9px",fontSize:10,fontFamily:"'IBM Plex Mono',monospace",letterSpacing:"0.08em",fontWeight:500,display:"inline-block",marginBottom:4}}>{LEVELS[activeDomain.level].label}</span>
-                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,fontWeight:700,color:"#1A1A2E",lineHeight:1.1}}>{activeDomain.title}</h2>
-                    <div style={{fontSize:13,color:activeDomain.color,fontWeight:500,marginTop:2}}>{activeDomain.subtitle}</div>
-                  </div>
-                </div>
-                <p style={{color:"#666",fontSize:13,lineHeight:1.7,maxWidth:560}}>{activeDomain.description}</p>
-              </div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-                {[{val:activeDomain.tracks.length,label:"tracks"},{val:activeDomain.tracks.reduce((a,t)=>a+t.resources.length,0),label:"resources"},{val:activeDomain.tracks.reduce((a,t)=>a+t.skills.length,0),label:"skills"},{val:activeDomain.tracks.filter(t=>t.resources.some(r=>r.free)).length,label:"tracks w/ free"}].map((s,i)=>(
-                  <div key={i} style={{background:activeDomain.bg,border:`1px solid ${activeDomain.border}`,borderRadius:8,padding:"12px 16px",textAlign:"center",minWidth:80}}>
-                    <div style={{fontFamily:"'Playfair Display',serif",fontSize:24,fontWeight:700,color:activeDomain.color}}>{s.val}</div>
-                    <div style={{fontSize:10,color:"#999",fontFamily:"'IBM Plex Mono',monospace"}}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div style={{display:"flex",flexDirection:"column",gap:12}}>
-            {activeDomain.tracks.map((track,i)=>{
-              const isOpen=expandedTrack===i;
-              return(
-                <div key={i} className={`f-track-card${isOpen?" open":""}`} style={{"--fdc":activeDomain.color}} onClick={()=>setExpandedTrack(isOpen?null:i)}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <div style={{display:"flex",alignItems:"center",gap:14}}>
-                      <div style={{width:36,height:36,background:activeDomain.bg,border:`1.5px solid ${activeDomain.border}`,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'IBM Plex Mono',monospace",fontSize:13,color:activeDomain.color,fontWeight:500,flexShrink:0}}>{String(i+1).padStart(2,"0")}</div>
-                      <div>
-                        <div style={{fontWeight:600,fontSize:15,color:"#1A1A2E",marginBottom:3}}>{track.name}</div>
-                        <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                          <span style={{fontSize:11,color:"#999",fontFamily:"'IBM Plex Mono',monospace"}}>{track.timeframe}</span>
-                          <span style={{width:3,height:3,background:"#D0CCC6",borderRadius:"50%",display:"inline-block"}}/>
-                          <span style={{fontSize:11,color:"#999",fontFamily:"'IBM Plex Mono',monospace"}}>{track.effort}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div style={{display:"flex",alignItems:"center",gap:10}}>
-                      <span style={{fontSize:11,color:"#AAA",fontFamily:"'IBM Plex Mono',monospace"}}>{track.resources.length} resources · {track.skills.length} skills</span>
-                      <div style={{width:26,height:26,background:isOpen?activeDomain.color:"#F0EEE9",border:`1.5px solid ${isOpen?activeDomain.color:"#E8E5DF"}`,borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center",color:isOpen?"white":"#999",fontSize:14,transition:"all 0.2s"}}>{isOpen?"−":"+"}</div>
-                    </div>
-                  </div>
-                  {isOpen&&(
-                    <div onClick={e=>e.stopPropagation()} style={{marginTop:24,paddingTop:24,borderTop:"1px solid #EEE"}}>
-                      <div style={{display:"grid",gridTemplateColumns:"3fr 2fr",gap:24}}>
-                        <div>
-                          <div style={{fontSize:11,color:"#AAA",textTransform:"uppercase",letterSpacing:"0.1em",fontFamily:"'IBM Plex Mono',monospace",marginBottom:12,fontWeight:500}}>Resources</div>
-                          <div style={{display:"flex",flexDirection:"column",gap:10}}>
-                            {track.resources.map((r,j)=>(
-                              <div key={j} className="f-res-card">
-                                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:8}}>
-                                  <span style={{fontSize:13,color:"#1A1A2E",fontWeight:500,lineHeight:1.4,flex:1}}>{r.title}</span>
-                                  <div style={{display:"flex",gap:5,flexShrink:0}}>
-                                    <span className="f-badge" style={{background:r.free?"#10B98118":"#FFF4E5",color:r.free?"#10B981":"#F59E0B",border:`1px solid ${r.free?"#10B98130":"#F59E0B30"}`}}>{r.free?"FREE":"PAID"}</span>
-                                    <span className="f-badge" style={{background:"#F0EEE9",color:"#888",border:"1px solid #E8E5DF"}}>{r.type}</span>
-                                  </div>
-                                </div>
-                                <p style={{fontSize:12,color:"#888",lineHeight:1.5,margin:"6px 0 0"}}>{r.note}</p>
-                                <a href={r.url} target="_blank" rel="noopener noreferrer" className="f-link-btn">Open ↗</a>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <div style={{fontSize:11,color:"#AAA",textTransform:"uppercase",letterSpacing:"0.1em",fontFamily:"'IBM Plex Mono',monospace",marginBottom:12,fontWeight:500}}>Skills to Acquire</div>
-                          <div style={{display:"flex",flexWrap:"wrap",gap:7}}>
-                            {track.skills.map((s,j)=>(
-                              <span key={j} className="f-skill-tag"><span style={{color:activeDomain.color,marginRight:5,fontSize:9}}>●</span>{s}</span>
-                            ))}
-                          </div>
-                          <div style={{marginTop:20,background:activeDomain.bg,border:`1px solid ${activeDomain.border}`,borderRadius:8,padding:"14px 16px"}}>
-                            <div style={{fontSize:11,color:activeDomain.color,fontFamily:"'IBM Plex Mono',monospace",fontWeight:500,marginBottom:5}}>Timeframe</div>
-                            <div style={{fontSize:12,color:"#666",lineHeight:1.6}}><strong style={{color:"#333"}}>{track.timeframe}</strong> at <strong style={{color:"#333"}}>{track.effort}</strong>.<br/>Can be done in parallel with other tracks.</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      <div style={{background:"#1A1A2E",padding:"32px 40px",marginTop:20}}>
-        <div style={{maxWidth:1100,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:16}}>
-          <div>
-            <div style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"white",marginBottom:4}}>Bioscience Foundation Roadmap</div>
-            <div style={{fontSize:12,color:"rgba(255,255,255,0.35)",fontFamily:"'IBM Plex Mono',monospace"}}>Free to share · 54 curated resources · 6 domains · 16 weeks</div>
-          </div>
-          <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
-            {domains.map(d=>(
-              <div key={d.id} style={{display:"flex",alignItems:"center",gap:6}}>
-                <div style={{width:8,height:8,borderRadius:"50%",background:d.color}}/>
-                <span style={{fontSize:11,color:"rgba(255,255,255,0.4)",fontFamily:"'IBM Plex Mono',monospace"}}>{d.title.split(" ")[0]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('foundation-root')).render(<BioscienceFoundation/>);
-</script>
+<script type="text/babel" src="foundation_app.js"></script>
 
 <!-- INTERVIEW PREP REACT APP -->
-<script type="text/babel">
-const { useState: useStateI } = React;
-const ACCENT_I = "#3d6b8a";
-
-const scienceTopics = [
-  { name:"A. Cell Structure & Organelles", foundation:[
-    {label:"Cell",def:"The fundamental structural and functional unit of all living organisms. Bounded by a plasma membrane. Contains genetic material (DNA)."},
-    {label:"Prokaryotic cell",def:"No membrane-bound nucleus. DNA in nucleoid region. Smaller ribosomes (70S). Examples: bacteria, archaea. No organelles like mitochondria or ER."},
-    {label:"Eukaryotic cell",def:"Membrane-bound nucleus. Larger ribosomes (80S). Membrane-bound organelles (mitochondria, ER, Golgi, lysosomes). Linear chromosomes with histones."},
-    {label:"Plasma membrane",def:"Phospholipid bilayer with embedded proteins. Fluid mosaic model: membrane is fluid, proteins move laterally. Contains cholesterol (stabilizes fluidity), integral proteins (span membrane), peripheral proteins (attached to surface)."},
-    {label:"Nucleus",def:"Double membrane (nuclear envelope) with nuclear pores. Contains chromatin (DNA + histones). Nucleolus inside: site of ribosomal RNA (rRNA) synthesis. Controls gene expression and cell division."},
-    {label:"Mitochondria",def:"Double membrane. Inner membrane folded into cristae (increases surface area for ATP production). Contains its own circular DNA (maternal inheritance). Site of oxidative phosphorylation and citric acid cycle."},
-    {label:"Rough ER",def:"Studded with ribosomes. Synthesizes proteins destined for secretion, membrane insertion, or lysosomes."},
-    {label:"Smooth ER",def:"No ribosomes. Synthesizes lipids, detoxifies drugs, stores calcium."},
-    {label:"Golgi apparatus",def:"Stack of flattened cisternae. Receives proteins from ER, modifies them (glycosylation, phosphorylation), sorts and packages them into vesicles for secretion or delivery to other organelles."},
-    {label:"Lysosomes",def:"Membrane-bound vesicles with hydrolytic enzymes. Function at pH ~5. Digest macromolecules, damaged organelles (autophagy), foreign material (phagocytosis). Defects cause lysosomal storage diseases (e.g., Tay-Sachs)."},
-    {label:"Peroxisomes",def:"Contain oxidative enzymes (catalase, oxidases). Break down fatty acids via beta-oxidation. Detoxify H2O2. Use oxidative reactions (not hydrolysis), neutral pH. Distinct from lysosomes."},
-    {label:"Cytoskeleton",def:"Microfilaments (actin, 7nm, cell shape/movement), Intermediate filaments (keratin, 10nm, mechanical strength), Microtubules (tubulin, 25nm, intracellular transport, division spindle)."}
-  ], traps:[
-    "Prokaryotes = 70S ribosomes. Eukaryotes = 80S. Mitochondria also have 70S (endosymbiosis evidence).",
-    "Smooth ER does NOT synthesize proteins. That is Rough ER.",
-    "Lysosomes use hydrolysis at acidic pH. Peroxisomes use oxidation at neutral pH. Don't confuse them.",
-    "Nuclear pores are selective; use nuclear localization signals (NLS) and importins/exportins. Not open holes."
-  ], qas:[
-    {q:"Describe the structure and function of the cell membrane.",a:"The cell membrane is a phospholipid bilayer with embedded proteins, described by the fluid mosaic model. Phospholipids have hydrophilic heads (face water) and hydrophobic tails (face interior). Integral (transmembrane) proteins span the bilayer and function as channels, transporters, and receptors. Peripheral proteins attach to the surface and participate in signaling and structure. Cholesterol modulates membrane fluidity. The membrane is selectively permeable, controlling what enters and exits the cell via passive diffusion, facilitated diffusion, active transport, and vesicle trafficking."}
-  ]},
-  { name:"B. DNA Structure, Genes & Chromosomes", foundation:[
-    {label:"DNA structure",def:"Double-stranded helix. Sugar-phosphate backbone. Bases: A-T (2 H-bonds), G-C (3 H-bonds). Anti-parallel strands (5'→3' and 3'→5'). Stores genetic information."},
-    {label:"Gene",def:"A segment of DNA encoding a functional product (protein or functional RNA). Includes regulatory regions (promoter, enhancers), exons (coding), and introns (non-coding)."},
-    {label:"Chromosome",def:"A single, long DNA molecule packaged with histone proteins into chromatin. Humans: 46 chromosomes (22 autosomal pairs + XX or XY). Euchromatin = loosely packed, transcriptionally active. Heterochromatin = tightly packed, transcriptionally silent."},
-    {label:"Nucleosome",def:"Basic unit of chromatin. ~147 bp of DNA wrapped around an octamer of histones (2 each of H2A, H2B, H3, H4). Linker histone H1 stabilizes higher-order structure."},
-    {label:"Telomeres",def:"Repetitive sequences (TTAGGG) at chromosome ends. Protect against degradation and fusion. Shorten with each cell division (Hayflick limit). Telomerase extends them in stem cells and cancer cells."},
-    {label:"DNA Replication",def:"Semi-conservative: each new molecule has one parental and one new strand (Meselson-Stahl experiment). Eukaryotes have multiple origins of replication."},
-    {label:"Key replication enzymes",def:"Helicase (unwinds helix), Topoisomerase (relieves torsional strain), Primase (RNA primer), DNA Pol III (synthesis 5'→3'), DNA Pol I (removes primers), Ligase (joins Okazaki fragments)."},
-    {label:"Leading vs. lagging strand",def:"Leading: synthesized continuously toward replication fork. Lagging: synthesized as discontinuous Okazaki fragments away from fork, later joined by ligase."}
-  ], traps:[
-    "DNA polymerase can ONLY synthesize 5'→3'. It CANNOT go 3'→5'.",
-    "RNA primers are required because DNA polymerase cannot initiate synthesis de novo.",
-    "Telomere shortening explains the Hayflick limit (finite cell divisions in normal cells).",
-    "DNA polymerase has 3'→5' exonuclease proofreading activity. Error rate after proofreading: ~1 in 10^9 bases."
-  ], qas:[
-    {q:"Describe the process of DNA replication and name key enzymes.",a:"DNA replication is semi-conservative. Helicase unwinds the double helix at the origin of replication. Single-strand binding proteins stabilize the separated strands. Topoisomerase relieves torsional strain ahead of the fork. Primase lays down short RNA primers. DNA polymerase III synthesizes new DNA 5'→3'. The leading strand is synthesized continuously; the lagging strand is synthesized as Okazaki fragments. DNA polymerase I removes RNA primers and fills gaps; DNA ligase seals the nicks. Proofreading by the 3'→5' exonuclease activity of DNA polymerase ensures high fidelity (~1 error per 10^9 bases)."}
-  ]},
-  { name:"C. Transcription (DNA → mRNA)", foundation:[
-    {label:"Transcription",def:"Synthesis of an RNA molecule from a DNA template. RNA polymerase reads template DNA 3'→5' and synthesizes RNA 5'→3'."},
-    {label:"Eukaryotic RNA Polymerases",def:"RNA Pol I → rRNA. RNA Pol II → mRNA (protein-coding). RNA Pol III → tRNA, 5S rRNA. Prokaryotes: single RNA polymerase."},
-    {label:"5' cap",def:"7-methylguanosine added to 5' end of pre-mRNA. Protects from degradation, aids ribosome recognition, facilitates nuclear export. Eukaryotes only."},
-    {label:"3' poly-A tail",def:"~200 adenine nucleotides added to 3' end. Protects from exonuclease degradation, aids export and translation efficiency. Eukaryotes only."},
-    {label:"Splicing",def:"Removal of introns and joining of exons by the spliceosome. Alternative splicing: different exon combinations produce different protein isoforms from one gene."}
-  ], traps:[
-    "Prokaryotes do NOT have 5' cap, poly-A tail, or splicing.",
-    "Template strand is 3'→5'; the mRNA produced is 5'→3'.",
-    "Alternative splicing is a major source of protein diversity; one gene can produce many proteins.",
-    "RNA Pol II makes mRNA. RNA Pol I makes rRNA. RNA Pol III makes tRNA."
-  ], qas:[
-    {q:"What are the key differences between prokaryotic and eukaryotic gene expression?",a:"Prokaryotic: transcription and translation are coupled. mRNA has no 5' cap, poly-A tail, or introns. Genes organized into operons. Single RNA polymerase. Eukaryotic: transcription occurs in nucleus, translation in cytoplasm. mRNA requires processing (5' cap, poly-A tail, splicing). Three RNA polymerases (I, II, III). Regulation at multiple levels: chromatin, transcription, post-transcription, translation, and post-translation."},
-    {q:"What is alternative splicing and why is it important?",a:"Alternative splicing is the process by which a single pre-mRNA can be processed to include or exclude different combinations of exons, producing multiple distinct mRNA variants and different protein isoforms from one gene. ~20,000 human genes can produce an estimated 100,000+ distinct proteins. Dysregulation is implicated in many diseases including cancer and neurological disorders."}
-  ]},
-  { name:"D. Translation (mRNA → Protein)", foundation:[
-    {label:"Translation",def:"Synthesis of a polypeptide chain from an mRNA template. Occurs on ribosomes in the cytoplasm."},
-    {label:"Codon",def:"Three mRNA nucleotides specifying one amino acid (or a stop signal). The genetic code is degenerate, universal, and non-overlapping."},
-    {label:"Start codon",def:"AUG (methionine). Signals beginning of translation."},
-    {label:"Stop codons",def:"UAA, UAG, UGA. Recognized by release factors (not tRNA)."},
-    {label:"Ribosome sites",def:"A site (aminoacyl): incoming charged tRNA binds. P site (peptidyl): holds tRNA attached to growing polypeptide. E site (exit): empty tRNA exits."},
-    {label:"Elongation",def:"Charged tRNA enters A site. Peptide bond forms (catalyzed by peptidyl transferase ribozyme in large subunit). Ribosome translocates one codon. Requires elongation factors and GTP."},
-    {label:"Post-translational modifications",def:"Folding (chaperones: Hsp70, Hsp60), cleavage (signal peptides), glycosylation (ER and Golgi), phosphorylation (kinases), ubiquitination (marks for proteasome degradation)."}
-  ], traps:[
-    "Peptidyl transferase is a RIBOZYME (RNA-based enzyme), not a protein enzyme.",
-    "Genetic code is degenerate but NOT ambiguous: each codon specifies only ONE amino acid.",
-    "Stop codons are recognized by release FACTORS, not tRNA molecules."
-  ], qas:[
-    {q:"What is the central dogma of molecular biology?",a:"The central dogma states that genetic information flows from DNA to RNA to protein. DNA is replicated (DNA→DNA), transcribed into mRNA (DNA→RNA), and translated into protein (RNA→protein). Exceptions exist: reverse transcriptase converts RNA to DNA (retroviruses like HIV), and RNA replication occurs in RNA viruses."}
-  ]},
-  { name:"E. Gene Regulation & Epigenetics", foundation:[
-    {label:"Histone acetylation",def:"Added by HATs. Loosens chromatin, increases transcription. Deacetylation by HDACs condenses chromatin, decreases transcription."},
-    {label:"DNA methylation",def:"Addition of methyl groups to cytosine (CpG dinucleotides). Generally silences gene expression. Heritable through cell divisions. Aberrant methylation silences tumor suppressor promoters in cancer."},
-    {label:"MicroRNA (miRNA)",def:"Small non-coding RNA (~22 nt). Binds 3' UTR of target mRNA → mRNA degradation or translational repression. Post-transcriptional regulation."},
-    {label:"siRNA (RNAi)",def:"Double-stranded RNA processed by Dicer into ~21 nt fragments. Loaded into RISC complex. Guides cleavage of complementary mRNA. Used experimentally for gene knockdown."},
-    {label:"Epigenetics",def:"Heritable changes in gene expression that do NOT alter DNA sequence. Mechanisms: DNA methylation, histone modification, non-coding RNAs."},
-    {label:"X-inactivation",def:"In females, one X chromosome is randomly inactivated per cell (forms Barr body). Mediated by XIST non-coding RNA."}
-  ], traps:[
-    "Lac operon requires BOTH lactose present AND glucose absent for maximum expression.",
-    "Epigenetic changes are heritable but reversible (unlike DNA mutations).",
-    "DNA methylation generally silences genes; histone acetylation activates them.",
-    "miRNA binds the 3' UTR of target mRNA; it does not alter DNA."
-  ], qas:[
-    {q:"What is epigenetics? Give examples.",a:"Epigenetics refers to heritable changes in gene expression that do not alter the underlying DNA sequence. The three main mechanisms are: (1) DNA methylation, typically at CpG islands, which generally silences gene expression; (2) histone modification, including acetylation (activating) and methylation (can be activating or silencing); (3) non-coding RNAs such as microRNAs. Examples: X-inactivation in females, genomic imprinting, and cellular differentiation."}
-  ]},
-  { name:"F. Cell Cycle, Mitosis & Meiosis", foundation:[
-    {label:"G1 phase",def:"Cell growth, organelle duplication, preparation for DNA synthesis. G1/S checkpoint: checks DNA damage, cell size, growth signals."},
-    {label:"S phase",def:"DNA replication occurs. Each chromosome is duplicated (sister chromatids joined at centromere)."},
-    {label:"Mitosis result",def:"2 genetically identical diploid daughter cells. Used for growth and repair."},
-    {label:"Meiosis I (reductional)",def:"Homologous chromosomes pair (synapsis). Crossing over between non-sister chromatids (genetic diversity). Homologous pairs separate. Result: 2 haploid cells."},
-    {label:"Meiosis II (equational)",def:"Similar to mitosis. Sister chromatids separate. Result: 4 genetically unique haploid cells."}
-  ], traps:[
-    "Mitosis → 2 DIPLOID identical cells. Meiosis → 4 HAPLOID unique cells.",
-    "Crossing over occurs in Meiosis I ONLY, between non-sister chromatids of homologous chromosomes.",
-    "Spindle checkpoint is at METAPHASE. Checks kinetochore attachment.",
-    "Non-disjunction (failure to separate) → aneuploidy: trisomy or monosomy."
-  ], qas:[
-    {q:"What is the difference between mitosis and meiosis?",a:"Mitosis produces 2 genetically identical diploid daughter cells, used for growth and repair. Meiosis produces 4 genetically unique haploid gametes, used for sexual reproduction. Key differences: meiosis has two rounds of division; crossing over and independent assortment occur in meiosis I, generating genetic diversity; homologous chromosomes pair and separate in meiosis I (reductional division), whereas sister chromatids separate in meiosis II and in mitosis."}
-  ]},
-  { name:"G. Molecular Biology Techniques", foundation:[
-    {label:"PCR",def:"Amplifies specific DNA segments in vitro. Steps per cycle: (1) Denaturation ~95°C, (2) Annealing ~55-65°C, (3) Extension ~72°C. Exponential amplification: 2^n copies after n cycles."},
-    {label:"CRISPR-Cas9",def:"Guide RNA (gRNA) directs Cas9 nuclease to a specific DNA sequence adjacent to a PAM (NGG for SpCas9). Cas9 creates a double-strand break. Repair: NHEJ (indels) or HDR (precise editing with template)."},
-    {label:"RNA-seq",def:"Sequences all RNA in a sample. Workflow: RNA extraction → reverse transcription to cDNA → fragmentation → sequencing → alignment → quantification. Detects alternative splicing, novel transcripts, differential expression."},
-    {label:"Blots",def:"Southern = DNA detection. Northern = RNA detection. Western = protein detection."},
-    {label:"BLAST",def:"Basic Local Alignment Search Tool. Compares query sequence against database. Output includes E-values (lower = more significant)."}
-  ], traps:[
-    "PCR requires PRIMERS (short DNA). Taq polymerase has NO proofreading (lower fidelity).",
-    "CRISPR uses a GUIDE RNA (not DNA) to direct Cas9 to the target.",
-    "RNA-seq measures mRNA abundance, NOT protein levels.",
-    "BLAST performs LOCAL alignment, not global."
-  ], qas:[
-    {q:"What is CRISPR-Cas9 and how does it work?",a:"CRISPR-Cas9 is a genome editing technology derived from a bacterial adaptive immune system. It consists of a guide RNA (gRNA) complementary to the target DNA sequence, and the Cas9 endonuclease that creates a double-strand break at the target site adjacent to a PAM sequence (NGG for SpCas9). After the cut, the cell repairs the break by either NHEJ (introduces insertions or deletions that disrupt the gene) or HDR (uses a supplied template to make precise edits). Applications include gene knockout, gene correction, disease modeling, and therapeutic applications."},
-    {q:"What is the difference between RNA-seq and microarrays?",a:"Microarrays use hybridization to pre-designed probes for known sequences; limited dynamic range, cannot detect novel transcripts. RNA-seq uses next-generation sequencing to directly sequence all RNA molecules; can detect novel transcripts, alternative splicing events, and has a wider dynamic range. RNA-seq has largely replaced microarrays for most transcriptomic studies."}
-  ]},
-  { name:"H. Cell Signaling", foundation:[
-    {label:"Signal transduction",def:"The process by which an extracellular signal is converted into an intracellular response."},
-    {label:"Receptor tyrosine kinases (RTKs)",def:"Ligand binding causes dimerization and autophosphorylation of tyrosine residues. Activates Ras-MAPK (cell proliferation) and PI3K-Akt (cell survival). Mutations common in cancer (EGFR, HER2)."},
-    {label:"GPCRs",def:"Largest receptor family. Seven transmembrane domains. Ligand binding activates G-protein (GDP → GTP exchange). G-protein activates effectors: adenylyl cyclase (→ cAMP) or phospholipase C (→ IP3 and DAG)."},
-    {label:"Apoptosis (intrinsic)",def:"Mitochondrial pathway. DNA damage → cytochrome c release → apoptosome → caspase-9 activation → caspase-3 (executioner)."},
-    {label:"Apoptosis (extrinsic)",def:"Death receptor pathway. FasL binds Fas receptor → DISC formation → caspase-8 activation → caspase-3. Both pathways converge on caspase-3."},
-    {label:"Necrosis vs. apoptosis",def:"Necrosis: uncontrolled, cell swelling, membrane rupture → inflammation. Apoptosis: programmed, orderly, cell shrinkage, membrane blebbing, apoptotic bodies phagocytosed → NO inflammation."}
-  ], traps:[
-    "Apoptosis does NOT cause inflammation (unlike necrosis).",
-    "Ras is a GTPase. Oncogenic mutations keep it permanently GTP-bound → constitutive proliferative signaling.",
-    "Cancer often involves gain-of-function in oncogenes AND loss-of-function in tumor suppressors simultaneously."
-  ], qas:[
-    {q:"What is apoptosis and how does it differ from necrosis?",a:"Apoptosis is programmed cell death: orderly, energy-dependent, and does not cause inflammation. Features: cell shrinkage, chromatin condensation, membrane blebbing, formation of apoptotic bodies that are phagocytosed. Two pathways: intrinsic (mitochondrial: cytochrome c release, caspase-9) and extrinsic (death receptor: Fas/FasL, caspase-8). Both converge on caspase-3. Necrosis is uncontrolled cell death caused by injury or infection: cell swelling, membrane rupture, release of cellular contents causing inflammation."}
-  ]},
-  { name:"I. Cancer Biology", foundation:[
-    {label:"Oncogene",def:"Mutated form of a proto-oncogene. Gain-of-function mutation. Promotes cell proliferation even without appropriate signals. Examples: Ras, Myc, HER2/Neu."},
-    {label:"Tumor suppressor gene",def:"Normally inhibits cell proliferation or promotes apoptosis. Loss-of-function mutation contributes to cancer. Examples: p53 (apoptosis/arrest), Rb (G1/S checkpoint), BRCA1/BRCA2 (DNA repair)."},
-    {label:"p53",def:"Guardian of the genome. Activated by DNA damage: triggers (1) cell cycle arrest at G1/S via p21, (2) DNA repair genes, (3) apoptosis if damage irreparable. Mutated in >50% of human cancers."},
-    {label:"Two-hit hypothesis (Knudson)",def:"Both alleles of a tumor suppressor gene must be inactivated for loss of function."},
-    {label:"Hallmarks of cancer",def:"Sustaining proliferative signaling, evading growth suppressors, resisting cell death, enabling replicative immortality, inducing angiogenesis, activating invasion/metastasis."}
-  ], traps:[
-    "Oncogene = gain-of-function. Tumor suppressor = loss-of-function.",
-    "p53 is a transcription factor; it activates downstream target genes. It doesn't directly repair DNA.",
-    "Two-hit: BOTH alleles must be inactivated for tumor suppressor loss of function."
-  ], qas:[
-    {q:"Explain the role of p53 in cancer biology.",a:"p53 is a tumor suppressor protein called the guardian of the genome. When DNA damage is detected, p53 activates: (1) cell cycle arrest at G1/S via p21 (a CDK inhibitor); (2) DNA repair genes; (3) apoptosis if damage is irreparable. Loss-of-function mutations in p53 (found in >50% of human cancers) remove these protective mechanisms. p53 is a transcription factor; it directly activates the expression of downstream target genes."}
-  ]},
-  { name:"J. Genomics & Bioinformatics", foundation:[
-    {label:"Human genome facts",def:"~3.2 billion base pairs. ~20,000-25,000 protein-coding genes. Only ~1.5% of genome is protein-coding."},
-    {label:"Differential expression analysis",def:"Compares gene expression between conditions. RNA-seq workflow: align reads → quantify counts → normalize → statistical testing (DESeq2 uses negative binomial model) → multiple testing correction. Visualized with volcano plots or heatmaps."},
-    {label:"AlphaFold",def:"AI system by DeepMind that predicts protein 3D structure from amino acid sequence with near-experimental accuracy."},
-    {label:"scRNA-seq",def:"Single-cell RNA sequencing profiles the transcriptome of individual cells. Reveals cell subtypes, rare populations, differentiation trajectories, tumor heterogeneity. Analytics: PCA, UMAP, clustering, pseudotime, RNA velocity. Central to the Human Cell Atlas."}
-  ], traps:[
-    "Only ~1.5% of the human genome codes for proteins. The rest is NOT junk; it includes regulatory elements and non-coding RNAs.",
-    "Transcriptome is DYNAMIC (changes with conditions). Genome is STATIC.",
-    "BLAST performs LOCAL alignment, not global. E-value: lower = more statistically significant.",
-    "mRNA levels do NOT always predict protein levels."
-  ], qas:[
-    {q:"What is the significance of single-cell RNA sequencing (scRNA-seq)?",a:"Bulk RNA-seq measures the average expression profile across millions of cells, masking cell-to-cell heterogeneity. scRNA-seq profiles the transcriptome of individual cells, revealing: (1) distinct cell types and subtypes within a tissue, (2) rare cell populations, (3) cellular state transitions and differentiation trajectories, (4) heterogeneity in tumor cell populations. Analytical methods include dimensionality reduction (PCA, UMAP), clustering, trajectory analysis (pseudotime), and RNA velocity. This technology is central to the Human Cell Atlas project."},
-    {q:"Explain differential gene expression analysis.",a:"Differential expression analysis compares gene expression levels between two or more conditions to identify genes that are significantly up- or down-regulated. In RNA-seq: (1) align sequencing reads to a reference genome, (2) quantify read counts per gene, (3) normalize for sequencing depth and gene length, (4) apply statistical tests (DESeq2 uses negative binomial model), (5) correct for multiple hypothesis testing (FDR). Output visualized with volcano plots or heatmaps."}
-  ]},
-  { name:"K. Stem Cells & Differentiation", foundation:[
-    {label:"Potency hierarchy",def:"Totipotent: all cell types + extraembryonic tissue (e.g., zygote). Pluripotent: all body cell types but not placenta (e.g., ESCs). Multipotent: several related cell types. Unipotent: single cell type."},
-    {label:"iPSCs",def:"Induced pluripotent stem cells. Adult somatic cells reprogrammed to pluripotent state by introducing Yamanaka factors: Oct4, Sox2, Klf4, c-Myc. Discovered by Shinya Yamanaka (Nobel Prize 2012). Avoids ethical issues of ESCs."}
-  ], traps:[
-    "Totipotent can form placenta too; pluripotent cannot. This is the key distinction.",
-    "iPSCs avoid the ethical concerns of ESC derivation (no embryo destruction required).",
-    "Differentiation changes gene expression patterns, NOT the DNA sequence itself."
-  ], qas:[
-    {q:"What are stem cells? Explain the differences between embryonic stem cells and iPSCs.",a:"Stem cells are undifferentiated cells capable of self-renewal and differentiation into specialized cell types. Embryonic stem cells (ESCs) are derived from the inner cell mass of the blastocyst; they are pluripotent. iPSCs are adult somatic cells reprogrammed to a pluripotent state by introducing four transcription factors (Oct4, Sox2, Klf4, c-Myc), discovered by Yamanaka (2006, Nobel 2012). Advantages of iPSCs: avoid ethical concerns of embryo destruction, can be patient-specific (reducing immune rejection risk), and enable disease modeling using patient-derived cells."}
-  ]}
-];
-
-const parts = [
-  { id:"background", label:"Part 1", title:"General Background", duration:"~5 min", icon:"👤", color:"#4f7942",
-    questions:[
-      {q:"Tell me about yourself.",a:"Open with your degree, GPA, and any clinical or research experience. Then connect how that background drove your interest in bioscience. Mention hands-on training (bioinformatics, lab rotations, independent projects) and close with one sentence on what you're aiming to formalize through the M.S."},
-      {q:"Why this program / why this university?",a:"Cite the specific interdisciplinary environment: integration of wet-lab biology with computational methods, access to relevant faculty, and emphasis on translational or systems-level research. Avoid generic answers; name one specific lab, center, or recent initiative."},
-      {q:"What is your biggest weakness or gap?",a:"Be honest and specific (e.g., limited wet-lab experience, limited statistics background). Then explain what you've done to address it, and how the M.S. program's courses or rotations will close it. Avoid clichéd non-answers like 'I work too hard.'"},
-      {q:"What are your long-term goals?",a:"Describe a trajectory: M.S. → Ph.D. → specific career outcome. Connect it to a real problem you want to solve. Interviewers want to see that the M.S. is a deliberate step, not just a credential."},
-      {q:"Tell me about your research experience.",a:"Structure it as: (1) What is the problem? (2) Why does it matter? (3) What did you do? (4) What did you find or design? (5) What are the limitations and next steps? Be honest about what is design-stage vs. executed work."}
-    ]
-  },
-  { id:"research", label:"Part 3", title:"Research Discussion", duration:"~10–15 min", icon:"🧬", color:"#7a4f8a",
-    questions:[
-      {q:"What specific aspect of [Professor X]'s research interests you most?",a:"Name a specific paper or research theme, not just 'your lab's work on X.' Explain why it connects to a real scientific question you care about. Cite a methodological approach or a biological problem the lab is tackling."},
-      {q:"How would you contribute to this lab?",a:"Offer three concrete things: (1) a technical skill you already have that the lab uses, (2) a unique perspective (clinical, computational, cross-disciplinary), and (3) a project or problem you've independently worked on that demonstrates research initiative."},
-      {q:"If you could design a project in this lab, what would it be?",a:"Start with a biological question. Explain how you'd use the lab's existing methods or tools to address it. Connect it to your own background or prior work. Keep it feasible for an M.S. student."},
-      {q:"How does your background align with this lab's methods?",a:"Be specific about tools and techniques. If you've used RNA-seq pipelines, Python, DESeq2, BLAST, or similar tools, say so explicitly. Connect each to a concrete thing the lab does."}
-    ]
-  },
-  { id:"yourquestions", label:"Part 4", title:"Your Questions", duration:"~5 min", icon:"💬", color:"#8a6a3d",
-    questions:[
-      {q:"What does the rotation or lab placement process look like for first-year M.S. students?",a:null},
-      {q:"Are there opportunities for M.S. students to collaborate across divisions (e.g., computational + wet lab)?",a:null},
-      {q:"What support exists for M.S. students interested in transitioning to the Ph.D. track?",a:null},
-      {q:"⚠️ Avoid: asking about stipends, housing, or logistics. Ask only about research, training, and academic growth.",a:null,warning:true}
-    ]
-  }
-];
-
-const tips = [
-  {icon:"🎯",title:"Answer structure",body:"For technical questions: DEFINE → EXPLAIN → CONNECT TO APPLICATION. Never just dump facts."},
-  {icon:"⏸️",title:"Pausing is allowed",body:"'Let me think for a moment.' Pausing briefly shows rigor, not weakness."},
-  {icon:"🤷",title:"If you don't know",body:"Say: 'I haven't studied this in depth yet, but based on my understanding of [related concept], I'd reason that...' Intellectual honesty beats bluffing every time."},
-  {icon:"📄",title:"Be specific about faculty",body:"Mention paper titles and specific research themes. Generic praise is unconvincing to experienced interviewers."},
-  {icon:"🔠",title:"Key vocabulary to use naturally",body:"Gene regulatory networks · single-cell transcriptomics · translational relevance · multimodal integration · chromatin remodeling · genomic heterogeneity · cell identity · epigenetic regulation · precision medicine"},
-  {icon:"👔",title:"Presentation",body:"Dress professionally (business casual minimum). For virtual: test audio/video, neutral background, good lighting, backup device ready."}
-];
-
-function BioscienceInterview() {
-  const [activeSection, setActiveSection] = useStateI("background");
-  const [openQs, setOpenQs] = useStateI({});
-  const [openTopics, setOpenTopics] = useStateI({});
-  const [scienceTab, setScienceTab] = useStateI("foundation");
-
-  const toggleQ = (key) => setOpenQs(p=>({...p,[key]:!p[key]}));
-  const toggleTopic = (key) => setOpenTopics(p=>({...p,[key]:!p[key]}));
-
-  const navItems = [
-    {id:"background",label:"Part 1: Background",color:"#4f7942"},
-    {id:"science",label:"Part 2: Science",color:ACCENT_I},
-    {id:"research",label:"Part 3: Research",color:"#7a4f8a"},
-    {id:"yourquestions",label:"Part 4: Your Questions",color:"#8a6a3d"},
-    {id:"tips",label:"✅ Final Tips",color:"#1a1a1a"}
-  ];
-
-  return (
-    <div style={{fontFamily:"'Georgia','Times New Roman',serif",background:"#faf8f4",minHeight:"100vh",color:"#1a1a1a"}}>
-      <div style={{background:"#1a1a1a",color:"#faf8f4",padding:"36px 28px 28px",borderBottom:"4px solid #c8a96e"}}>
-        <div style={{maxWidth:860,margin:"0 auto"}}>
-          <div style={{fontSize:10,letterSpacing:"0.18em",textTransform:"uppercase",color:"#c8a96e",marginBottom:8,fontFamily:"monospace"}}>Graduate Interview Preparation · M.S. Bioscience</div>
-          <h1 style={{fontSize:"clamp(22px,4.5vw,38px)",fontWeight:400,margin:"0 0 6px",lineHeight:1.15}}>Bioscience Interview<br/><span style={{color:"#c8a96e"}}>Complete Study Guide</span></h1>
-          <p style={{margin:"12px 0 0",fontSize:14,color:"#999",maxWidth:560,lineHeight:1.65,fontStyle:"italic"}}>Four-part framework: background questions, full foundational science review with definitions, exam traps, and model Q&A answers, research discussion, and candidate questions.</p>
-        </div>
-      </div>
-
-      <div style={{background:"#f0ece4",borderBottom:"1px solid #d8d0c0",position:"sticky",top:48,zIndex:49}}>
-        <div style={{maxWidth:860,margin:"0 auto",display:"flex",overflowX:"auto",padding:"0 12px"}}>
-          {navItems.map(n=>(
-            <button key={n.id} onClick={()=>setActiveSection(n.id)} style={{padding:"13px 14px",border:"none",borderBottom:activeSection===n.id?`3px solid ${n.color}`:"3px solid transparent",background:"none",cursor:"pointer",fontFamily:"inherit",fontSize:12,fontWeight:activeSection===n.id?700:400,color:activeSection===n.id?n.color:"#666",whiteSpace:"nowrap",transition:"all 0.15s"}}>{n.label}</button>
-          ))}
-        </div>
-      </div>
-
-      <div style={{maxWidth:860,margin:"0 auto",padding:"28px 18px 80px"}}>
-        {["background","research","yourquestions"].includes(activeSection)&&(()=>{
-          const part=parts.find(p=>p.id===activeSection);
-          return(
-            <div>
-              <div style={{marginBottom:22}}>
-                <div style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:"#888",marginBottom:5,fontFamily:"monospace"}}>{part.label} · {part.duration}</div>
-                <h2 style={{fontSize:24,fontWeight:400,margin:0}}>{part.icon} {part.title}</h2>
-              </div>
-              {part.questions.map((item,qi)=>{
-                const key=`${activeSection}-${qi}`;
-                const open=openQs[key];
-                if(item.warning) return(<div key={key} style={{padding:"12px 16px",background:"#fff8ec",border:"1px solid #e8c876",borderLeft:"4px solid #c8a96e",borderRadius:4,marginBottom:10,fontSize:13.5,color:"#6a4800",lineHeight:1.6}}>{item.q}</div>);
-                return(
-                  <div key={key} style={{border:"1px solid #d8d0c0",borderLeft:`4px solid ${part.color}`,borderRadius:4,marginBottom:10,background:open?"#fff":"#faf8f4"}}>
-                    <button onClick={()=>item.a&&toggleQ(key)} style={{width:"100%",textAlign:"left",padding:"13px 16px",background:"none",border:"none",cursor:item.a?"pointer":"default",fontFamily:"inherit",fontSize:14,fontWeight:600,color:"#1a1a1a",display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10}}>
-                      <span style={{lineHeight:1.5}}>{item.q}</span>
-                      {item.a&&<span style={{color:part.color,fontSize:18,flexShrink:0}}>{open?"−":"+"}</span>}
-                    </button>
-                    {open&&item.a&&(<div style={{padding:"0 16px 14px",fontSize:13.5,lineHeight:1.78,color:"#333",borderTop:"1px solid #ece8e0",paddingTop:14}}>{item.a}</div>)}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })()}
-
-        {activeSection==="science"&&(
-          <div>
-            <div style={{marginBottom:18}}>
-              <div style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:"#888",marginBottom:5,fontFamily:"monospace"}}>Part 2 · ~10–15 min</div>
-              <h2 style={{fontSize:24,fontWeight:400,margin:"0 0 6px"}}>🔬 Foundational Science</h2>
-              <p style={{color:"#666",fontSize:13.5,margin:"0 0 16px",fontStyle:"italic",lineHeight:1.6}}>Expect ~10 questions drawn from the topics below. Each topic has three layers.</p>
-            </div>
-            <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
-              {[{id:"foundation",label:"📚 Definitions"},{id:"traps",label:"⚠️ Exam Traps"},{id:"qas",label:"💬 Full Q&A Bank"}].map(tab=>(
-                <button key={tab.id} onClick={()=>setScienceTab(tab.id)} style={{padding:"8px 16px",border:scienceTab===tab.id?`2px solid ${ACCENT_I}`:"2px solid #d8d0c0",borderRadius:20,background:scienceTab===tab.id?ACCENT_I:"#fff",color:scienceTab===tab.id?"#fff":"#555",cursor:"pointer",fontFamily:"inherit",fontSize:13,fontWeight:600,transition:"all 0.15s"}}>{tab.label}</button>
-              ))}
-            </div>
-            {scienceTopics.map((topic,ti)=>{
-              const key=`sci-${ti}`;
-              const open=openTopics[key];
-              if(scienceTab==="qas"&&(!topic.qas||topic.qas.length===0)) return null;
-              return(
-                <div key={key} style={{border:"1px solid #d8d0c0",borderLeft:`4px solid ${ACCENT_I}`,borderRadius:4,marginBottom:10,background:open?"#fff":"#faf8f4"}}>
-                  <button onClick={()=>toggleTopic(key)} style={{width:"100%",textAlign:"left",padding:"13px 16px",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit",fontSize:14,fontWeight:600,color:"#1a1a1a",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    {topic.name}<span style={{color:ACCENT_I,fontSize:18,marginLeft:8}}>{open?"−":"+"}</span>
-                  </button>
-                  {open&&(
-                    <div style={{padding:"0 16px 16px"}}>
-                      {scienceTab==="foundation"&&(
-                        <div>
-                          <div style={{fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase",color:"#888",marginBottom:10,fontFamily:"monospace"}}>Core Definitions</div>
-                          {topic.foundation.map((item,fi)=>(
-                            <div key={fi} style={{display:"flex",gap:12,marginBottom:7,padding:"9px 12px",background:"#f5f2ec",borderRadius:4,fontSize:13.5,lineHeight:1.65}}>
-                              <div style={{minWidth:130,fontWeight:700,color:ACCENT_I,flexShrink:0,fontSize:12.5,paddingTop:1}}>{item.label}</div>
-                              <div style={{color:"#2a2a2a"}}>{item.def}</div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {scienceTab==="traps"&&(
-                        <div>
-                          <div style={{fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase",color:"#888",marginBottom:10,fontFamily:"monospace"}}>Exam Traps: Common Mistakes</div>
-                          {topic.traps.map((trap,tri)=>(
-                            <div key={tri} style={{display:"flex",gap:10,marginBottom:7,padding:"9px 12px",background:"#fff4f4",border:"1px solid #f5c0c0",borderRadius:4,fontSize:13.5,lineHeight:1.65,color:"#5a1a1a"}}>
-                              <span style={{flexShrink:0,color:"#c44"}}>⚠</span><span>{trap}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {scienceTab==="qas"&&(
-                        <div>
-                          <div style={{fontSize:10,letterSpacing:"0.1em",textTransform:"uppercase",color:"#888",marginBottom:10,fontFamily:"monospace"}}>Model Q&A Answers</div>
-                          {topic.qas.map((qa,qi)=>{
-                            const qaKey=`${key}-qa-${qi}`;
-                            const qaOpen=openQs[qaKey];
-                            return(
-                              <div key={qaKey} style={{border:"1px solid #d8d0c0",borderLeft:"4px solid #4f7942",borderRadius:4,marginBottom:10}}>
-                                <button onClick={()=>toggleQ(qaKey)} style={{width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit",fontSize:13.5,fontWeight:600,color:"#1a1a1a",display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10}}>
-                                  <span style={{lineHeight:1.5}}>Q: {qa.q}</span>
-                                  <span style={{color:"#4f7942",fontSize:17,flexShrink:0,marginTop:1}}>{qaOpen?"−":"+"}</span>
-                                </button>
-                                {qaOpen&&(<div style={{padding:"10px 14px 14px",fontSize:13.5,lineHeight:1.78,color:"#333",borderTop:"1px solid #ece8e0",background:"#f9fff7",borderRadius:"0 0 4px 4px"}}>{qa.a}</div>)}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {activeSection==="tips"&&(
-          <div>
-            <div style={{marginBottom:24}}>
-              <div style={{fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",color:"#888",marginBottom:5,fontFamily:"monospace"}}>Final Preparation</div>
-              <h2 style={{fontSize:24,fontWeight:400,margin:0}}>Interview Day Tips</h2>
-            </div>
-            <div style={{display:"grid",gap:12}}>
-              {tips.map((tip,ti)=>(
-                <div key={ti} style={{padding:"18px 20px",background:"#fff",border:"1px solid #d8d0c0",borderLeft:"4px solid #1a1a1a",borderRadius:4}}>
-                  <div style={{fontSize:13,fontWeight:700,marginBottom:5,display:"flex",alignItems:"center",gap:8}}>
-                    <span style={{fontSize:17}}>{tip.icon}</span>{tip.title}
-                  </div>
-                  <div style={{fontSize:13.5,color:"#444",lineHeight:1.72}}>{tip.body}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{marginTop:28,padding:"22px",background:"#1a1a1a",borderRadius:6,color:"#faf8f4"}}>
-              <div style={{fontSize:11,color:"#c8a96e",letterSpacing:"0.1em",textTransform:"uppercase",fontFamily:"monospace",marginBottom:12}}>Night Before Checklist</div>
-              {["Test video/audio. Have a backup device ready.","Prepare a quiet, well-lit space with a neutral background.","Rehearse your 90-second introduction out loud.","Re-read the faculty member's 2–3 most recent papers and note specific findings.","Write down 3 specific questions to ask the interviewer.","Review the Exam Traps section one more time.","Get 7–8 hours of sleep."].map((item,i)=>(
-                <div key={i} style={{display:"flex",gap:10,marginBottom:7,fontSize:13.5,color:"#ddd",lineHeight:1.6}}>
-                  <span style={{color:"#c8a96e",flexShrink:0}}>✓</span>{item}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('interview-root')).render(<BioscienceInterview/>);
-</script>
+<script type="text/babel" src="interview_app.js"></script>
 </body>
 </html>
